@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getShowBySlug, getEpisodes } from '@/lib/data';
 import { EpisodeList } from '@/components/shows/episode-list';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import { Twitter, Instagram, Globe } from 'lucide-react';
 
 interface ShowPageProps {
@@ -25,8 +26,15 @@ export default async function ShowPage({ params }: ShowPageProps) {
             <div className="bg-secondary/30 py-12 md:py-24 border-b border-border">
                 <div className="container px-4 md:px-6">
                     <div className="flex flex-col md:flex-row gap-8 items-start">
-                        <div className="w-full md:w-1/3 max-w-[300px] aspect-square rounded-xl overflow-hidden shadow-xl">
-                            <img src={show.coverImage} alt={show.title} className="w-full h-full object-cover" />
+                        <div className="w-full md:w-1/3 max-w-[300px] aspect-square rounded-xl overflow-hidden shadow-xl relative">
+                            <Image
+                                src={show.coverImage}
+                                alt={show.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 300px"
+                                priority
+                            />
                         </div>
 
                         <div className="flex-1 space-y-4">
@@ -50,8 +58,14 @@ export default async function ShowPage({ params }: ShowPageProps) {
                             <div className="flex items-center gap-4 pt-4">
                                 {show.hosts.map(host => (
                                     <div key={host.id} className="flex items-center gap-3">
-                                        <div className="w-10 h-10 rounded-full overflow-hidden bg-muted">
-                                            <img src={host.avatar} alt={host.name} className="w-full h-full object-cover" />
+                                        <div className="w-10 h-10 rounded-full overflow-hidden bg-muted relative">
+                                            <Image
+                                                src={host.avatar}
+                                                alt={host.name}
+                                                fill
+                                                className="object-cover"
+                                                sizes="40px"
+                                            />
                                         </div>
                                         <div>
                                             <p className="font-semibold text-sm">{host.name}</p>

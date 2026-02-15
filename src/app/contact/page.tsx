@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Twitter, Instagram, Linkedin, Mail } from 'lucide-react';
+import { Twitter, Mail } from 'lucide-react';
 
 export default function ContactPage() {
     return (
@@ -10,7 +10,7 @@ export default function ContactPage() {
                     <div>
                         <h1 className="text-4xl font-bold tracking-tighter mb-4">Get in Touch</h1>
                         <p className="text-xl text-muted-foreground">
-                            Have a question, pitch, or partnership inquiry? We'd love to hear from you.
+                            Have a question, pitch, or partnership inquiry? We&apos;d love to hear from you.
                         </p>
                     </div>
 

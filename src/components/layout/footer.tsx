@@ -1,52 +1,79 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { Instagram, Twitter, Linkedin, Facebook } from 'lucide-react';
+import { Instagram, Twitter, Youtube, Linkedin } from 'lucide-react';
 
 export function Footer() {
+    const navLinks = [
+        { name: 'Shows', href: '/shows' },
+        { name: 'About', href: '/about' },
+        { name: 'For Partners', href: '/contact' },
+        { name: 'Contact', href: '/contact' }
+    ];
+
+    const socialLinks = [
+        { name: 'Instagram', href: 'https://instagram.com', icon: Instagram },
+        { name: 'Twitter', href: 'https://twitter.com', icon: Twitter },
+        { name: 'YouTube', href: 'https://youtube.com', icon: Youtube },
+        { name: 'LinkedIn', href: 'https://linkedin.com', icon: Linkedin },
+        { name: 'TikTok', href: 'https://tiktok.com', icon: null } // TikTok icon not in lucide-react
+    ];
+
     return (
-        <footer className="bg-secondary text-secondary-foreground border-t border-border mt-auto">
-            <div className="container mx-auto px-4 py-12 md:px-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-bold">Podcast Network</h3>
-                        <p className="text-sm text-muted-foreground">
-                            Telling stories that matter. Connecting voices with ears around the globe.
+        <footer className="w-full bg-black text-white py-12 md:py-16">
+            <div className="container mx-auto px-4 md:px-6">
+                <div className="space-y-8">
+                    {/* Company Info */}
+                    <div className="text-center md:text-left">
+                        <p className="text-base md:text-lg text-gray-300">
+                            Adverbe Media is a Vermé Studios company. Based in Accra, building Africa&apos;s most relevant podcast network.
                         </p>
                     </div>
 
-                    <div>
-                        <h4 className="font-semibold mb-4">Network</h4>
-                        <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li><Link href="/shows" className="hover:text-primary transition-colors">Shows</Link></li>
-                            <li><Link href="/hosts" className="hover:text-primary transition-colors">Hosts</Link></li>
-                            <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-                            <li><Link href="/careers" className="hover:text-primary transition-colors">Careers</Link></li>
-                        </ul>
+                    {/* Navigation Links */}
+                    <div className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 text-sm md:text-base">
+                        {navLinks.map((link, index) => (
+                            <React.Fragment key={link.href}>
+                                <Link
+                                    href={link.href}
+                                    className="text-gray-300 hover:text-white transition-colors"
+                                >
+                                    {link.name}
+                                </Link>
+                                {index < navLinks.length - 1 && (
+                                    <span className="text-gray-600">|</span>
+                                )}
+                            </React.Fragment>
+                        ))}
                     </div>
 
-                    <div>
-                        <h4 className="font-semibold mb-4">Support</h4>
-                        <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
-                            <li><Link href="/sponsor" className="hover:text-primary transition-colors">Sponsor a Show</Link></li>
-                            <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
-                            <li><Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link></li>
-                        </ul>
+                    {/* Social Media Icons */}
+                    <div className="flex justify-center md:justify-start gap-6">
+                        {socialLinks.map((social) => (
+                            <a
+                                key={social.name}
+                                href={social.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-300 hover:text-white transition-colors"
+                                aria-label={social.name}
+                            >
+                                {social.icon ? (
+                                    <social.icon className="w-6 h-6" />
+                                ) : (
+                                    <span className="text-sm font-semibold">TT</span>
+                                )}
+                            </a>
+                        ))}
                     </div>
 
-                    <div>
-                        <h4 className="font-semibold mb-4">Follow Us</h4>
-                        <div className="flex space-x-4">
-                            <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Twitter className="h-5 w-5" /></a>
-                            <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Instagram className="h-5 w-5" /></a>
-                            <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="h-5 w-5" /></a>
-                            <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Facebook className="h-5 w-5" /></a>
-                        </div>
+                    {/* Tagline */}
+                    <div className="pt-8 border-t border-gray-800 text-center md:text-left">
+                        <p className="text-lg md:text-xl font-medium text-white">
+                            Stories must be told and heard.
+                        </p>
                     </div>
-                </div>
-
-                <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-                    &copy; {new Date().getFullYear()} Podcast Network. All rights reserved.
                 </div>
             </div>
         </footer>

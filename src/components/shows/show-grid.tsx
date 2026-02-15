@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Show, Category } from '@/types';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 
 interface ShowGridProps {
     shows: Show[];
@@ -49,10 +49,12 @@ export function ShowGrid({ shows, categories }: ShowGridProps) {
                 {activeShows.map((show) => (
                     <Link key={show.id} href={`/shows/${show.slug}`} className="group block space-y-3">
                         <div className="aspect-square overflow-hidden rounded-xl bg-muted relative">
-                            <img
+                            <Image
                                 src={show.coverImage}
                                 alt={show.title}
-                                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                fill
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                 <span className="text-white font-medium border border-white px-4 py-2 rounded-full backdrop-blur-sm transform translate-y-4 group-hover:translate-y-0 transition-transform">
@@ -77,10 +79,12 @@ export function ShowGrid({ shows, categories }: ShowGridProps) {
                         {comingSoonShows.map((show) => (
                             <div key={show.id} className="block space-y-3 pointer-events-none">
                                 <div className="aspect-square overflow-hidden rounded-xl bg-muted relative grayscale">
-                                    <img
+                                    <Image
                                         src={show.coverImage}
                                         alt={show.title}
-                                        className="h-full w-full object-cover"
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     />
                                     <div className="absolute inset-x-0 bottom-0 bg-black/60 p-2 text-center text-white text-sm font-medium">
                                         Coming Soon

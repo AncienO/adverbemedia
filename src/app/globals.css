@@ -3,6 +3,11 @@
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-inter: var(--font-inter);
+  --font-dancing: var(--font-dancing-script);
+  --font-great-vibes: var(--font-great-vibes);
+
+
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -29,6 +34,28 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-lava-slow: move-lava 20s infinite linear;
+  --animate-lava-medium: move-lava 15s infinite linear reverse;
+  --animate-lava-fast: move-lava 12s infinite linear;
+
+  @keyframes move-lava {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+
+    33% {
+      transform: translate(10%, 10%) rotate(120deg);
+    }
+
+    66% {
+      transform: translate(-5%, 5%) rotate(240deg);
+    }
+
+    100% {
+      transform: translate(0, 0) rotate(360deg);
+    }
+  }
 }
 
 :root {
@@ -60,7 +87,7 @@
 .dark {
   --background: #0a0a0a;
   --foreground: #fafafa;
-
+  /* ... (rest of dark mode vars) */
   --primary: #fafafa;
   --primary-foreground: #171717;
 
@@ -81,11 +108,44 @@
   --ring: #d4d4d4;
 }
 
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes letterAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.8);
+    filter: blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+
+  50% {
+    text-shadow:
+      0 0 40px rgba(255, 255, 255, 0.5),
+      0 0 80px rgba(255, 255, 255, 0.3);
+  }
+
+  100% {
+    text-shadow:
+      0 0 20px rgba(255, 255, 255, 0.3),
+      0 0 40px rgba(255, 255, 255, 0.2);
+  }
 }
 
 @layer utilities {

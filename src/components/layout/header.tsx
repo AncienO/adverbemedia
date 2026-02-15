@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,11 +23,14 @@ export function Header() {
                 {/* Logo */}
                 <Link href="/" className="flex items-center space-x-2">
                     {/* Mock Logo Image as requested */}
-                    <div className="relative h-8 w-auto">
-                        <img
+                    <div className="relative h-10 w-[150px]">
+                        <Image
                             src="https://placehold.co/150x40/171717/ffffff?text=PODCAST+NET&font=playfair-display"
                             alt="Podcast Network Logo"
-                            className="h-8 w-auto object-contain dark:invert"
+                            fill
+                            className="object-contain dark:invert"
+                            sizes="150px"
+                            priority
                         />
                     </div>
                 </Link>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Play } from 'lucide-react';
 import { Show, Episode } from '@/types';
@@ -18,10 +19,12 @@ export function LatestEpisodes({ episodes }: LatestEpisodesProps) {
                     {episodes.map((episode) => (
                         <div key={episode.id} className="group relative flex flex-col md:flex-row gap-4 p-4 rounded-xl hover:bg-background transition-colors border border-transparent hover:border-border">
                             <div className="flex-shrink-0 w-full md:w-32 aspect-square rounded-md overflow-hidden bg-muted">
-                                <img
-                                    src={episode.show.coverImage || episode.coverImage}
+                                <Image
+                                    src={episode.show.coverImage || episode.coverImage || 'https://placehold.co/600x600/1e293b/ffffff?text=No+Cover'}
                                     alt={episode.title}
-                                    className="w-full h-full object-cover"
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 768px) 100vw, 150px"
                                 />
                             </div>
 

@@ -1,50 +1,55 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Show } from '@/types';
 
-interface HeroProps {
-    featuredShow: Show;
-}
+export function Hero() {
 
-export function Hero({ featuredShow }: HeroProps) {
     return (
-        <section className="relative w-full h-[600px] flex items-center bg-black text-white overflow-hidden">
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />
-                <img
-                    src={featuredShow.coverImage}
-                    alt={featuredShow.title}
-                    className="w-full h-full object-cover opacity-70"
-                />
-            </div>
+        <section
+            className="relative w-full h-[960px] flex items-center overflow-hidden"
+            style={{
+                background: 'linear-gradient(90deg, #000000 0%, #000000 20%, #E30512 80%, #E30512 100%)'
+            }}
+        >
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" />
 
-            <div className="container relative z-20 px-4 md:px-6">
-                <div className="max-w-2xl space-y-6">
-                    <div className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
-                        Featured Show
-                    </div>
-
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tighter sm:text-5xl xl:text-7xl/none">
-                        {featuredShow.title}
+            {/* Container - shifted left by reducing right justification or adding margin margin-right */}
+            <div className="container relative z-20 px-4 md:px-6 flex justify-end pr-[10%] md:pr-[20%]">
+                <div className="w-full md:w-[80%] lg:w-[70%] space-y-8 pl-0 md:pl-12">
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none text-white font-['Helvetica']">
+                        <span className="block whitespace-nowrap text-7xl md:text-[10.5rem] lg:text-[12rem]">
+                            Adverbe Media
+                        </span>
+                        <span className="block whitespace-nowrap">
+                            is where conversation
+                        </span>
+                        <span className="block whitespace-nowrap">
+                            becomes record
+                        </span>
                     </h1>
 
-                    <p className="max-w-[600px] text-gray-200 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                        {featuredShow.description}
+                    <p className="max-w-[1200px] text-gray-100 text-base md:text-xl leading-normal">
+                        Ghana&apos;s podcast network for ideas, industries, and communities that shape how we live. Produced with purpose. Archived with care. We create the conversations worth keeping.
                     </p>
 
-                    <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                        <Link href={`/shows/${featuredShow.slug}`}>
-                            <Button size="lg" className="gap-2 bg-white text-black hover:bg-gray-200">
-                                <Play className="h-5 w-5 fill-current" />
-                                Start Listening
+                    <div className="pt-4 flex flex-col sm:flex-row gap-4">
+                        <Link href="/shows">
+                            <Button
+                                size="lg"
+                                className="font-[family-name:var(--font-inter)] rounded-none border-2 border-white bg-white text-black hover:bg-black hover:text-white hover:border-black transition-colors duration-300 text-base px-6 h-11 min-w-[160px]"
+                            >
+                                Explore Shows
                             </Button>
                         </Link>
-                        <Link href={`/shows/${featuredShow.slug}/about`}>
-                            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black">
-                                More Info
+                        <Link href="/contact">
+                            <Button
+                                size="lg"
+                                className="font-[family-name:var(--font-inter)] rounded-none border-2 border-white bg-white text-black hover:bg-black hover:text-white hover:border-black transition-colors duration-300 text-base px-6 h-11 min-w-[160px]"
+                            >
+                                Partner with us
                             </Button>
                         </Link>
                     </div>

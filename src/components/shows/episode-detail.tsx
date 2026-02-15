@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 import { Show, Episode } from '@/types';
 import { useAudio } from '@/lib/audio-context';
 import { Button } from '@/components/ui/button';
-import { Play, Pause, FileText, Download, Share2 } from 'lucide-react';
+import { Play, Pause, Download, Share2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface EpisodeDetailProps {
     show: Show;
@@ -107,15 +108,15 @@ export function EpisodeDetail({ show, episode }: EpisodeDetailProps) {
                         <h3 className="font-bold mb-4">Subscribe</h3>
                         <div className="space-y-3">
                             <Button variant="outline" className="w-full justify-start gap-3">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Podcasts_%28iOS%29.svg" className="h-5 w-5" alt="Apple" />
+                                <Image src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Podcasts_%28iOS%29.svg" width={20} height={20} className="h-5 w-5" alt="Apple" />
                                 Apple Podcasts
                             </Button>
                             <Button variant="outline" className="w-full justify-start gap-3">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" className="h-5 w-5" alt="Spotify" />
+                                <Image src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" width={20} height={20} className="h-5 w-5" alt="Spotify" />
                                 Spotify
                             </Button>
                             <Button variant="outline" className="w-full justify-start gap-3">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" className="h-5 w-5" alt="YouTube" />
+                                <Image src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" width={20} height={20} className="h-5 w-5" alt="YouTube" />
                                 YouTube
                             </Button>
                         </div>
@@ -124,7 +125,7 @@ export function EpisodeDetail({ show, episode }: EpisodeDetailProps) {
                     <div className="bg-muted/50 p-6 rounded-xl border border-border">
                         <h3 className="font-bold mb-4">About the Show</h3>
                         <div className="flex items-center gap-3 mb-3">
-                            <img src={show.coverImage} className="w-12 h-12 rounded bg-black object-cover" alt={show.title} />
+                            <Image src={show.coverImage} width={48} height={48} className="w-12 h-12 rounded bg-black object-cover" alt={show.title} />
                             <div>
                                 <p className="font-semibold text-sm line-clamp-1">{show.title}</p>
                                 <Link href={`/shows/${show.slug}`} className="text-xs text-primary hover:underline">View Show Page</Link>

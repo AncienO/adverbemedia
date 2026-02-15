@@ -1,15 +1,11 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
-import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-// Since I didn't install class-variance-authority yet, I'll use a simpler approach or install it. 
-// Actually, standard modern Next.js stacks use it. I'll install it quickly to be pro. 
-// Wait, I shouldn't install too many things without asking, but cva is standard. 
-// I'll stick to a simpler implementation for now to avoid dependency bloat unless I see it's needed.
-// Actually, I can just write the classes.
+// Removed unused cva imports
 
 const buttonVariants = (variant: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link', size: 'default' | 'sm' | 'lg' | 'icon') => {
+    // ... (keep implementation same)
     const base = "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
 
     const variants = {
@@ -41,11 +37,8 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
         const Comp = asChild ? Slot : "button"
-        // Note: Radix Slot needs installation. I'll avoid it for now and just use "button".
-        // If asChild is needed later, I'll add Radix. For now, simple button.
-
         return (
-            <button
+            <Comp
                 className={cn(buttonVariants(variant, size), className)}
                 ref={ref}
                 {...props}

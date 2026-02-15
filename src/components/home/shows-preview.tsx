@@ -1,0 +1,85 @@
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+
+const shows = [
+    {
+        title: 'MAD Conversations',
+        description: 'Marketing leadership across Africa',
+        slug: 'mad-conversations'
+    },
+    {
+        title: 'On Leadership',
+        description: 'What it actually takes to lead in Africa.',
+        slug: 'on-leadership'
+    },
+    {
+        title: 'The Brief',
+        description: 'Every campaign has a story. We make sure they get told.',
+        slug: 'the-brief'
+    },
+    {
+        title: 'Calvary Central',
+        description: 'Where honest faith meets real conversation.',
+        slug: 'calvary-central'
+    },
+    {
+        title: 'Convos in the Light',
+        description: 'Everyday Christianity, no filter.',
+        slug: 'convos-in-the-light'
+    },
+    {
+        title: 'Home Court',
+        description: 'Ghana\'s tennis community, on the record.',
+        slug: 'home-court'
+    }
+];
+
+export function ShowsPreview() {
+    return (
+        <section className="w-full py-20 md:py-32 bg-white">
+            <div className="container mx-auto px-4 md:px-6">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-black mb-12 text-center">
+                    What we&apos;re building
+                </h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {shows.map((show) => (
+                        <Link
+                            key={show.slug}
+                            href={`/shows/${show.slug}`}
+                            className="group"
+                        >
+                            <div className="border-2 border-black hover:bg-black hover:text-white transition-colors duration-300 h-full flex flex-col overflow-hidden">
+                                {/* Square Placeholder Image */}
+                                <div className="w-full aspect-square bg-gray-200 group-hover:bg-gray-700 transition-colors duration-300" />
+
+                                {/* Content */}
+                                <div className="p-6 flex-1">
+                                    <h3 className="text-2xl font-bold mb-3 group-hover:text-white">
+                                        {show.title}
+                                    </h3>
+                                    <p className="text-base text-gray-700 group-hover:text-gray-200">
+                                        {show.description}
+                                    </p>
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+
+                <div className="mt-12 text-center">
+                    <Link
+                        href="/shows"
+                        className="inline-flex items-center gap-2 text-xl font-semibold text-black hover:text-gray-700 transition-colors"
+                    >
+                        See All Shows
+                        <ArrowRight className="w-6 h-6" />
+                    </Link>
+                </div>
+            </div>
+        </section>
+    );
+}

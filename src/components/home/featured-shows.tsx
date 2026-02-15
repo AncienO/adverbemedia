@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Show } from '@/types';
 import { Button } from '@/components/ui/button';
@@ -25,10 +26,12 @@ export function FeaturedShows({ shows }: FeaturedShowsProps) {
                     {shows.map((show) => (
                         <Link key={show.id} href={`/shows/${show.slug}`} className="group block">
                             <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-muted mb-3">
-                                <img
+                                <Image
                                     src={show.coverImage}
                                     alt={show.title}
-                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                    fill
+                                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
                                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                     <span className="text-white font-medium border border-white px-4 py-2 rounded-full backdrop-blur-sm">

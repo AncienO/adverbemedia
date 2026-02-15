@@ -2,9 +2,8 @@
 
 import React from 'react';
 import { useAudio } from '@/lib/audio-context';
-import { Play, Pause, X, SkipBack, SkipForward } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 
 export function GlobalPlayer() {
     const { currentEpisode, isPlaying, togglePlay, progress, duration, seek } = useAudio();

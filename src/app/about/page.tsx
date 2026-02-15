@@ -24,7 +24,7 @@ export default function AboutPage() {
 
                     <h2>Our Commitment</h2>
                     <p>
-                        Every show in our network is crafted with obsessive attention to detail. From sound design to fact-checking, we don't cut corners. We are committed to fostering a diverse community of creators and listeners, ensuring that a wide range of perspectives are heard and respected.
+                        Every show in our network is crafted with obsessive attention to detail. From sound design to fact-checking, we don&apos;t cut corners. We are committed to fostering a diverse community of creators and listeners, ensuring that a wide range of perspectives are heard and respected.
                     </p>
                 </div>
 
