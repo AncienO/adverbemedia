@@ -21,7 +21,7 @@ export function Header() {
                 {/* Logo */}
                 <Link href="/" className="flex items-center">
                     <span className="text-2xl font-bold tracking-tight text-white" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                        The ADVERBE
+                        The Adverbe
                     </span>
                 </Link>
 
@@ -31,7 +31,7 @@ export function Header() {
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="text-2xl font-bold text-white transition-colors hover:text-gray-300"
+                            className="text-lg lg:text-xl xl:text-2xl font-bold text-white transition-colors hover:text-gray-300"
                         >
                             {link.name}
                         </Link>

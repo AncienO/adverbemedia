@@ -17,10 +17,10 @@ export function Hero() {
             <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" />
 
             {/* Container - shifted left by reducing right justification or adding margin margin-right */}
-            <div className="container relative z-20 px-4 md:px-6 flex justify-end pr-[10%] md:pr-[20%]">
-                <div className="w-full md:w-[80%] lg:w-[70%] space-y-8 pl-0 md:pl-12">
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none text-white font-['Helvetica']">
-                        <span className="block whitespace-nowrap text-7xl md:text-[10.5rem] lg:text-[12rem]">
+            <div className="container relative z-20 px-4 md:px-6 flex justify-start pl-[5%] md:pl-[10%]">
+                <div className="w-full md:w-[90%] lg:w-[80%] xl:w-[70%] space-y-8">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter leading-none text-white font-['Helvetica']">
+                        <span className="block whitespace-nowrap text-[10vw] md:text-[8.5vw] lg:text-[9.5vw] xl:text-[10rem] leading-none mb-2">
                             Adverbe Media
                         </span>
                         <span className="block whitespace-nowrap">

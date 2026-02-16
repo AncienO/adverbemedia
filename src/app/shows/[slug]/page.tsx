@@ -49,7 +49,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
                                 )}
                             </div>
 
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">{show.title}</h1>
+                            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter">{show.title}</h1>
                             <p className="text-lg text-muted-foreground md:text-xl line-clamp-4 max-w-2xl">
                                 {show.description}
                             </p>
