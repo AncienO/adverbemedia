@@ -12,27 +12,17 @@ export function Header() {
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     const navLinks = [
-        { name: 'Shows', href: '/shows' },
-        { name: 'About', href: '/about' },
-        { name: 'Contact', href: '/contact' },
+        { name: 'Our Networks', href: '/shows' },
     ];
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="sticky top-0 z-50 w-full bg-black text-white">
             <div className="container mx-auto px-4 md:px-6 flex h-16 items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="flex items-center space-x-2">
-                    {/* Mock Logo Image as requested */}
-                    <div className="relative h-10 w-[150px]">
-                        <Image
-                            src="https://placehold.co/150x40/171717/ffffff?text=PODCAST+NET&font=playfair-display"
-                            alt="Podcast Network Logo"
-                            fill
-                            className="object-contain dark:invert"
-                            sizes="150px"
-                            priority
-                        />
-                    </div>
+                <Link href="/" className="flex items-center">
+                    <span className="text-2xl font-bold tracking-tight text-white" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                        The ADVERBE
+                    </span>
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -41,25 +31,16 @@ export function Header() {
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                            className="text-2xl font-bold text-white transition-colors hover:text-gray-300"
                         >
                             {link.name}
                         </Link>
                     ))}
-                    <Button variant="default" size="sm">
-                        Subscribe
-                    </Button>
-                    <div className="border-l pl-4 border-border ml-2">
-                        <button className="text-muted-foreground hover:text-primary">
-                            <Search className="h-5 w-5" />
-                            <span className="sr-only">Search</span>
-                        </button>
-                    </div>
                 </nav>
 
                 {/* Mobile Menu Toggle */}
                 <button
-                    className="md:hidden p-2 text-primary"
+                    className="md:hidden p-2 text-white"
                     onClick={toggleMenu}
                     aria-label="Toggle menu"
                 >
@@ -69,19 +50,18 @@ export function Header() {
 
             {/* Mobile Navigation */}
             {isMenuOpen && (
-                <div className="md:hidden border-b border-border bg-background">
+                <div className="md:hidden border-b border-white/10 bg-black">
                     <div className="container mx-auto px-4 py-4 space-y-4">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="block text-base font-medium text-primary hover:text-primary/80"
+                                className="block text-base font-medium text-white hover:text-gray-300"
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 {link.name}
                             </Link>
                         ))}
-                        <Button className="w-full justify-center">Subscribe</Button>
                     </div>
                 </div>
             )}

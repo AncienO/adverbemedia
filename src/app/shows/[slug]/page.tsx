@@ -92,14 +92,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
                 </div>
             </div>
 
-            {/* Episodes Section */}
-            <div className="container px-4 md:px-6 py-12">
-                <div className="flex items-center justify-between mb-8">
-                    <h2 className="text-2xl font-bold">Episodes</h2>
-                    <span className="text-muted-foreground">{episodes.length} Episodes</span>
-                </div>
-                <EpisodeList show={show} episodes={episodes} />
-            </div>
+
         </div>
     );
 }

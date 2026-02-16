@@ -18,7 +18,7 @@ const SHOWS: Show[] = [
         category: 'Marketing',
         status: 'active',
         hosts: [
-            { id: 'h1', name: 'Adverbe Team', bio: 'Documenting Ghana\'s commercial culture.', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop', role: 'Host' }
+            { id: 'h1', name: 'Abeiku Dadson', bio: 'Documenting Ghana\'s commercial culture.', avatar: 'https://ui-avatars.com/api/?name=Abeiku+Dadson&background=random', role: 'Host' }
         ],
         socialLinks: {
             applePodcasts: '#', // Placeholder - awaiting actual URL
@@ -32,7 +32,7 @@ const SHOWS: Show[] = [
         title: 'On Leadership',
         description: 'In-depth, long-form interviews with the CEOs, founders, policymakers, and institutional builders shaping Africa\'s trajectory. On Leadership goes beyond the polished keynote to examine how critical decisions are actually made, what keeps leaders up at night, and what it costs to build at scale on the continent. Modelled on the editorial depth of international programmes like Bloomberg\'s "Leaders" series.',
         shortDescription: 'What it actually takes to lead in Africa.',
-        coverImage: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2574&auto=format&fit=crop',
+        coverImage: '/abstract_graphic.png',
         category: 'Leadership',
         status: 'coming-soon',
         hosts: [
@@ -45,7 +45,7 @@ const SHOWS: Show[] = [
         title: 'The Brief',
         description: 'Mobile, on-location, and built around one signature question: "So, what was the brief?" The Brief: documents Ghana\'s most memorable advertising campaigns by sitting down with the agencies, brands, and creatives who made them. Each episode names the campaign, the agency, and the guest, and reconstructs the journey from brief to execution. It\'s storytelling as industry documentation — casual in format, serious in archival intent.',
         shortDescription: 'Every campaign has a story. We make sure they get told.',
-        coverImage: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2670&auto=format&fit=crop',
+        coverImage: '/abstract_graphic.png',
         category: 'Advertising',
         status: 'coming-soon',
         hosts: [
@@ -58,7 +58,7 @@ const SHOWS: Show[] = [
         title: 'Calvary Central',
         description: 'Born from a student-run ministry and now reaching far beyond campus, Calvary Central creates space for believers, seekers, and sceptics to explore Christianity without the fluff. From understanding identity in Christ to navigating faith and finances, the show tackles the questions that shape how we live — not just what we believe. Thoughtful but not stuffy. Scriptural but not preachy. New season, same Jesus.',
         shortDescription: 'The heart of it. Where honest faith meets real conversation.',
-        coverImage: 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2673&auto=format&fit=crop',
+        coverImage: '/abstract_graphic.png',
         category: 'Faith',
         status: 'coming-soon',
         hosts: [
@@ -71,7 +71,7 @@ const SHOWS: Show[] = [
         title: 'Convos in the Light',
         description: 'Casual, open conversations about living out faith in the real world. Convos in the Light makes room for the questions, doubts, and joys that don\'t always fit neatly into a Sunday sermon — exploring what it means to walk with God through ordinary life, honest dialogue, and genuine community.',
         shortDescription: 'Everyday Christianity, no filter.',
-        coverImage: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2670&auto=format&fit=crop',
+        coverImage: '/abstract_graphic.png',
         category: 'Faith',
         status: 'coming-soon',
         hosts: [
@@ -84,7 +84,7 @@ const SHOWS: Show[] = [
         title: 'Home Court',
         description: 'The first dedicated platform for Ghana\'s tennis ecosystem. Home Court connects players, coaches, administrators, and fans through stories of competition, development, and the growth of racquet sport in West Africa. Whether you\'re on the circuit or just discovering the game, this is where Ghana\'s tennis community finds its voice.',
         shortDescription: 'Ghana\'s tennis community, on the record.',
-        coverImage: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?q=80&w=2670&auto=format&fit=crop',
+        coverImage: '/abstract_graphic.png',
         category: 'Sport',
         status: 'coming-soon',
         hosts: [

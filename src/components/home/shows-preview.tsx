@@ -2,38 +2,45 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 const shows = [
     {
         title: 'MAD Conversations',
         description: 'Marketing leadership across Africa',
-        slug: 'mad-conversations'
+        slug: 'mad-conversations',
+        image: '/Screenshot 2026-02-07 at 15.38.54.png'
     },
     {
         title: 'On Leadership',
         description: 'What it actually takes to lead in Africa.',
-        slug: 'on-leadership'
+        slug: 'on-leadership',
+        image: '/abstract_graphic.png'
     },
     {
         title: 'The Brief',
         description: 'Every campaign has a story. We make sure they get told.',
-        slug: 'the-brief'
+        slug: 'the-brief',
+        image: '/abstract_graphic.png'
     },
     {
         title: 'Calvary Central',
         description: 'Where honest faith meets real conversation.',
-        slug: 'calvary-central'
+        slug: 'calvary-central',
+        image: '/abstract_graphic.png'
     },
     {
         title: 'Convos in the Light',
         description: 'Everyday Christianity, no filter.',
-        slug: 'convos-in-the-light'
+        slug: 'convos-in-the-light',
+        image: '/abstract_graphic.png'
     },
     {
         title: 'Home Court',
         description: 'Ghana\'s tennis community, on the record.',
-        slug: 'home-court'
+        slug: 'home-court',
+        image: '/abstract_graphic.png'
     }
 ];
 
@@ -53,8 +60,16 @@ export function ShowsPreview() {
                             className="group"
                         >
                             <div className="border-2 border-black hover:bg-black hover:text-white transition-colors duration-300 h-full flex flex-col overflow-hidden">
-                                {/* Square Placeholder Image */}
-                                <div className="w-full aspect-square bg-gray-200 group-hover:bg-gray-700 transition-colors duration-300" />
+                                {/* Square Image */}
+                                <div className="w-full aspect-square relative bg-gray-200 group-hover:bg-gray-700 transition-colors duration-300">
+                                    <Image
+                                        src={show.image}
+                                        alt={show.title}
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    />
+                                </div>
 
                                 {/* Content */}
                                 <div className="p-6 flex-1">

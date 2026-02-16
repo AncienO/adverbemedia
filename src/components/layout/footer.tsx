@@ -34,7 +34,7 @@ export function Footer() {
                     {/* Navigation Links */}
                     <div className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 text-sm md:text-base">
                         {navLinks.map((link, index) => (
-                            <React.Fragment key={link.href}>
+                            <React.Fragment key={link.name}>
                                 <Link
                                     href={link.href}
                                     className="text-gray-300 hover:text-white transition-colors"
