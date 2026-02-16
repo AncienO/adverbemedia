@@ -10,41 +10,85 @@ const CATEGORIES: Category[] = [
 const SHOWS: Show[] = [
     {
         id: '1',
-        slug: 'future-forward',
-        title: 'Future Forward',
-        description: 'Exploring the bleeding edge of technology and its impact on society. From AI to biotech, we dive deep into what comes next.',
-        shortDescription: 'Exploring the bleeding edge of technology.',
-        coverImage: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2670&auto=format&fit=crop',
-        category: 'Technology',
+        slug: 'mad-conversations',
+        title: 'MAD Conversations',
+        description: 'The first show to document how music and marketing intersect in Ghana. MAD Conversations brings CMOs, music directors, and brand strategists to the table to unpack the campaigns, partnerships, and creative decisions that shaped Ghana\'s commercial soundscape. Each episode reconstructs the story behind an iconic brand-music moment; the brief, the negotiation, the outcome, and the lessons. It\'s beyond nostalgia; it\'s an operational archive of how commercial culture actually works.',
+        shortDescription: 'Music. Advertising. Digital.Design.',
+        coverImage: '/Screenshot 2026-02-07 at 15.38.54.png',
+        category: 'Marketing',
         status: 'active',
         hosts: [
-            { id: 'h1', name: 'Sarah Chen', bio: 'Tech journalist and futurist.', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop', role: 'Host' }
-        ]
+            { id: 'h1', name: 'Adverbe Team', bio: 'Documenting Ghana\'s commercial culture.', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop', role: 'Host' }
+        ],
+        socialLinks: {
+            applePodcasts: '#', // Placeholder - awaiting actual URL
+            spotify: '#', // Placeholder - awaiting actual URL
+            youtube: '#' // Placeholder - awaiting actual URL
+        }
     },
     {
         id: '2',
-        slug: 'the-daily-grind',
-        title: 'The Daily Grind',
-        description: 'Real stories from entrepreneurs building businesses from scratch. The highs, the lows, and everything in between.',
-        shortDescription: 'Real stories from entrepreneurs.',
-        coverImage: 'https://images.unsplash.com/photo-1478737270239-2f63b131844b?q=80&w=2670&auto=format&fit=crop',
-        category: 'Business',
-        status: 'active',
+        slug: 'on-leadership',
+        title: 'On Leadership',
+        description: 'In-depth, long-form interviews with the CEOs, founders, policymakers, and institutional builders shaping Africa\'s trajectory. On Leadership goes beyond the polished keynote to examine how critical decisions are actually made, what keeps leaders up at night, and what it costs to build at scale on the continent. Modelled on the editorial depth of international programmes like Bloomberg\'s "Leaders" series.',
+        shortDescription: 'What it actually takes to lead in Africa.',
+        coverImage: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2574&auto=format&fit=crop',
+        category: 'Leadership',
+        status: 'coming-soon',
         hosts: [
-            { id: 'h2', name: 'Marcus Ross', bio: 'Serial entrepreneur.', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=256&auto=format&fit=crop', role: 'Host' }
+            { id: 'h2', name: 'Adverbe Team', bio: 'Exploring leadership in Africa.', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=256&auto=format&fit=crop', role: 'Host' }
         ]
     },
     {
         id: '3',
-        slug: 'echoes-of-history',
-        title: 'Echoes of History',
-        description: 'Uncovering forgotten stories from the past that shape our present reality.',
-        shortDescription: 'Uncovering forgotten stories.',
-        coverImage: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?q=80&w=2674&auto=format&fit=crop',
-        category: 'Culture',
+        slug: 'the-brief',
+        title: 'The Brief',
+        description: 'Mobile, on-location, and built around one signature question: "So, what was the brief?" The Brief: documents Ghana\'s most memorable advertising campaigns by sitting down with the agencies, brands, and creatives who made them. Each episode names the campaign, the agency, and the guest, and reconstructs the journey from brief to execution. It\'s storytelling as industry documentation — casual in format, serious in archival intent.',
+        shortDescription: 'Every campaign has a story. We make sure they get told.',
+        coverImage: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2670&auto=format&fit=crop',
+        category: 'Advertising',
         status: 'coming-soon',
         hosts: [
-            { id: 'h3', name: 'Dr. Elena Vance', bio: 'Historian and author.', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=256&auto=format&fit=crop', role: 'Host' }
+            { id: 'h3', name: 'Adverbe Team', bio: 'Documenting Ghana\'s advertising stories.', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=256&auto=format&fit=crop', role: 'Host' }
+        ]
+    },
+    {
+        id: '4',
+        slug: 'calvary-central',
+        title: 'Calvary Central',
+        description: 'Born from a student-run ministry and now reaching far beyond campus, Calvary Central creates space for believers, seekers, and sceptics to explore Christianity without the fluff. From understanding identity in Christ to navigating faith and finances, the show tackles the questions that shape how we live — not just what we believe. Thoughtful but not stuffy. Scriptural but not preachy. New season, same Jesus.',
+        shortDescription: 'The heart of it. Where honest faith meets real conversation.',
+        coverImage: 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2673&auto=format&fit=crop',
+        category: 'Faith',
+        status: 'coming-soon',
+        hosts: [
+            { id: 'h4', name: 'Calvary Central Team', bio: 'Exploring faith without the fluff.', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop', role: 'Host' }
+        ]
+    },
+    {
+        id: '5',
+        slug: 'convos-in-the-light',
+        title: 'Convos in the Light',
+        description: 'Casual, open conversations about living out faith in the real world. Convos in the Light makes room for the questions, doubts, and joys that don\'t always fit neatly into a Sunday sermon — exploring what it means to walk with God through ordinary life, honest dialogue, and genuine community.',
+        shortDescription: 'Everyday Christianity, no filter.',
+        coverImage: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2670&auto=format&fit=crop',
+        category: 'Faith',
+        status: 'coming-soon',
+        hosts: [
+            { id: 'h5', name: 'Convos Team', bio: 'Real conversations about faith.', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop', role: 'Host' }
+        ]
+    },
+    {
+        id: '6',
+        slug: 'home-court',
+        title: 'Home Court',
+        description: 'The first dedicated platform for Ghana\'s tennis ecosystem. Home Court connects players, coaches, administrators, and fans through stories of competition, development, and the growth of racquet sport in West Africa. Whether you\'re on the circuit or just discovering the game, this is where Ghana\'s tennis community finds its voice.',
+        shortDescription: 'Ghana\'s tennis community, on the record.',
+        coverImage: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?q=80&w=2670&auto=format&fit=crop',
+        category: 'Sport',
+        status: 'coming-soon',
+        hosts: [
+            { id: 'h6', name: 'Home Court Team', bio: 'Documenting Ghana\'s tennis community.', avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop', role: 'Host' }
         ]
     }
 ];

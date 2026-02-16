@@ -35,8 +35,8 @@ const greatVibes = Great_Vibes({
 });
 
 export const metadata: Metadata = {
-  title: "The Adverbe",
-  description: "The Adverbe Podcast Network",
+  title: "Adverbe Media | Ghana's Podcast Network",
+  description: "Original podcast shows documenting the ideas, industries, and people shaping Africa. Music, marketing, leadership, faith, sport, and culture. A Vermé Studios company.",
 };
 
 export default function RootLayout({

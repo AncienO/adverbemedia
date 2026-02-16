@@ -22,6 +22,9 @@ export interface Show {
         twitter?: string;
         instagram?: string;
         website?: string;
+        applePodcasts?: string;
+        spotify?: string;
+        youtube?: string;
     };
 }
 
