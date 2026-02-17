@@ -152,4 +152,12 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  @keyframes stroke-in {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  .animate-stroke-in {
+    animation-name: stroke-in;
+    animation-timing-function: ease-out;
+  }
 }

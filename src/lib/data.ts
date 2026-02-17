@@ -23,13 +23,15 @@ const SHOWS: Show[] = [
         socialLinks: {
             applePodcasts: '#', // Placeholder - awaiting actual URL
             spotify: '#', // Placeholder - awaiting actual URL
-            youtube: '#' // Placeholder - awaiting actual URL
+            youtube: '#', // Placeholder - awaiting actual URL
+            twitter: '#', // Placeholder
+            linkedin: '#' // Placeholder
         }
     },
     {
         id: '2',
         slug: 'on-leadership',
-        title: 'On Leadership',
+        title: ':On Leadership',
         description: 'In-depth, long-form interviews with the CEOs, founders, policymakers, and institutional builders shaping Africa\'s trajectory. On Leadership goes beyond the polished keynote to examine how critical decisions are actually made, what keeps leaders up at night, and what it costs to build at scale on the continent. Modelled on the editorial depth of international programmes like Bloomberg\'s "Leaders" series.',
         shortDescription: 'What it actually takes to lead in Africa.',
         coverImage: '/abstract_graphic.png',
@@ -42,8 +44,8 @@ const SHOWS: Show[] = [
     {
         id: '3',
         slug: 'the-brief',
-        title: 'The Brief',
-        description: 'Mobile, on-location, and built around one signature question: "So, what was the brief?" The Brief: documents Ghana\'s most memorable advertising campaigns by sitting down with the agencies, brands, and creatives who made them. Each episode names the campaign, the agency, and the guest, and reconstructs the journey from brief to execution. It\'s storytelling as industry documentation — casual in format, serious in archival intent.',
+        title: 'The Brief:',
+        description: 'Mobile, on-location, and built around one signature question: "So, what was the brief?" The Brief documents Ghana\'s most memorable advertising campaigns by sitting down with the agencies, brands, and creatives who made them. Each episode names the campaign, the agency, and the guest, and reconstructs the journey from brief to execution. It\'s storytelling as industry documentation — casual in format, serious in archival intent.',
         shortDescription: 'Every campaign has a story. We make sure they get told.',
         coverImage: '/abstract_graphic.png',
         category: 'Advertising',
@@ -58,9 +60,9 @@ const SHOWS: Show[] = [
         title: 'Calvary Central',
         description: 'Born from a student-run ministry and now reaching far beyond campus, Calvary Central creates space for believers, seekers, and sceptics to explore Christianity without the fluff. From understanding identity in Christ to navigating faith and finances, the show tackles the questions that shape how we live — not just what we believe. Thoughtful but not stuffy. Scriptural but not preachy. New season, same Jesus.',
         shortDescription: 'The heart of it. Where honest faith meets real conversation.',
-        coverImage: '/abstract_graphic.png',
+        coverImage: '/adverbe-logo-white-bg.jpg',
         category: 'Faith',
-        status: 'coming-soon',
+        status: 'active',
         hosts: [
             { id: 'h4', name: 'Calvary Central Team', bio: 'Exploring faith without the fluff.', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop', role: 'Host' }
         ]

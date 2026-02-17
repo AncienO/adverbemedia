@@ -31,10 +31,10 @@ export function NewsletterSignup() {
     };
 
     return (
-        <section className="w-full py-16 md:py-24 bg-white border-t-2" style={{ borderColor: '#E30512' }}>
+        <section className="w-full py-16 md:py-24 bg-white border-t-2" style={{ borderColor: '#E4192B' }}>
             <div className="container mx-auto px-4 md:px-6 max-w-2xl text-center">
                 {/* Heading */}
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4" style={{ color: '#E30512' }}>
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4" style={{ color: '#E4192B' }}>
                     Don't miss a launch.
                 </h2>
 
@@ -58,9 +58,9 @@ export function NewsletterSignup() {
                         type="submit"
                         disabled={status === 'submitting'}
                         className="inline-flex items-center justify-center gap-2 px-6 py-3 text-white font-semibold transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                        style={{ backgroundColor: '#E30512' }}
+                        style={{ backgroundColor: '#E4192B' }}
                         onMouseEnter={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#B8040E')}
-                        onMouseLeave={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#E30512')}
+                        onMouseLeave={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#E4192B')}
                     >
                         {status === 'submitting' ? 'Subscribing...' : 'Subscribe'}
                         <ArrowRight className="w-5 h-5" />

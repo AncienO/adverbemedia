@@ -25,6 +25,7 @@ export interface Show {
         applePodcasts?: string;
         spotify?: string;
         youtube?: string;
+        linkedin?: string;
     };
 }
 

@@ -17,11 +17,11 @@ export function Header() {
 
     return (
         <header className="sticky top-0 z-50 w-full bg-black text-white">
-            <div className="container mx-auto px-4 md:px-6 flex h-16 items-center justify-between">
+            <div className="container mx-auto px-4 md:px-6 flex h-20 items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center">
-                    <span className="text-2xl font-bold tracking-tight text-white" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                        The Adverbe
+                    <span className="text-3xl font-bold tracking-tight text-white" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                        The Ad<span style={{ color: '#E4192B' }}>verbe</span><span className="text-white text-4xl leading-none">.</span>
                     </span>
                 </Link>
 
@@ -31,7 +31,7 @@ export function Header() {
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="text-lg lg:text-xl xl:text-2xl font-bold text-white transition-colors hover:text-gray-300"
+                            className="text-xl lg:text-2xl xl:text-3xl font-bold text-white transition-colors hover:text-gray-300"
                         >
                             {link.name}
                         </Link>

@@ -28,7 +28,7 @@ const shows = [
         title: 'Calvary Central',
         description: 'Where honest faith meets real conversation.',
         slug: 'calvary-central',
-        image: '/abstract_graphic.png'
+        image: '/adverbe-logo-white-bg.jpg'
     },
     {
         title: 'Convos in the Light',

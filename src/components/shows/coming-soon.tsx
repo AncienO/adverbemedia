@@ -16,7 +16,7 @@ export function ComingSoon({ shows }: ComingSoonProps) {
             <div className="container mx-auto px-4 md:px-6">
                 {/* Section Header */}
                 <div className="mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-2" style={{ color: '#E30512' }}>
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-2 text-gray-900">
                         COMING SOON
                     </h2>
                     <p className="text-base text-gray-600">In development</p>
@@ -50,9 +50,9 @@ export function ComingSoon({ shows }: ComingSoonProps) {
                                     </span>
                                 </div>
 
-                                {/* Show Title with Colon */}
-                                <h3 className="text-2xl md:text-3xl font-bold" style={{ color: '#E30512' }}>
-                                    {show.title}:
+                                {/* Show Title */}
+                                <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
+                                    {show.title}
                                 </h3>
 
                                 {/* Tagline */}

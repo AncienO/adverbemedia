@@ -4,7 +4,7 @@ import { getShowBySlug, getEpisodes } from '@/lib/data';
 import { EpisodeList } from '@/components/shows/episode-list';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { Twitter, Instagram, Globe } from 'lucide-react';
+import { Twitter, Instagram, Globe, Youtube, Linkedin } from 'lucide-react';
 
 interface ShowPageProps {
     params: Promise<{ slug: string }>;
@@ -76,17 +76,47 @@ export default async function ShowPage({ params }: ShowPageProps) {
                             </div>
 
                             {/* Social Links */}
-                            <div className="flex gap-4 pt-4">
-                                <Button size="icon" variant="ghost">
-                                    <Twitter className="w-5 h-5" />
-                                </Button>
-                                <Button size="icon" variant="ghost">
-                                    <Instagram className="w-5 h-5" />
-                                </Button>
-                                <Button size="icon" variant="ghost">
-                                    <Globe className="w-5 h-5" />
-                                </Button>
-                            </div>
+                            {show.socialLinks && (
+                                <div className="flex gap-4 pt-4">
+                                    {show.socialLinks.twitter && (
+                                        <a href={show.socialLinks.twitter} target="_blank" rel="noopener noreferrer">
+                                            <Button size="icon" variant="ghost" aria-label="X (Twitter)">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5 fill-current">
+                                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                                </svg>
+                                            </Button>
+                                        </a>
+                                    )}
+                                    {show.socialLinks.instagram && (
+                                        <a href={show.socialLinks.instagram} target="_blank" rel="noopener noreferrer">
+                                            <Button size="icon" variant="ghost" aria-label="Instagram">
+                                                <Instagram className="w-5 h-5" />
+                                            </Button>
+                                        </a>
+                                    )}
+                                    {show.socialLinks.youtube && (
+                                        <a href={show.socialLinks.youtube} target="_blank" rel="noopener noreferrer">
+                                            <Button size="icon" variant="ghost" aria-label="YouTube">
+                                                <Youtube className="w-5 h-5" />
+                                            </Button>
+                                        </a>
+                                    )}
+                                    {show.socialLinks.linkedin && (
+                                        <a href={show.socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
+                                            <Button size="icon" variant="ghost" aria-label="LinkedIn">
+                                                <Linkedin className="w-5 h-5" />
+                                            </Button>
+                                        </a>
+                                    )}
+                                    {show.socialLinks.website && (
+                                        <a href={show.socialLinks.website} target="_blank" rel="noopener noreferrer">
+                                            <Button size="icon" variant="ghost" aria-label="Website">
+                                                <Globe className="w-5 h-5" />
+                                            </Button>
+                                        </a>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

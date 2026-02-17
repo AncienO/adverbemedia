@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react';
 
 export function PartnersSection() {
     return (
-        <section className="w-full py-20 md:py-32" style={{ backgroundColor: '#E30512' }}>
+        <section className="w-full py-20 md:py-32" style={{ backgroundColor: '#E4192B' }}>
             <div className="container mx-auto px-4 md:px-6">
                 <div className="max-w-3xl mx-auto text-center space-y-8">
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
