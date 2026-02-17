@@ -4,11 +4,19 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
+import { motion } from 'framer-motion';
+
 export function PartnersSection() {
     return (
         <section className="w-full py-20 md:py-32" style={{ backgroundColor: '#E4192B' }}>
             <div className="container mx-auto px-4 md:px-6">
-                <div className="max-w-3xl mx-auto text-center space-y-8">
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                    className="max-w-3xl mx-auto text-center space-y-8"
+                >
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
                         Your audience is already listening.
                     </h2>
@@ -34,7 +42,7 @@ export function PartnersSection() {
                             </a>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

@@ -1,11 +1,17 @@
 'use client';
 
-import React from 'react';
+import { motion } from 'framer-motion';
 
 export function AboutSection() {
     return (
         <section className="w-full" style={{ backgroundColor: '#000000' }}>
-            <div className="grid md:grid-cols-2">
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                className="grid md:grid-cols-2"
+            >
                 {/* Left Side - Title */}
                 <div className="flex items-center justify-center py-20 md:py-32 px-6 md:px-12" style={{ backgroundColor: '#000000' }}>
                     <h2
@@ -27,7 +33,7 @@ export function AboutSection() {
                         </p>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }
