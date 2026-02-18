@@ -7,64 +7,32 @@ import { Menu, X, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function Header() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-    const navLinks = [
-        { name: 'Our Networks', href: '/shows' },
-    ];
-
     return (
-        <header className="sticky top-0 z-50 w-full bg-black text-white">
-            <div className="container mx-auto px-4 md:px-6 flex h-20 items-center justify-between">
-                {/* Logo */}
+        <header className="sticky top-0 left-0 w-full z-50 bg-white">
+            <div className="w-full pl-[5%] md:pl-[10%] pr-[5%] md:pr-[10%] py-3 md:py-4 flex justify-between items-center">
+                {/* Logo - Top Left */}
                 <Link href="/" className="flex items-center">
-                    <span className="text-3xl font-bold tracking-tight text-white" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                        The Ad<span style={{ color: '#E4192B' }}>verbe</span><span className="text-white text-4xl leading-none">.</span>
-                    </span>
+                    <div className="relative w-[60px] h-auto">
+                        <Image
+                            src="/Adverbe Logo - 250px.png"
+                            alt="The Adverbe Logo"
+                            width={60}
+                            height={31} // Aspect ratio approx 1.9:1
+                            className="object-contain"
+                            priority
+                        />
+                    </div>
                 </Link>
 
-                {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center gap-6">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className="text-xl lg:text-2xl xl:text-3xl font-bold text-white transition-colors hover:text-gray-300"
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-                </nav>
-
-                {/* Mobile Menu Toggle */}
-                <button
-                    className="md:hidden p-2 text-white"
-                    onClick={toggleMenu}
-                    aria-label="Toggle menu"
+                {/* Navigation - Top Right */}
+                <Link
+                    href="/shows"
+                    className="text-xl md:text-2xl font-bold text-black hover:text-gray-600 transition-colors lowercase"
+                    style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
                 >
-                    {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                </button>
+                    our networks
+                </Link>
             </div>
-
-            {/* Mobile Navigation */}
-            {isMenuOpen && (
-                <div className="md:hidden border-b border-white/10 bg-black">
-                    <div className="container mx-auto px-4 py-4 space-y-4">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="block text-base font-medium text-white hover:text-gray-300"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            )}
         </header>
     );
 }

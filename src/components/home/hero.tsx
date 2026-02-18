@@ -10,7 +10,7 @@ export function Hero() {
         <section
             className="relative w-full h-[800px] flex items-start pt-[10%] overflow-hidden"
             style={{
-                background: 'linear-gradient(90deg, #000000 0%, #000000 20%, #E4192B 80%, #E4192B 100%)'
+                backgroundColor: '#E4192B'
             }}
         >
             {/* Pattern Dots - Bottom Heavy, Decreasing Upwards */}
@@ -68,12 +68,12 @@ export function Hero() {
                                 Adverbe Media
                             </motion.span>
                             {/* Circle eases in first */}
-                            <motion.span
+                            {/* <motion.span
                                 initial={{ opacity: 0, scale: 0 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
                                 className="w-3 h-3 md:w-4 md:h-4 rounded-full inline-block bg-white"
-                            />
+                            /> */}
                         </div>
                         <motion.span
                             initial={{ opacity: 0, x: -50 }}

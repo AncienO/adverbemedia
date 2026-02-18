@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, Dancing_Script } from "next/font/google"; // Added fonts
+import { Geist, Geist_Mono, Inter, Dancing_Script, EB_Garamond } from "next/font/google"; // Added fonts
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -23,6 +23,11 @@ const inter = Inter({
 
 const dancingScript = Dancing_Script({
   variable: "--font-dancing-script",
+  subsets: ["latin"],
+});
+
+const ebGaramond = EB_Garamond({
+  variable: "--font-eb-garamond",
   subsets: ["latin"],
 });
 
@@ -50,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${dancingScript.variable} ${greatVibes.variable} antialiased min-h-screen flex flex-col bg-background text-foreground`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${dancingScript.variable} ${greatVibes.variable} ${ebGaramond.variable} antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
         <AudioProvider>
           <Header />

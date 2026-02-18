@@ -34,7 +34,7 @@ const SHOWS: Show[] = [
         title: ':On Leadership',
         description: 'In-depth, long-form interviews with the CEOs, founders, policymakers, and institutional builders shaping Africa\'s trajectory. On Leadership goes beyond the polished keynote to examine how critical decisions are actually made, what keeps leaders up at night, and what it costs to build at scale on the continent. Modelled on the editorial depth of international programmes like Bloomberg\'s "Leaders" series.',
         shortDescription: 'What it actually takes to lead in Africa.',
-        coverImage: '/abstract_graphic.png',
+        coverImage: '/coming-soon.png',
         category: 'Leadership',
         status: 'coming-soon',
         hosts: [
@@ -47,7 +47,7 @@ const SHOWS: Show[] = [
         title: 'The Brief:',
         description: 'Mobile, on-location, and built around one signature question: "So, what was the brief?" The Brief documents Ghana\'s most memorable advertising campaigns by sitting down with the agencies, brands, and creatives who made them. Each episode names the campaign, the agency, and the guest, and reconstructs the journey from brief to execution. It\'s storytelling as industry documentation — casual in format, serious in archival intent.',
         shortDescription: 'Every campaign has a story. We make sure they get told.',
-        coverImage: '/abstract_graphic.png',
+        coverImage: '/coming-soon.png',
         category: 'Advertising',
         status: 'coming-soon',
         hosts: [
@@ -73,7 +73,7 @@ const SHOWS: Show[] = [
         title: 'Convos in the Light',
         description: 'Casual, open conversations about living out faith in the real world. Convos in the Light makes room for the questions, doubts, and joys that don\'t always fit neatly into a Sunday sermon — exploring what it means to walk with God through ordinary life, honest dialogue, and genuine community.',
         shortDescription: 'Everyday Christianity, no filter.',
-        coverImage: '/abstract_graphic.png',
+        coverImage: '/coming-soon.png',
         category: 'Faith',
         status: 'coming-soon',
         hosts: [
@@ -86,7 +86,7 @@ const SHOWS: Show[] = [
         title: 'Home Court',
         description: 'The first dedicated platform for Ghana\'s tennis ecosystem. Home Court connects players, coaches, administrators, and fans through stories of competition, development, and the growth of racquet sport in West Africa. Whether you\'re on the circuit or just discovering the game, this is where Ghana\'s tennis community finds its voice.',
         shortDescription: 'Ghana\'s tennis community, on the record.',
-        coverImage: '/abstract_graphic.png',
+        coverImage: '/coming-soon.png',
         category: 'Sport',
         status: 'coming-soon',
         hosts: [
