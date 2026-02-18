@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Dancing_Script, EB_Garamond } from "next/font/google"; // Added fonts
 import "./globals.css";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { GlobalPlayer } from "@/components/layout/player";
-import { AudioProvider } from "@/lib/audio-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,14 +53,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${dancingScript.variable} ${greatVibes.variable} ${ebGaramond.variable} antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
-        <AudioProvider>
-          <Header />
-          <main className="flex-1 flex flex-col">
-            {children}
-          </main>
-          <Footer />
-          <GlobalPlayer />
-        </AudioProvider>
+        {children}
       </body>
     </html>
   );

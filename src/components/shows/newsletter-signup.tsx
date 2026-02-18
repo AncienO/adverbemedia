@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function NewsletterSignup() {
     const [email, setEmail] = useState('');
@@ -32,7 +33,13 @@ export function NewsletterSignup() {
 
     return (
         <section className="w-full py-16 md:py-24 bg-white border-t-2" style={{ borderColor: '#E4192B' }}>
-            <div className="container mx-auto px-4 md:px-6 max-w-2xl text-center">
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="container mx-auto px-4 md:px-6 max-w-2xl text-center"
+            >
                 {/* Heading */}
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4" style={{ color: '#E4192B' }}>
                     Don't miss a launch.
@@ -74,7 +81,7 @@ export function NewsletterSignup() {
                 {status === 'error' && (
                     <p className="mt-4 text-sm text-red-700 font-medium">{message}</p>
                 )}
-            </div>
+            </motion.div>
         </section>
     );
 }

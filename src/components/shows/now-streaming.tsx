@@ -14,15 +14,15 @@ export function NowStreaming({ show }: NowStreamingProps) {
     return (
         <article className="flex flex-col gap-6">
             {/* Cover Image */}
-            <div className="w-full aspect-square bg-gray-200 overflow-hidden">
+            <Link href={`/shows/${show.slug}`} className="w-full aspect-square bg-gray-200 overflow-hidden block group">
                 <Image
                     src={show.coverImage}
                     alt={show.title}
                     width={600}
                     height={600}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-            </div>
+            </Link>
 
             {/* Content */}
             <div className="flex flex-col flex-1">
@@ -35,8 +35,10 @@ export function NowStreaming({ show }: NowStreamingProps) {
                 <p className="text-sm font-medium mb-4 text-green-600">Live on Adverbe</p>
 
                 {/* Show Title */}
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3" style={{ color: '#E4192B' }}>
-                    {show.title}
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+                    <Link href={`/shows/${show.slug}`} className="hover:underline decoration-[#E4192B] decoration-2 underline-offset-4" style={{ color: '#E4192B' }}>
+                        {show.title}
+                    </Link>
                 </h2>
 
                 {/* Tagline */}

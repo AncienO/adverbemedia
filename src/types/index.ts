@@ -49,3 +49,24 @@ export interface Category {
     name: string;
     slug: string;
 }
+
+export interface Job {
+    id: string;
+    slug: string;
+    title: string;
+    location: string;
+    type: string;
+    description: string;
+    requirements?: string;
+    isActive: boolean;
+}
+
+export interface CompanyDocument {
+    id: string;
+    title: string;
+    description?: string;
+    fileUrl: string;
+    fileSize: string;
+    fileFormat: string;
+    category: string;
+}

@@ -1,24 +1,83 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { getShowBySlug, getEpisodes } from '@/lib/data';
+import { supabase } from '@/lib/supabase';
 import { EpisodeList } from '@/components/shows/episode-list';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { Twitter, Instagram, Globe, Youtube, Linkedin } from 'lucide-react';
+import { Show, Episode, Host } from '@/types';
 
 interface ShowPageProps {
     params: Promise<{ slug: string }>;
 }
 
+export const revalidate = 0;
+
 export default async function ShowPage({ params }: ShowPageProps) {
     const { slug } = await params;
-    const show = await getShowBySlug(slug);
 
-    if (!show) {
+    // Fetch Show
+    const { data: showRaw, error: showError } = await supabase
+        .from('shows')
+        .select(`
+            *,
+            categories (name),
+            show_hosts (
+                hosts (*)
+            )
+        `)
+        .eq('slug', slug)
+        .single();
+
+    if (showError || !showRaw) {
+        // console.error('Show not found:', slug, showError);
         notFound();
     }
 
-    const episodes = await getEpisodes(show.id);
+    // Map Show Data
+    const show: Show = {
+        id: showRaw.id,
+        slug: showRaw.slug,
+        title: showRaw.title,
+        description: showRaw.description,
+        shortDescription: showRaw.short_description,
+        coverImage: showRaw.cover_image_url,
+        category: showRaw.categories?.name || 'General',
+        status: showRaw.status as 'active' | 'coming-soon' | 'completed',
+        socialLinks: showRaw.social_links,
+        hosts: (showRaw.show_hosts || []).map((sh: any) => ({
+            id: sh.hosts.id,
+            name: sh.hosts.name,
+            bio: sh.hosts.bio,
+            avatar: sh.hosts.avatar_url,
+            role: sh.hosts.role,
+            twitter: sh.hosts.social_links?.twitter,
+            linkedin: sh.hosts.social_links?.linkedin,
+        })),
+    };
+
+    // Fetch Episodes
+    const { data: episodesRaw } = await supabase
+        .from('episodes')
+        .select('*')
+        .eq('show_id', show.id)
+        .order('published_at', { ascending: false });
+
+    // Map Episodes Data
+    const episodes: Episode[] = (episodesRaw || []).map((e: any) => ({
+        id: e.id,
+        slug: e.slug,
+        title: e.title,
+        description: e.description,
+        showId: e.show_id,
+        duration: e.duration,
+        publishedAt: e.published_at,
+        audioUrl: e.audio_url,
+        coverImage: e.cover_image_url,
+        tags: e.tags || [],
+        transcript: e.transcript,
+        showNotes: e.show_notes
+    }));
 
     return (
         <div className="min-h-screen pb-12">
@@ -122,7 +181,13 @@ export default async function ShowPage({ params }: ShowPageProps) {
                 </div>
             </div>
 
-
+            {/* Episode List */}
+            {episodes.length > 0 && (
+                <div className="container px-4 md:px-6 py-12">
+                    <h2 className="text-2xl font-bold mb-8">Episodes</h2>
+                    <EpisodeList episodes={episodes} show={show} />
+                </div>
+            )}
         </div>
     );
 }
