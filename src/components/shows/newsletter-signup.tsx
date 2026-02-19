@@ -41,8 +41,8 @@ export function NewsletterSignup() {
                 className="container mx-auto px-4 md:px-6 max-w-2xl text-center"
             >
                 {/* Heading */}
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4" style={{ color: '#E4192B' }}>
-                    Don't miss a launch.
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+                    Don't miss a launch<span style={{ color: '#E4192B' }}>.</span>
                 </h2>
 
                 {/* Description */}

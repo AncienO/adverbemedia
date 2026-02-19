@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export function Header() {
@@ -19,7 +19,7 @@ export function Header() {
     ];
 
     return (
-        <header className="fixed top-6 left-0 right-0 z-50 bg-white w-[85%] mx-auto shadow-xl rounded-2xl">
+        <header className="fixed top-6 left-0 right-0 z-50 bg-white w-[85%] mx-auto shadow-xl">
             <div className="w-full pl-[5%] md:pl-[10%] pr-[5%] md:pr-[10%] py-3 md:py-4 flex justify-between items-center relative">
                 {/* Logo - Top Left */}
                 <Link href="/" className="flex items-center z-50">
@@ -45,7 +45,20 @@ export function Header() {
                         {isMenuOpen ? (
                             <X className="w-8 h-8" />
                         ) : (
-                            <Menu className="w-8 h-8" />
+                            <motion.span
+                                className="flex flex-col gap-[5px] w-7 py-1"
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                            >
+                                <span className="block h-[2px] w-full bg-black rounded-full" />
+                                <motion.span
+                                    className="block h-[2px] bg-[#E4192B] rounded-full"
+                                    variants={{ rest: { width: '60%' }, hover: { width: '100%' } }}
+                                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                />
+                                <span className="block h-[2px] w-full bg-black rounded-full" />
+                            </motion.span>
                         )}
                     </button>
 

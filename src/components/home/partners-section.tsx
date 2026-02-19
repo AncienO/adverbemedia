@@ -18,10 +18,10 @@ export function PartnersSection() {
                     className="max-w-3xl mx-auto text-center space-y-8"
                 >
                     <h2
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#E4192B]"
+                        className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-black"
                         style={{ fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif' }}
                     >
-                        Your audience is already listening.
+                        Your audience is already listening<span className="text-[#E4192B]">.</span>
                     </h2>
 
                     <p className="text-lg md:text-xl leading-relaxed text-black/80 font-light">

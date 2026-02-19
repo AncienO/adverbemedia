@@ -11,6 +11,7 @@ export async function createShow(formData: FormData) {
     const slug = formData.get('slug') as string || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     const description = formData.get('description') as string;
     const shortDescription = formData.get('shortDescription') as string;
+    const summary = formData.get('summary') as string;
     const coverImageUrl = formData.get('coverImageUrl') as string;
     const categoryId = formData.get('categoryId') as string;
     const status = formData.get('status') as string || 'coming-soon';
@@ -20,12 +21,16 @@ export async function createShow(formData: FormData) {
     const twitter = formData.get('twitter') as string;
     const instagram = formData.get('instagram') as string;
 
-    const socialLinks: Record<string, string> = {};
+    const socialLinks: Record<string, any> = {};
     if (spotify) socialLinks.spotify = spotify;
     if (youtube) socialLinks.youtube = youtube;
     if (applePodcasts) socialLinks.applePodcasts = applePodcasts;
     if (twitter) socialLinks.twitter = twitter;
     if (instagram) socialLinks.instagram = instagram;
+    const linkOrderRaw = formData.get('linkOrder') as string;
+    if (linkOrderRaw) {
+        try { socialLinks.order = JSON.parse(linkOrderRaw); } catch { }
+    }
 
     const { data: show, error } = await supabase
         .from('shows')
@@ -34,6 +39,7 @@ export async function createShow(formData: FormData) {
             slug,
             description,
             short_description: shortDescription,
+            summary,
             cover_image_url: coverImageUrl,
             category_id: categoryId || null,
             status,
@@ -91,6 +97,7 @@ export async function updateShow(id: string, formData: FormData) {
     const slug = formData.get('slug') as string;
     const description = formData.get('description') as string;
     const shortDescription = formData.get('shortDescription') as string;
+    const summary = formData.get('summary') as string;
     const coverImageUrl = formData.get('coverImageUrl') as string;
     const categoryId = formData.get('categoryId') as string;
     const status = formData.get('status') as string;
@@ -100,12 +107,16 @@ export async function updateShow(id: string, formData: FormData) {
     const twitter = formData.get('twitter') as string;
     const instagram = formData.get('instagram') as string;
 
-    const socialLinks: Record<string, string> = {};
+    const socialLinks: Record<string, any> = {};
     if (spotify) socialLinks.spotify = spotify;
     if (youtube) socialLinks.youtube = youtube;
     if (applePodcasts) socialLinks.applePodcasts = applePodcasts;
     if (twitter) socialLinks.twitter = twitter;
     if (instagram) socialLinks.instagram = instagram;
+    const linkOrderRaw = formData.get('linkOrder') as string;
+    if (linkOrderRaw) {
+        try { socialLinks.order = JSON.parse(linkOrderRaw); } catch { }
+    }
 
     const { error } = await supabase
         .from('shows')
@@ -114,6 +125,7 @@ export async function updateShow(id: string, formData: FormData) {
             slug,
             description,
             short_description: shortDescription,
+            summary,
             cover_image_url: coverImageUrl,
             category_id: categoryId || null,
             status,
@@ -141,7 +153,26 @@ export async function deleteShow(id: string) {
         return { error: error.message };
     }
 
-    revalidatePath('/admin/shows');
     revalidatePath('/shows');
     redirect('/admin/shows');
+}
+
+export async function updateShowOrder(items: { id: string; sort_order: number }[]) {
+    const supabase = await createClient();
+
+    for (const item of items) {
+        const { error } = await supabase
+            .from('shows')
+            .update({ sort_order: item.sort_order })
+            .eq('id', item.id);
+
+        if (error) {
+            console.error('Error updating show order:', error);
+            return { error: error.message };
+        }
+    }
+
+    revalidatePath('/admin/shows');
+    revalidatePath('/shows');
+    return { success: true };
 }

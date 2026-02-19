@@ -23,7 +23,9 @@ export default async function ShowsPage() {
         .select(`
             *,
             categories (name)
-        `);
+        `)
+        .order('sort_order', { ascending: true })
+        .order('created_at', { ascending: false });
 
     if (error) {
         console.error('Error fetching shows:', error);
@@ -37,6 +39,7 @@ export default async function ShowsPage() {
         title: s.title,
         description: s.description,
         shortDescription: s.short_description,
+        summary: s.summary,
         coverImage: s.cover_image_url,
         category: s.categories?.name || 'General', // Fallback
         status: s.status as 'active' | 'coming-soon' | 'completed',

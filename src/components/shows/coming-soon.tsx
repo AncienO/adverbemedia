@@ -15,7 +15,7 @@ export function ComingSoon({ shows }: ComingSoonProps) {
 
     return (
         <section className="w-full py-16 md:py-24 bg-gray-50">
-            <div className="container mx-auto px-4 md:px-6">
+            <div className="w-full px-[5%] md:px-[10%]">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ export function ComingSoon({ shows }: ComingSoonProps) {
                 </motion.div>
 
                 {/* Shows Grid */}
-                <div className="flex flex-col gap-12 max-w-5xl mx-auto">
+                <div className="flex flex-col gap-12 max-w-5xl mx-0">
                     {shows.map((show, index) => (
                         <motion.div
                             key={show.id}
@@ -47,15 +47,18 @@ export function ComingSoon({ shows }: ComingSoonProps) {
                                 href={`/shows/${show.slug}`}
                                 className="flex flex-col md:flex-row gap-6 group w-full"
                             >
-                                {/* Cover Image - Fixed Square */}
-                                <div className="w-48 h-48 bg-gray-200 overflow-hidden flex-shrink-0 mx-auto md:mx-0 shadow-sm">
-                                    <Image
-                                        src={show.coverImage}
-                                        alt={show.title}
-                                        width={192}
-                                        height={192}
-                                        className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
-                                    />
+                                {/* Cover Image - CSS Overlay */}
+                                <div className="w-48 h-48 bg-gray-100 overflow-hidden flex-shrink-0 mx-auto md:mx-0 shadow-sm group-hover:bg-gray-200 transition-colors duration-300 relative">
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 select-none">
+                                        <div className="flex flex-col gap-0 leading-none">
+                                            <span className="text-3xl font-black text-gray-300 tracking-tighter self-start transform -translate-x-1">
+                                                COMING
+                                            </span>
+                                            <span className="text-3xl font-black text-gray-300 tracking-tighter self-end transform translate-x-1 flex items-baseline">
+                                                SOON<div className="w-[8px] h-[8px] rounded-full bg-[#E4192B] ml-1" />
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 {/* Content */}
@@ -80,7 +83,7 @@ export function ComingSoon({ shows }: ComingSoonProps) {
 
                                     {/* Description */}
                                     <p className="text-base leading-relaxed text-gray-600">
-                                        {show.description}
+                                        {show.summary || show.description}
                                     </p>
                                 </div>
                             </Link>

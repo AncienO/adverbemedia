@@ -8,7 +8,7 @@ export function Hero() {
 
     return (
         <section
-            className="relative w-full h-[800px] flex items-start pt-36 md:pt-[10%] overflow-hidden"
+            className="relative w-full h-screen flex items-start pt-36 md:pt-[15%] overflow-clip"
             style={{
                 backgroundColor: '#ffffff'
             }}
@@ -17,10 +17,19 @@ export function Hero() {
             {/* Background Image with Gradient Mask */}
             <div className="absolute inset-0 z-0">
                 <div
-                    className="absolute inset-0 bg-cover bg-no-repeat bg-fixed"
+                    className="absolute inset-0 bg-cover bg-no-repeat"
                     style={{
                         backgroundImage: "url('/hero-bg.png')",
-                        backgroundPosition: "right center"
+                        backgroundPosition: "right center",
+                        backgroundAttachment: "fixed"
+                    }}
+                />
+
+                {/* Gradient Overlay: 15% Dark to 85% Image */}
+                <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                        background: "linear-gradient(to right, #000000 15%, transparent 85%)"
                     }}
                 />
             </div>
@@ -72,7 +81,7 @@ export function Hero() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-                            className="block whitespace-nowrap leading-none mb-2"
+                            className="block whitespace-nowrap leading-none mb-2 text-[#E4192B]"
                         >
                             Podcasts
                         </motion.span>
@@ -80,9 +89,9 @@ export function Hero() {
                             initial={{ opacity: 0, x: -50 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-                            className="block whitespace-nowrap text-[#E4192B] drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]"
+                            className="block whitespace-nowrap text-white"
                         >
-                            worth your time.
+                            worth your time<span className="text-[#E4192B]">.</span>
                         </motion.span>
                     </h1>
 
@@ -98,10 +107,10 @@ export function Hero() {
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
-                        className="pt-20 flex flex-col sm:flex-row gap-8"
+                        className="pt-0 flex flex-col sm:flex-row gap-8"
                     >
                         <Link href="/shows" className="group">
-                            <span className="text-white text-2xl md:text-3xl font-bold underline underline-offset-8 decoration-2 decoration-[#E4192B] group-hover:decoration-white transition-all duration-300">
+                            <span className="text-white text-base md:text-lg font-bold underline underline-offset-8 decoration-2 decoration-[#E4192B] group-hover:decoration-white transition-all duration-300">
                                 Explore Shows
                             </span>
                         </Link>

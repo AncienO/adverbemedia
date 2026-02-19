@@ -14,6 +14,7 @@ export interface Show {
     title: string;
     description: string;
     shortDescription: string;
+    summary?: string;
     coverImage: string;
     category: string;
     status: 'active' | 'coming-soon' | 'completed';

@@ -84,7 +84,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
         <div className="min-h-screen pb-12">
             {/* Show Header */}
             <div className="bg-secondary/30 pt-40 pb-12 md:pb-24 border-b border-border">
-                <div className="container px-4 md:px-6">
+                <div className="w-full px-[5%] md:px-[10%]">
                     <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="w-full md:w-1/3 max-w-[300px] aspect-square rounded-xl overflow-hidden shadow-xl relative">
                             <Image
@@ -184,7 +184,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
 
             {/* Episode List */}
             {episodes.length > 0 && (
-                <div className="container px-4 md:px-6 py-12">
+                <div className="w-full px-[5%] md:px-[10%] py-12">
                     <h2 className="text-2xl font-bold mb-8">Episodes</h2>
                     <EpisodeList episodes={episodes} show={show} />
                 </div>

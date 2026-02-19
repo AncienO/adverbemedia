@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Loader2, ArrowLeft } from 'lucide-react';
+import { Loader2, ArrowLeft, ChevronUp, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { createShow, updateShow } from '@/app/admin/_actions/shows';
 import { FileUpload } from '@/components/admin/file-upload';
@@ -17,8 +17,21 @@ interface ShowFormProps {
 export function ShowForm({ show, categories, hosts }: ShowFormProps) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [status, setStatus] = useState(show?.status || 'coming-soon');
     const [coverImageUrl, setCoverImageUrl] = useState(show?.cover_image_url || '');
     const [hostAvatarUrl, setHostAvatarUrl] = useState(hosts?.[0]?.avatar_url || '');
+
+    const ALL_PLATFORMS = ['spotify', 'youtube', 'applePodcasts', 'twitter', 'instagram', 'website'];
+    const defaultOrder: string[] = show?.social_links?.order ?? ALL_PLATFORMS;
+    const [linkOrder, setLinkOrder] = useState<string[]>(defaultOrder);
+
+    const movePlatform = (index: number, dir: 'up' | 'down') => {
+        const next = [...linkOrder];
+        const swap = dir === 'up' ? index - 1 : index + 1;
+        if (swap < 0 || swap >= next.length) return;
+        [next[index], next[swap]] = [next[swap], next[index]];
+        setLinkOrder(next);
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -92,6 +105,13 @@ export function ShowForm({ show, categories, hosts }: ShowFormProps) {
                     </div>
 
                     <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">Summary</label>
+                        <textarea name="summary" defaultValue={show?.summary} rows={3}
+                            placeholder="A concise summary displayed on the Network page"
+                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors resize-y" />
+                    </div>
+
+                    <div className="space-y-2">
                         <label className="text-sm font-medium text-gray-700">Full Description</label>
                         <textarea name="description" defaultValue={show?.description} rows={5}
                             placeholder="Describe the show, its themes, and what listeners can expect..."
@@ -105,7 +125,13 @@ export function ShowForm({ show, categories, hosts }: ShowFormProps) {
                                 <option key={cat.id} value={cat.id}>{cat.name}</option>
                             ))}
                         </AdminSelect>
-                        <AdminSelect name="status" label="Status" required defaultValue={show?.status || 'coming-soon'}>
+                        <AdminSelect
+                            name="status"
+                            label="Status"
+                            required
+                            value={status}
+                            onChange={(e) => setStatus(e.target.value)}
+                        >
                             <option value="coming-soon">Coming Soon</option>
                             <option value="active">Active</option>
                             <option value="completed">Completed</option>
@@ -114,18 +140,21 @@ export function ShowForm({ show, categories, hosts }: ShowFormProps) {
                 </section>
 
                 {/* Cover Image */}
-                <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-6">
-                    <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-4">Cover Image</h2>
-                    <FileUpload
-                        onUpload={(url) => setCoverImageUrl(url)}
-                        accept="image/*"
-                        bucket="uploads"
-                        folder="shows"
-                        currentUrl={coverImageUrl}
-                        label="Show Cover Art"
-                    />
-                    <input type="hidden" name="coverImageUrl" value={coverImageUrl} />
-                </section>
+                {/* Cover Image */}
+                {status !== 'coming-soon' && (
+                    <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-6">
+                        <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-4">Cover Image</h2>
+                        <FileUpload
+                            onUpload={(url) => setCoverImageUrl(url)}
+                            accept="image/*"
+                            bucket="uploads"
+                            folder="shows"
+                            currentUrl={coverImageUrl}
+                            label="Show Cover Art"
+                        />
+                    </section>
+                )}
+                <input type="hidden" name="coverImageUrl" value={status === 'coming-soon' ? '/coming-soon.png' : coverImageUrl} />
 
                 {/* Host Section */}
                 <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-8">
@@ -163,36 +192,48 @@ export function ShowForm({ show, categories, hosts }: ShowFormProps) {
                     </div>
                 </section>
 
-                {/* Social Links */}
+                {/* Social Links — with sortable order */}
                 <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-8">
-                    <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-4">Social & Streaming Links</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Spotify</label>
-                            <input name="spotify" defaultValue={show?.social_links?.spotify} placeholder="https://open.spotify.com/..."
-                                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors" />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">YouTube</label>
-                            <input name="youtube" defaultValue={show?.social_links?.youtube} placeholder="https://youtube.com/..."
-                                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors" />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Apple Podcasts</label>
-                            <input name="applePodcasts" defaultValue={show?.social_links?.applePodcasts} placeholder="https://podcasts.apple.com/..."
-                                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors" />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Twitter / X</label>
-                            <input name="twitter" defaultValue={show?.social_links?.twitter} placeholder="https://x.com/..."
-                                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors" />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Instagram</label>
-                            <input name="instagram" defaultValue={show?.social_links?.instagram} placeholder="https://instagram.com/..."
-                                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors" />
-                        </div>
+                    <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-4">Social &amp; Streaming Links</h2>
+                    <p className="text-xs text-gray-400">Use the arrows to set the display order of links on the public site.</p>
+                    <div className="flex flex-col gap-4">
+                        {linkOrder.map((platform, idx) => {
+                            const labels: Record<string, string> = {
+                                spotify: 'Spotify', youtube: 'YouTube', applePodcasts: 'Apple Podcasts',
+                                twitter: 'Twitter / X', instagram: 'Instagram', website: 'Website',
+                            };
+                            const placeholders: Record<string, string> = {
+                                spotify: 'https://open.spotify.com/...', youtube: 'https://youtube.com/...',
+                                applePodcasts: 'https://podcasts.apple.com/...', twitter: 'https://x.com/...',
+                                instagram: 'https://instagram.com/...', website: 'https://yoursite.com',
+                            };
+                            return (
+                                <div key={platform} className="flex items-center gap-3">
+                                    <div className="flex flex-col gap-1">
+                                        <button type="button" onClick={() => movePlatform(idx, 'up')} disabled={idx === 0}
+                                            className="p-1 rounded text-gray-400 hover:text-gray-700 disabled:opacity-30">
+                                            <ChevronUp className="w-4 h-4" />
+                                        </button>
+                                        <button type="button" onClick={() => movePlatform(idx, 'down')} disabled={idx === linkOrder.length - 1}
+                                            className="p-1 rounded text-gray-400 hover:text-gray-700 disabled:opacity-30">
+                                            <ChevronDown className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                    <div className="flex-1 space-y-1">
+                                        <label className="text-sm font-medium text-gray-700">{labels[platform]}</label>
+                                        <input
+                                            name={platform}
+                                            defaultValue={show?.social_links?.[platform]}
+                                            placeholder={placeholders[platform]}
+                                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors"
+                                        />
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
+                    {/* Hidden field to pass link order to server */}
+                    <input type="hidden" name="linkOrder" value={JSON.stringify(linkOrder)} />
                 </section>
 
                 {/* Actions */}
