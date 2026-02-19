@@ -2,9 +2,10 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { ComingSoonVisual } from '@/components/shared/coming-soon-visual';
 import { Show } from '@/types';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface ComingSoonProps {
     shows: Show[];
@@ -47,18 +48,19 @@ export function ComingSoon({ shows }: ComingSoonProps) {
                                 href={`/shows/${show.slug}`}
                                 className="flex flex-col md:flex-row gap-6 group w-full"
                             >
-                                {/* Cover Image - CSS Overlay */}
-                                <div className="w-48 h-48 bg-gray-100 overflow-hidden flex-shrink-0 mx-auto md:mx-0 shadow-sm group-hover:bg-gray-200 transition-colors duration-300 relative">
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 select-none">
-                                        <div className="flex flex-col gap-0 leading-none">
-                                            <span className="text-3xl font-black text-gray-300 tracking-tighter self-start transform -translate-x-1">
-                                                COMING
-                                            </span>
-                                            <span className="text-3xl font-black text-gray-300 tracking-tighter self-end transform translate-x-1 flex items-baseline">
-                                                SOON<div className="w-[8px] h-[8px] rounded-full bg-[#E4192B] ml-1" />
-                                            </span>
-                                        </div>
-                                    </div>
+                                {/* Cover Image - Using Shared Visual */}
+                                <div className="w-48 h-48 bg-gray-100 overflow-hidden flex-shrink-0 mx-auto md:mx-0 shadow-sm transition-colors duration-300 relative">
+                                    {!show.coverImage || show.coverImage === '/coming-soon.png' ? (
+                                        <ComingSoonVisual textSize="md" dotSize="md" />
+                                    ) : (
+                                        <Image
+                                            src={show.coverImage || '/coming-soon.png'}
+                                            alt={show.title}
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                            sizes="192px"
+                                        />
+                                    )}
                                 </div>
 
                                 {/* Content */}

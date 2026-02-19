@@ -11,9 +11,20 @@ interface FileUploadProps {
     folder?: string;
     currentUrl?: string;
     label?: string;
+    objectFit?: 'cover' | 'contain';
+    objectPosition?: string;
 }
 
-export function FileUpload({ onUpload, accept = '*', bucket = 'uploads', folder = '', currentUrl, label = 'Upload File' }: FileUploadProps) {
+export function FileUpload({
+    onUpload,
+    accept = '*',
+    bucket = 'uploads',
+    folder = '',
+    currentUrl,
+    label = 'Upload File',
+    objectFit = 'cover',
+    objectPosition = 'center'
+}: FileUploadProps) {
     const [uploading, setUploading] = useState(false);
     const [fileName, setFileName] = useState('');
     const [dragOver, setDragOver] = useState(false);
@@ -100,7 +111,19 @@ export function FileUpload({ onUpload, accept = '*', bucket = 'uploads', folder 
                     <div className="flex flex-col items-center gap-3 py-2">
                         {isImage ? (
                             <div className="relative w-32 h-32 rounded-lg overflow-hidden border border-gray-200 shadow-sm">
-                                <Image src={currentUrl} alt="Uploaded" fill className="object-cover" />
+                                {currentUrl ? (
+                                    <Image
+                                        src={currentUrl}
+                                        alt="Uploaded"
+                                        fill
+                                        className={objectFit === 'contain' ? 'object-contain' : 'object-cover'}
+                                        style={{ objectPosition }}
+                                    />
+                                ) : (
+                                    <div className="w-full h-full bg-gray-50 flex items-center justify-center text-gray-300">
+                                        <ImageIcon className="w-8 h-8" />
+                                    </div>
+                                )}
                             </div>
                         ) : (
                             <div className="w-14 h-14 rounded-full bg-green-50 flex items-center justify-center">

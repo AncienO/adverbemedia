@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ComingSoonVisual } from '@/components/shared/coming-soon-visual';
 import { Show } from '@/types';
 import { Music, Radio, Video, Globe, Instagram, Linkedin } from 'lucide-react';
 
@@ -35,14 +36,18 @@ export function NowStreaming({ show }: NowStreamingProps) {
     return (
         <article className="flex flex-col gap-6 h-full">
             {/* Cover Image */}
-            <Link href={`/shows/${show.slug}`} className="w-full aspect-square bg-gray-200 overflow-hidden block group">
-                <Image
-                    src={show.coverImage}
-                    alt={show.title}
-                    width={600}
-                    height={600}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+            <Link href={`/shows/${show.slug}`} className="w-full aspect-square bg-gray-200 overflow-hidden block group relative">
+                {show.status === 'coming-soon' && (!show.coverImage || show.coverImage === '/coming-soon.png') ? (
+                    <ComingSoonVisual textSize="lg" dotSize="md" />
+                ) : (
+                    <Image
+                        src={show.coverImage || '/coming-soon.png'}
+                        alt={show.title}
+                        width={600}
+                        height={600}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                )}
             </Link>
 
             {/* Content */}

@@ -28,6 +28,8 @@ export interface Show {
         youtube?: string;
         linkedin?: string;
     };
+    adContent?: string;
+    relatedShowIds?: string[];
 }
 
 export interface Episode {

@@ -125,7 +125,13 @@ export function EpisodeDetail({ show, episode }: EpisodeDetailProps) {
                     <div className="bg-muted/50 p-6 rounded-xl border border-border">
                         <h3 className="font-bold mb-4">About the Show</h3>
                         <div className="flex items-center gap-3 mb-3">
-                            <Image src={show.coverImage} width={48} height={48} className="w-12 h-12 rounded bg-black object-cover" alt={show.title} />
+                            {show.coverImage ? (
+                                <Image src={show.coverImage} width={48} height={48} className="w-12 h-12 rounded bg-black object-cover" alt={show.title} />
+                            ) : (
+                                <div className="w-12 h-12 rounded bg-gray-200 flex items-center justify-center">
+                                    <span className="text-[10px] text-gray-400">No img</span>
+                                </div>
+                            )}
                             <div>
                                 <p className="font-semibold text-sm line-clamp-1">{show.title}</p>
                                 <Link href={`/shows/${show.slug}`} className="text-xs text-primary hover:underline">View Show Page</Link>

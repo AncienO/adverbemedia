@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { ComingSoonVisual } from '@/components/shared/coming-soon-visual';
 import { Show } from '@/types';
 
 interface ShowsPreviewProps {
@@ -54,18 +55,9 @@ export function ShowsPreview({ shows }: ShowsPreviewProps) {
                             >
                                 <div className={`flex flex-col overflow-hidden w-full h-full shadow-sm hover:shadow-lg transition-shadow duration-300 ${isComingSoon ? 'bg-gray-50 border border-gray-100' : 'bg-white border border-gray-100'}`}>
                                     {/* Image */}
-                                    <div className="relative w-full aspect-square overflow-hidden bg-gray-100 group-hover:bg-gray-200 transition-colors duration-300">
-                                        {isComingSoon ? (
-                                            <div className="absolute inset-0 flex flex-col items-center justify-center p-4 select-none">
-                                                <div className="flex flex-col gap-0 leading-none">
-                                                    <span className="text-4xl font-black text-gray-300 tracking-tighter self-start transform -translate-x-2">
-                                                        COMING
-                                                    </span>
-                                                    <span className="text-4xl font-black text-gray-300 tracking-tighter self-end transform translate-x-2 flex items-baseline">
-                                                        SOON<div className="w-[10px] h-[10px] rounded-full bg-[#E4192B] ml-1" />
-                                                    </span>
-                                                </div>
-                                            </div>
+                                    <div className="relative w-full aspect-square overflow-hidden bg-gray-100 transition-colors duration-300">
+                                        {isComingSoon && (!show.coverImage || show.coverImage === '/coming-soon.png') ? (
+                                            <ComingSoonVisual textSize="lg" dotSize="md" />
                                         ) : (
                                             <Image
                                                 src={show.coverImage || '/coming-soon.png'}

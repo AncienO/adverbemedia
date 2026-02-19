@@ -7,19 +7,22 @@ import Link from 'next/link';
 import { createShow, updateShow } from '@/app/admin/_actions/shows';
 import { FileUpload } from '@/components/admin/file-upload';
 import { AdminSelect } from '@/components/admin/admin-select';
+import { ComingSoonVisual } from '@/components/shared/coming-soon-visual';
 
 interface ShowFormProps {
     show?: any;
     categories: any[];
     hosts?: any[];
+    allShows?: any[];
 }
 
-export function ShowForm({ show, categories, hosts }: ShowFormProps) {
+export function ShowForm({ show, categories, hosts, allShows }: ShowFormProps) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [status, setStatus] = useState(show?.status || 'coming-soon');
     const [coverImageUrl, setCoverImageUrl] = useState(show?.cover_image_url || '');
     const [hostAvatarUrl, setHostAvatarUrl] = useState(hosts?.[0]?.avatar_url || '');
+    const [selectedRelatedShows, setSelectedRelatedShows] = useState<string[]>(show?.related_show_ids || []);
 
     const ALL_PLATFORMS = ['spotify', 'youtube', 'applePodcasts', 'twitter', 'instagram', 'website'];
     const defaultOrder: string[] = show?.social_links?.order ?? ALL_PLATFORMS;
@@ -41,6 +44,7 @@ export function ShowForm({ show, categories, hosts }: ShowFormProps) {
         const formData = new FormData(e.currentTarget);
         formData.set('coverImageUrl', coverImageUrl);
         formData.set('hostAvatarUrl', hostAvatarUrl);
+        formData.set('relatedShowIds', JSON.stringify(selectedRelatedShows));
         const result = show ? await updateShow(show.id, formData) : await createShow(formData);
 
         if (result?.error) {
@@ -137,13 +141,45 @@ export function ShowForm({ show, categories, hosts }: ShowFormProps) {
                             <option value="completed">Completed</option>
                         </AdminSelect>
                     </div>
+
+                    <div className="space-y-4 pt-4 border-t border-gray-100">
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-700">Advertising Content</label>
+                            <textarea name="adContent" defaultValue={show?.ad_content} rows={3}
+                                placeholder="Enter advertising text or copy here..."
+                                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors resize-y" />
+                        </div>
+
+                        <div className="space-y-3">
+                            <label className="text-sm font-medium text-gray-700">Related Shows</label>
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                {allShows?.filter(s => s.id !== show?.id).map((s: any) => (
+                                    <label key={s.id} className="flex items-center gap-2 p-3 border border-gray-100 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
+                                        <input
+                                            type="checkbox"
+                                            className="w-4 h-4 text-[#E4192B] rounded focus:ring-[#E4192B]"
+                                            checked={selectedRelatedShows.includes(s.id)}
+                                            onChange={(e) => {
+                                                if (e.target.checked) {
+                                                    setSelectedRelatedShows([...selectedRelatedShows, s.id]);
+                                                } else {
+                                                    setSelectedRelatedShows(selectedRelatedShows.filter(id => id !== s.id));
+                                                }
+                                            }}
+                                        />
+                                        <span className="text-sm text-gray-700 truncate">{s.title}</span>
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
-                {/* Cover Image */}
-                {/* Cover Image */}
-                {status !== 'coming-soon' && (
-                    <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-6">
-                        <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-4">Cover Image</h2>
+                {/* Cover Image Preview / Upload */}
+                <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-6">
+                    <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-4">Cover Image</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                         <FileUpload
                             onUpload={(url) => setCoverImageUrl(url)}
                             accept="image/*"
@@ -152,9 +188,21 @@ export function ShowForm({ show, categories, hosts }: ShowFormProps) {
                             currentUrl={coverImageUrl}
                             label="Show Cover Art"
                         />
-                    </section>
-                )}
-                <input type="hidden" name="coverImageUrl" value={status === 'coming-soon' ? '/coming-soon.png' : coverImageUrl} />
+
+                        {status === 'coming-soon' && !coverImageUrl && (
+                            <div className="space-y-4">
+                                <label className="text-sm font-medium text-gray-700">Default Coming Soon Preview</label>
+                                <div className="w-full aspect-square max-w-[200px] rounded-lg overflow-hidden border border-gray-100 shadow-sm relative">
+                                    <ComingSoonVisual textSize="md" dotSize="md" />
+                                </div>
+                                <p className="text-xs text-gray-500">
+                                    Since no image is uploaded, this standardized "Coming Soon" visual will be displayed on the public site.
+                                </p>
+                            </div>
+                        )}
+                    </div>
+                </section>
+                <input type="hidden" name="coverImageUrl" value={coverImageUrl} />
 
                 {/* Host Section */}
                 <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-8">
@@ -181,6 +229,8 @@ export function ShowForm({ show, categories, hosts }: ShowFormProps) {
                         folder="hosts"
                         currentUrl={hostAvatarUrl}
                         label="Host Photo"
+                        objectFit="cover"
+                        objectPosition="top"
                     />
                     <input type="hidden" name="hostAvatarUrl" value={hostAvatarUrl} />
 
@@ -231,6 +281,17 @@ export function ShowForm({ show, categories, hosts }: ShowFormProps) {
                                 </div>
                             );
                         })}
+                    </div>
+                    {/* YouTube Preview Field */}
+                    <div className="pt-6 border-t border-gray-100 mt-6 flex flex-col gap-2">
+                        <label className="text-sm font-medium text-gray-700">Featured YouTube Video Preview</label>
+                        <input
+                            name="youtubePreview"
+                            defaultValue={show?.social_links?.youtubePreview}
+                            placeholder="https://youtube.com/watch?v=..."
+                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors"
+                        />
+                        <p className="text-xs text-gray-400">Add a direct link to a YouTube video to embed it natively on the show detail page under the Watch section.</p>
                     </div>
                     {/* Hidden field to pass link order to server */}
                     <input type="hidden" name="linkOrder" value={JSON.stringify(linkOrder)} />

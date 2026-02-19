@@ -20,10 +20,18 @@ export async function createShow(formData: FormData) {
     const applePodcasts = formData.get('applePodcasts') as string;
     const twitter = formData.get('twitter') as string;
     const instagram = formData.get('instagram') as string;
+    const adContent = formData.get('adContent') as string;
+    const youtubePreview = formData.get('youtubePreview') as string;
+    const relatedShowIdsRaw = formData.get('relatedShowIds') as string;
+    let relatedShowIds: string[] = [];
+    if (relatedShowIdsRaw) {
+        try { relatedShowIds = JSON.parse(relatedShowIdsRaw); } catch { }
+    }
 
     const socialLinks: Record<string, any> = {};
     if (spotify) socialLinks.spotify = spotify;
     if (youtube) socialLinks.youtube = youtube;
+    if (youtubePreview) socialLinks.youtubePreview = youtubePreview;
     if (applePodcasts) socialLinks.applePodcasts = applePodcasts;
     if (twitter) socialLinks.twitter = twitter;
     if (instagram) socialLinks.instagram = instagram;
@@ -44,6 +52,8 @@ export async function createShow(formData: FormData) {
             category_id: categoryId || null,
             status,
             social_links: socialLinks,
+            ad_content: adContent,
+            related_show_ids: relatedShowIds,
         })
         .select()
         .single();
@@ -106,10 +116,18 @@ export async function updateShow(id: string, formData: FormData) {
     const applePodcasts = formData.get('applePodcasts') as string;
     const twitter = formData.get('twitter') as string;
     const instagram = formData.get('instagram') as string;
+    const adContent = formData.get('adContent') as string;
+    const youtubePreview = formData.get('youtubePreview') as string;
+    const relatedShowIdsRaw = formData.get('relatedShowIds') as string;
+    let relatedShowIds: string[] = [];
+    if (relatedShowIdsRaw) {
+        try { relatedShowIds = JSON.parse(relatedShowIdsRaw); } catch { }
+    }
 
     const socialLinks: Record<string, any> = {};
     if (spotify) socialLinks.spotify = spotify;
     if (youtube) socialLinks.youtube = youtube;
+    if (youtubePreview) socialLinks.youtubePreview = youtubePreview;
     if (applePodcasts) socialLinks.applePodcasts = applePodcasts;
     if (twitter) socialLinks.twitter = twitter;
     if (instagram) socialLinks.instagram = instagram;
@@ -130,12 +148,79 @@ export async function updateShow(id: string, formData: FormData) {
             category_id: categoryId || null,
             status,
             social_links: socialLinks,
+            ad_content: adContent,
+            related_show_ids: relatedShowIds,
             updated_at: new Date().toISOString(),
         })
         .eq('id', id);
 
     if (error) {
         return { error: error.message };
+    }
+
+    // Handle host updates
+    const hostName = formData.get('hostName') as string;
+    const hostRole = formData.get('hostRole') as string;
+    const hostAvatarUrl = formData.get('hostAvatarUrl') as string;
+
+    if (hostName) {
+        // Find existing primary host if any
+        const { data: existingHosts } = await supabase
+            .from('show_hosts')
+            .select('host_id')
+            .eq('show_id', id);
+
+        const primaryHostId = existingHosts?.[0]?.host_id;
+
+        if (primaryHostId) {
+            // Update existing primary host
+            await supabase
+                .from('hosts')
+                .update({ name: hostName, role: hostRole || 'Host', avatar_url: hostAvatarUrl })
+                .eq('id', primaryHostId);
+        } else {
+            // Insert new primary host
+            const { data: newHost } = await supabase
+                .from('hosts')
+                .insert({ name: hostName, role: hostRole || 'Host', avatar_url: hostAvatarUrl })
+                .select()
+                .single();
+            if (newHost) {
+                await supabase.from('show_hosts').insert({ show_id: id, host_id: newHost.id });
+            }
+        }
+    }
+
+    // Handle co-hosts update
+    const coHosts = formData.get('coHosts') as string;
+    if (coHosts !== null) {
+        // Find all current show_hosts
+        const { data: currentLinks } = await supabase
+            .from('show_hosts')
+            .select('host_id')
+            .eq('show_id', id);
+
+        const primaryHostId = currentLinks?.[0]?.host_id;
+
+        // Remove all except the primary host relationship for now
+        // This is a simplified approach to avoid complex matching
+        if (primaryHostId) {
+            await supabase.from('show_hosts').delete().eq('show_id', id).neq('host_id', primaryHostId);
+        } else {
+            await supabase.from('show_hosts').delete().eq('show_id', id);
+        }
+
+        const names = (coHosts || '').split(',').map(n => n.trim()).filter(Boolean);
+        for (const name of names) {
+            const { data: coHost } = await supabase
+                .from('hosts')
+                .insert({ name, role: 'Co-Host' })
+                .select()
+                .single();
+            if (coHost) {
+                await supabase.from('show_hosts').insert({ show_id: id, host_id: coHost.id });
+            }
+        }
     }
 
     revalidatePath('/admin/shows');
