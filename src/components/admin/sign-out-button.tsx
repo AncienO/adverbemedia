@@ -4,7 +4,6 @@ import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { Loader2, LogOut } from 'lucide-react';
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
 
 export function SignOutButton() {
     const router = useRouter();
@@ -20,14 +19,14 @@ export function SignOutButton() {
     };
 
     return (
-        <Button
-            variant="ghost"
-            className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50 gap-3"
+        <button
+            className="w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium text-white/40 rounded-lg
+                hover:bg-white/[0.06] hover:text-[#E4192B] transition-all duration-150"
             onClick={handleSignOut}
             disabled={loading}
         >
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <LogOut className="w-5 h-5" />}
+            {loading ? <Loader2 className="w-[18px] h-[18px] animate-spin" /> : <LogOut className="w-[18px] h-[18px]" />}
             Sign Out
-        </Button>
+        </button>
     );
 }

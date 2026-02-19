@@ -1,22 +1,26 @@
 import React from 'react';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/server';
 import { CompanyDocument } from '@/types';
 import { CompanyPageContent } from '@/components/company/company-page-content';
 
 export const revalidate = 0;
 
 export default async function CompanyPage() {
+    const supabase = await createClient();
+
+    // Fetch company sections from database
+    const { data: sections } = await supabase
+        .from('company_sections')
+        .select('*')
+        .eq('is_visible', true)
+        .order('sort_order', { ascending: true });
+
     // Fetch documents from Supabase
-    const { data: docsRaw, error } = await supabase
+    const { data: docsRaw } = await supabase
         .from('company_documents')
         .select('*')
         .order('created_at', { ascending: false });
 
-    if (error) {
-        console.error('Error fetching company documents:', error);
-    }
-
-    // Map DB result to CompanyDocument interface
     const documents: CompanyDocument[] = (docsRaw || []).map((d: any) => ({
         id: d.id,
         title: d.title,
@@ -27,5 +31,5 @@ export default async function CompanyPage() {
         category: d.category
     }));
 
-    return <CompanyPageContent documents={documents} />;
+    return <CompanyPageContent documents={documents} sections={sections || []} />;
 }

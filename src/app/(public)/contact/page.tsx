@@ -59,11 +59,8 @@ export default function ContactPage() {
                             </span>
                             Email Us
                         </h3>
-                        <a href="mailto:hello@adverbemedia.com" className="block text-xl md:text-2xl font-medium text-gray-900 hover:text-[#E4192B] transition-colors">
-                            hello@adverbemedia.com
-                        </a>
-                        <a href="mailto:press@adverbemedia.com" className="block text-lg text-gray-600 hover:text-[#E4192B] transition-colors">
-                            press@adverbemedia.com
+                        <a href="mailto:theadverbe@gmail.com" className="block text-xl md:text-2xl font-medium text-gray-600 hover:text-[#E4192B] transition-colors">
+                            theadverbe@gmail.com
                         </a>
                     </div>
 
@@ -79,7 +76,7 @@ export default function ContactPage() {
                         </h3>
                         <address className="not-italic text-lg md:text-xl text-gray-600 font-light leading-relaxed">
                             Adverbe Media Studios<br />
-                            East Legon, Accra<br />
+                            Abokobi, Accra<br />
                             Ghana
                         </address>
                     </div>

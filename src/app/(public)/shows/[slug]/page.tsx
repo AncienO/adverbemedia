@@ -1,6 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/server';
 import { EpisodeList } from '@/components/shows/episode-list';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -15,6 +15,7 @@ export const revalidate = 0;
 
 export default async function ShowPage({ params }: ShowPageProps) {
     const { slug } = await params;
+    const supabase = await createClient();
 
     // Fetch Show
     const { data: showRaw, error: showError } = await supabase

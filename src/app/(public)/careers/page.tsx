@@ -1,11 +1,13 @@
 import React from 'react';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/server';
 import { Job } from '@/types';
 import { CareersPageContent } from '@/components/careers/careers-page-content';
 
 export const revalidate = 0;
 
 export default async function CareersPage() {
+    const supabase = await createClient();
+
     // Fetch active jobs from Supabase
     const { data: jobsRaw, error } = await supabase
         .from('jobs')

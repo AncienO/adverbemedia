@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/server';
 import { Show } from '@/types';
 import { ComingSoon } from '@/components/shows/coming-soon';
 import { NewsletterSignup } from '@/components/shows/newsletter-signup';
@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 export const revalidate = 0; // Disable static caching for dynamic DB content
 
 export default async function ShowsPage() {
+    const supabase = await createClient();
+
     // Fetch shows from Supabase
     const { data: showsData, error } = await supabase
         .from('shows')
