@@ -12,7 +12,7 @@ interface CareersPageContentProps {
 
 export function CareersPageContent({ jobs }: CareersPageContentProps) {
     return (
-        <main className="w-full min-h-screen bg-white pt-24 pb-20 px-[5%] md:px-[10%]">
+        <main className="w-full min-h-screen bg-white pt-40 pb-20 px-[5%] md:px-[10%]">
             {/* Page Header */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}

@@ -83,7 +83,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
     return (
         <div className="min-h-screen pb-12">
             {/* Show Header */}
-            <div className="bg-secondary/30 py-12 md:py-24 border-b border-border">
+            <div className="bg-secondary/30 pt-40 pb-12 md:pb-24 border-b border-border">
                 <div className="container px-4 md:px-6">
                     <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="w-full md:w-1/3 max-w-[300px] aspect-square rounded-xl overflow-hidden shadow-xl relative">

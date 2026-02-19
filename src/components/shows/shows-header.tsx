@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 
 export function ShowsHeader() {
     return (
-        <section className="w-full py-16 md:py-20 bg-white border-b-2" style={{ borderColor: '#E4192B' }}>
-            <div className="container mx-auto px-4 md:px-6 text-center max-w-4xl">
+        <section className="w-full pt-40 pb-12 md:pb-16 bg-white">
+            <div className="container mx-auto px-4 md:px-6 text-center max-w-4xl flex flex-col items-center">
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -16,6 +16,12 @@ export function ShowsHeader() {
                 >
                     Our Shows
                 </motion.h1>
+                <motion.div
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                    className="w-32 h-1 bg-[#E4192B] rounded-full"
+                />
             </div>
         </section>
     );

@@ -19,7 +19,7 @@ export function Header() {
     ];
 
     return (
-        <header className="sticky top-0 left-0 w-full z-50 bg-white">
+        <header className="fixed top-6 left-0 right-0 z-50 bg-white w-[85%] mx-auto shadow-xl rounded-2xl">
             <div className="w-full pl-[5%] md:pl-[10%] pr-[5%] md:pr-[10%] py-3 md:py-4 flex justify-between items-center relative">
                 {/* Logo - Top Left */}
                 <Link href="/" className="flex items-center z-50">

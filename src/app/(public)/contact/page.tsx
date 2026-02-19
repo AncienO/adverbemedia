@@ -16,7 +16,7 @@ export default function ContactPage() {
     ];
 
     return (
-        <main className="w-full min-h-screen bg-white pt-24 pb-20 px-[5%] md:px-[10%] flex flex-col items-center">
+        <main className="w-full min-h-screen bg-white pt-40 pb-20 px-[5%] md:px-[10%] flex flex-col items-center">
 
             {/* Header Section */}
             <motion.div

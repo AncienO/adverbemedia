@@ -34,7 +34,7 @@ export function ComingSoon({ shows }: ComingSoonProps) {
                 </motion.div>
 
                 {/* Shows Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <div className="flex flex-col gap-12 max-w-5xl mx-auto">
                     {shows.map((show, index) => (
                         <motion.div
                             key={show.id}

@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Plus, Save, Trash2, Loader2, Eye, EyeOff, GripVertical } from 'lucide-react';
-import { createSection, updateSection, deleteSection } from '@/app/admin/_actions/company';
+import { Plus, Save, Trash2, Loader2, Eye, EyeOff, GripVertical, ArrowUp, ArrowDown } from 'lucide-react';
+import { createSection, updateSection, deleteSection, updateSectionOrder } from '@/app/admin/_actions/company';
 import { useRouter } from 'next/navigation';
 
 interface Section {
@@ -65,9 +65,30 @@ export function CompanySectionEditor({ initialSections }: { initialSections: Sec
         setSections(sections.map(s => s.id === id ? { ...s, [field]: value } : s));
     };
 
+    const moveSection = async (index: number, direction: 'up' | 'down') => {
+        if (direction === 'up' && index === 0) return;
+        if (direction === 'down' && index === sections.length - 1) return;
+
+        const newSections = [...sections];
+        const targetIndex = direction === 'up' ? index - 1 : index + 1;
+
+        // Swap
+        [newSections[index], newSections[targetIndex]] = [newSections[targetIndex], newSections[index]];
+
+        // Update sort_order for all
+        const updatedSections = newSections.map((s, i) => ({ ...s, sort_order: i }));
+
+        setSections(updatedSections); // Optimistic update
+
+        // Persist order
+        const orderUpdates = updatedSections.map(s => ({ id: s.id, sort_order: s.sort_order }));
+        await updateSectionOrder(orderUpdates);
+        router.refresh();
+    };
+
     return (
         <div className="space-y-4">
-            {sections.map((section) => (
+            {sections.map((section, index) => (
                 <div key={section.id} className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 md:p-6 space-y-4">
                     <div className="flex items-start justify-between gap-4">
                         <div className="flex-1 space-y-3">
@@ -88,6 +109,26 @@ export function CompanySectionEditor({ initialSections }: { initialSections: Sec
                             <p className="text-xs text-gray-400">Key: {section.section_key}</p>
                         </div>
                         <div className="flex flex-col gap-2 flex-shrink-0">
+                            <div className="flex flex-col gap-1 border-b border-gray-100 pb-2 mb-1">
+                                <Button
+                                    size="sm" variant="ghost"
+                                    onClick={() => moveSection(index, 'up')}
+                                    disabled={index === 0}
+                                    className="h-6 w-8 p-0 text-gray-400 hover:text-black disabled:opacity-30"
+                                    title="Move Up"
+                                >
+                                    <ArrowUp className="w-4 h-4" />
+                                </Button>
+                                <Button
+                                    size="sm" variant="ghost"
+                                    onClick={() => moveSection(index, 'down')}
+                                    disabled={index === sections.length - 1}
+                                    className="h-6 w-8 p-0 text-gray-400 hover:text-black disabled:opacity-30"
+                                    title="Move Down"
+                                >
+                                    <ArrowDown className="w-4 h-4" />
+                                </Button>
+                            </div>
                             <Button
                                 size="sm" variant="ghost"
                                 onClick={() => updateLocal(section.id, 'is_visible', !section.is_visible)}

@@ -21,7 +21,7 @@ export function Footer() {
     ];
 
     return (
-        <footer className="w-full bg-black text-white py-12 md:py-16">
+        <footer className="w-full bg-black text-white py-12 md:py-16" data-cursor="invert">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="space-y-8">
                     {/* Company Info */}

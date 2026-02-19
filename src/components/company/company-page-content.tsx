@@ -20,7 +20,7 @@ interface CompanyPageContentProps {
 
 export function CompanyPageContent({ documents, sections }: CompanyPageContentProps) {
     return (
-        <main className="w-full min-h-screen bg-white pt-24 pb-20 px-[5%] md:px-[10%]">
+        <main className="w-full min-h-screen bg-white pt-40 pb-20 px-[5%] md:px-[10%]">
 
             {/* Header */}
             <motion.div
@@ -44,34 +44,53 @@ export function CompanyPageContent({ documents, sections }: CompanyPageContentPr
             </motion.div>
 
             {/* Dynamic Content */}
-            <div className="space-y-24 max-w-5xl">
+            <div className="flex flex-col gap-12 max-w-5xl">
                 {/* Text Sections from Database */}
                 {sections.map((section, index) => (
-                    <motion.section
-                        key={section.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: index * 0.1 }}
-                        className="grid md:grid-cols-12 gap-8 md:gap-12"
-                    >
-                        <div className="md:col-span-4">
-                            <h2
-                                className="text-3xl font-bold text-black sticky top-32"
-                                style={{ fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif' }}
-                            >
-                                {section.title}
-                            </h2>
-                        </div>
-                        <div className="md:col-span-8">
-                            <div className="text-xl text-gray-700 leading-relaxed font-light prose prose-lg max-w-none">
-                                {section.content.split('\n').map((para, i) => (
-                                    para.trim() ? <p key={i}>{para}</p> : <br key={i} />
-                                ))}
+                    <React.Fragment key={section.id}>
+                        {index > 0 && (
+                            <motion.div
+                                initial={{ scaleX: 0 }}
+                                whileInView={{ scaleX: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                className="w-full h-px bg-[#E4192B] origin-left"
+                            />
+                        )}
+                        <motion.section
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                            className="grid md:grid-cols-12 gap-8 md:gap-12"
+                        >
+                            <div className="md:col-span-4">
+                                <h2
+                                    className="text-3xl font-bold text-black sticky top-32"
+                                    style={{ fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif' }}
+                                >
+                                    {section.title}
+                                </h2>
                             </div>
-                        </div>
-                    </motion.section>
+                            <div className="md:col-span-8">
+                                <div className="text-xl text-gray-700 leading-relaxed font-light prose prose-lg max-w-none">
+                                    {section.content.split('\n').map((para, i) => (
+                                        para.trim() ? <p key={i}>{para}</p> : <br key={i} />
+                                    ))}
+                                </div>
+                            </div>
+                        </motion.section>
+                    </React.Fragment>
                 ))}
+
+                {/* Separator before Documents */}
+                <motion.div
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="w-full h-px bg-[#E4192B] origin-left"
+                />
 
                 {/* Documents Section */}
                 <motion.section

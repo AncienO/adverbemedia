@@ -21,7 +21,7 @@ export function EpisodeDetail({ show, episode }: EpisodeDetailProps) {
     const isCurrent = currentEpisode?.id === episode.id;
 
     return (
-        <div className="container px-4 md:px-6 py-12">
+        <div className="container px-4 md:px-6 pt-40 pb-12">
             <Link href={`/shows/${show.slug}`} className="text-sm text-muted-foreground hover:text-primary mb-4 block">
                 &larr; Back to {show.title}
             </Link>

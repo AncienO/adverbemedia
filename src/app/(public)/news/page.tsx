@@ -11,7 +11,7 @@ export default async function NewsPage() {
         .order('published_at', { ascending: false });
 
     return (
-        <main className="w-full min-h-screen bg-white pt-24 pb-20 px-[5%] md:px-[10%]">
+        <main className="w-full min-h-screen bg-white pt-40 pb-20 px-[5%] md:px-[10%]">
             {/* Page Header */}
             <div className="mb-16 md:mb-24">
                 <h1

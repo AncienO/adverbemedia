@@ -51,3 +51,20 @@ export async function deleteSection(id: string) {
     revalidatePath('/admin/company');
     revalidatePath('/company');
 }
+
+export async function updateSectionOrder(items: { id: string; sort_order: number }[]) {
+    const supabase = await createClient();
+
+    // Perform updates in parallel
+    const updates = items.map(item =>
+        supabase
+            .from('company_sections')
+            .update({ sort_order: item.sort_order })
+            .eq('id', item.id)
+    );
+
+    await Promise.all(updates);
+
+    revalidatePath('/admin/company');
+    revalidatePath('/company');
+}

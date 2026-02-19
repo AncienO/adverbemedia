@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export function AboutSection() {
     return (
-        <section className="w-full" style={{ backgroundColor: '#000000' }}>
+        <section className="w-full" style={{ backgroundColor: '#000000' }} data-cursor="invert">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -13,7 +13,7 @@ export function AboutSection() {
                 className="grid md:grid-cols-2"
             >
                 {/* Left Side - Title */}
-                <div className="flex items-center justify-center py-20 md:py-32 pl-[5%] md:pl-[10%] pr-6 md:pr-12" style={{ backgroundColor: '#000000' }}>
+                <div className="flex items-center justify-start py-20 md:py-32 pl-[5%] md:pl-[20%] pr-6 md:pr-12" style={{ backgroundColor: '#000000' }}>
                     <h2
                         className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-center md:text-left"
                     >

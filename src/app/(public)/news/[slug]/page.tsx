@@ -18,7 +18,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     if (!article) notFound();
 
     return (
-        <main className="w-full min-h-screen bg-white pt-24 pb-20">
+        <main className="w-full min-h-screen bg-white pt-40 pb-20">
             {/* Back Link */}
             <div className="px-[5%] md:px-[10%] mb-8">
                 <Link href="/news" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-[#E4192B] transition-colors">
