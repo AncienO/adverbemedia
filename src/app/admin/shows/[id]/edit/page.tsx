@@ -20,6 +20,7 @@ export default async function EditShowPage({ params }: { params: Promise<{ id: s
     const hosts = showHosts?.map((sh: any) => sh.hosts) || [];
 
     const { data: allShows } = await supabase.from('shows').select('id, title').order('title');
+    const { data: allHosts } = await supabase.from('hosts').select('id, name, role, avatar_url').order('name');
 
-    return <ShowForm show={show} categories={categories || []} hosts={hosts} allShows={allShows || []} />;
+    return <ShowForm show={show} categories={categories || []} hosts={hosts} allShows={allShows || []} allHosts={allHosts || []} />;
 }

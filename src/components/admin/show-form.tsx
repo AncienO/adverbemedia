@@ -12,17 +12,28 @@ import { ComingSoonVisual } from '@/components/shared/coming-soon-visual';
 interface ShowFormProps {
     show?: any;
     categories: any[];
-    hosts?: any[];
+    hosts?: any[]; // The hosts CURRENTLY assigned to the show
     allShows?: any[];
+    allHosts?: any[];
 }
 
-export function ShowForm({ show, categories, hosts, allShows }: ShowFormProps) {
+export function ShowForm({ show, categories, hosts, allShows, allHosts }: ShowFormProps) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [status, setStatus] = useState(show?.status || 'coming-soon');
     const [coverImageUrl, setCoverImageUrl] = useState(show?.cover_image_url || '');
-    const [hostAvatarUrl, setHostAvatarUrl] = useState(hosts?.[0]?.avatar_url || '');
+
+    // Initialize selected hosts from the DB. 
+    // `hosts` contains the full host objects assigned to this show. Map them to their IDs.
+    const [selectedHostIds, setSelectedHostIds] = useState<string[]>(
+        hosts?.map(h => h.id) || []
+    );
+    const [hostAvatarUrl, setHostAvatarUrl] = useState(''); // No longer needed
     const [selectedRelatedShows, setSelectedRelatedShows] = useState<string[]>(show?.related_show_ids || []);
+
+    // We expect an array of all team members. If the old `hosts` prop only contained assigned hosts, 
+    // we should map those IDs. Let's assume we pass `allHosts` to the form.
+    // Wait, let me adjust the props first.
 
     const ALL_PLATFORMS = ['spotify', 'youtube', 'applePodcasts', 'twitter', 'instagram', 'website'];
     const defaultOrder: string[] = show?.social_links?.order ?? ALL_PLATFORMS;
@@ -43,8 +54,8 @@ export function ShowForm({ show, categories, hosts, allShows }: ShowFormProps) {
 
         const formData = new FormData(e.currentTarget);
         formData.set('coverImageUrl', coverImageUrl);
-        formData.set('hostAvatarUrl', hostAvatarUrl);
         formData.set('relatedShowIds', JSON.stringify(selectedRelatedShows));
+        formData.set('hostIds', JSON.stringify(selectedHostIds));
         const result = show ? await updateShow(show.id, formData) : await createShow(formData);
 
         if (result?.error) {
@@ -52,8 +63,6 @@ export function ShowForm({ show, categories, hosts, allShows }: ShowFormProps) {
             setLoading(false);
         }
     };
-
-    const primaryHost = hosts?.[0];
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
@@ -206,39 +215,43 @@ export function ShowForm({ show, categories, hosts, allShows }: ShowFormProps) {
 
                 {/* Host Section */}
                 <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-8">
-                    <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-4">Host & Team</h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Host Name</label>
-                            <input name="hostName" defaultValue={primaryHost?.name}
-                                placeholder="e.g. John Doe"
-                                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors" />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Host Role</label>
-                            <input name="hostRole" defaultValue={primaryHost?.role || 'Host'}
-                                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors" />
-                        </div>
+                    <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+                        <h2 className="text-lg font-semibold text-gray-800">Team / Hosts</h2>
+                        <Link href="/admin/hosts/new" target="_blank" className="text-sm text-[#E4192B] hover:text-[#c41525] font-medium">
+                            + Add New Team Member
+                        </Link>
                     </div>
 
-                    <FileUpload
-                        onUpload={(url) => setHostAvatarUrl(url)}
-                        accept="image/*"
-                        bucket="uploads"
-                        folder="hosts"
-                        currentUrl={hostAvatarUrl}
-                        label="Host Photo"
-                        objectFit="cover"
-                        objectPosition="top"
-                    />
-                    <input type="hidden" name="hostAvatarUrl" value={hostAvatarUrl} />
+                    <div className="space-y-4">
+                        <p className="text-sm text-gray-600">Select the team members connected to this show. Team members can be managed in the <Link href="/admin/hosts" target="_blank" className="underline font-medium hover:text-black">Team section</Link>.</p>
 
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">Co-Hosts</label>
-                        <input name="coHosts" placeholder="Jane Doe, John Smith (comma-separated)"
-                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors" />
-                        <p className="text-xs text-gray-400">Enter names separated by commas</p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            {allHosts?.map((h: any) => (
+                                <label key={h.id} className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors ${selectedHostIds.includes(h.id) ? 'border-[#E4192B] bg-[#E4192B]/5' : 'border-gray-100 hover:bg-gray-50'}`}>
+                                    <input
+                                        type="checkbox"
+                                        className="w-4 h-4 text-[#E4192B] rounded focus:ring-[#E4192B]"
+                                        checked={selectedHostIds.includes(h.id)}
+                                        onChange={(e) => {
+                                            if (e.target.checked) {
+                                                setSelectedHostIds([...selectedHostIds, h.id]);
+                                            } else {
+                                                setSelectedHostIds(selectedHostIds.filter(id => id !== h.id));
+                                            }
+                                        }}
+                                    />
+                                    <div className="flex flex-col">
+                                        <span className="text-sm font-medium text-gray-900">{h.name}</span>
+                                        <span className="text-xs text-gray-500">{h.role || 'Host'}</span>
+                                    </div>
+                                </label>
+                            ))}
+                        </div>
+                        {(!allHosts || allHosts.length === 0) && (
+                            <div className="p-4 border rounded-lg border-dashed text-center text-sm text-gray-400">
+                                No team members found. Create one first!
+                            </div>
+                        )}
                     </div>
                 </section>
 

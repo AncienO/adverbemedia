@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Globe, LayoutDashboard, PlayCircle, FileText, Newspaper, Briefcase, Building2, Users, Settings } from 'lucide-react';
+import { Globe, LayoutDashboard, PlayCircle, FileText, Newspaper, Briefcase, Building2, Users, Settings, Mail } from 'lucide-react';
 import { SignOutButton } from '@/components/admin/sign-out-button';
 
 const navigation = [
@@ -15,7 +15,8 @@ const navigation = [
     { name: 'Careers', href: '/admin/careers', icon: Briefcase },
     { name: 'Documents', href: '/admin/documents', icon: FileText },
     { name: 'Company', href: '/admin/company', icon: Building2 },
-    { name: 'Contacts', href: '/admin/contacts', icon: Users },
+    { name: 'Team', href: '/admin/hosts', icon: Users },
+    { name: 'Contacts', href: '/admin/contacts', icon: Mail },
     { name: 'Settings', href: '/admin/settings', icon: Settings },
 ];
 

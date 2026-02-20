@@ -31,7 +31,8 @@ const LINK_META: Record<string, { label: string; icon: React.ReactNode; color: s
 export function NowStreaming({ show }: NowStreamingProps) {
     const links = show.socialLinks ?? {};
     const order: string[] = (links as any).order ?? Object.keys(links).filter(k => k !== 'order');
-    const streamingLinks = order.filter(k => !!(links as any)[k] && LINK_META[k]);
+    const ALLOWED_LINKS = ['youtube', 'applePodcasts', 'spotify'];
+    const streamingLinks = order.filter(k => !!(links as any)[k] && LINK_META[k] && ALLOWED_LINKS.includes(k));
 
     return (
         <article className="flex flex-col gap-6 h-full">
@@ -58,8 +59,6 @@ export function NowStreaming({ show }: NowStreamingProps) {
                     <span className="text-sm font-bold tracking-wider uppercase" style={{ color: '#E4192B' }}>NOW STREAMING</span>
                 </div>
 
-                <p className="text-sm font-medium mb-3 text-green-600">Live on Adverbe</p>
-
                 {/* Show Title */}
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-2 line-clamp-2">
                     <Link href={`/shows/${show.slug}`} className="hover:underline decoration-[#E4192B] decoration-2 underline-offset-4" style={{ color: '#E4192B' }}>
@@ -82,25 +81,55 @@ export function NowStreaming({ show }: NowStreamingProps) {
                     <div className="flex flex-col gap-3 mt-auto">
                         <span className="text-sm font-semibold text-gray-700">Listen &amp; Watch:</span>
                         <div className="flex flex-col gap-2 items-start">
-                            {streamingLinks.map(key => {
-                                const meta = LINK_META[key];
-                                const href = (links as any)[key] as string;
-                                return (
-                                    <Link
-                                        key={key}
-                                        href={href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-4 py-2 border-2 bg-white hover:text-white transition-colors duration-200 font-medium text-sm"
-                                        style={{ borderColor: meta.color, color: meta.color }}
-                                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta.color)}
-                                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'white')}
-                                    >
-                                        {meta.icon}
-                                        {meta.label}
-                                    </Link>
-                                );
-                            })}
+                            {streamingLinks.includes('youtube') && (
+                                <Link
+                                    key="youtube"
+                                    href={(links as any)['youtube'] as string}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-4 py-2 border-2 bg-white hover:text-white transition-colors duration-200 font-medium text-sm w-44 justify-center"
+                                    style={{ borderColor: LINK_META.youtube.color, color: LINK_META.youtube.color }}
+                                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = LINK_META.youtube.color)}
+                                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'white')}
+                                >
+                                    {LINK_META.youtube.icon}
+                                    {LINK_META.youtube.label}
+                                </Link>
+                            )}
+                            {(streamingLinks.includes('spotify') || streamingLinks.includes('applePodcasts')) && (
+                                <div className="flex flex-row gap-2 items-center flex-wrap">
+                                    {streamingLinks.includes('spotify') && (
+                                        <Link
+                                            key="spotify"
+                                            href={(links as any)['spotify'] as string}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 px-4 py-2 border-2 bg-white hover:text-white transition-colors duration-200 font-medium text-sm w-44 justify-center"
+                                            style={{ borderColor: LINK_META.spotify.color, color: LINK_META.spotify.color }}
+                                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = LINK_META.spotify.color)}
+                                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'white')}
+                                        >
+                                            {LINK_META.spotify.icon}
+                                            {LINK_META.spotify.label}
+                                        </Link>
+                                    )}
+                                    {streamingLinks.includes('applePodcasts') && (
+                                        <Link
+                                            key="applePodcasts"
+                                            href={(links as any)['applePodcasts'] as string}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 px-4 py-2 border-2 bg-white hover:text-white transition-colors duration-200 font-medium text-sm w-44 justify-center"
+                                            style={{ borderColor: LINK_META.applePodcasts.color, color: LINK_META.applePodcasts.color }}
+                                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = LINK_META.applePodcasts.color)}
+                                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'white')}
+                                        >
+                                            {LINK_META.applePodcasts.icon}
+                                            {LINK_META.applePodcasts.label}
+                                        </Link>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}

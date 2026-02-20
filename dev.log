@@ -1,0 +1,24 @@
+
+> adverbe_media@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.100.165:3000
+- Environments: .env.local
+- Experiments (use with caution):
+  · proxyClientMaxBodySize: "50mb"
+  · serverActions
+
+✓ Starting...
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+✓ Ready in 1374ms
+○ Compiling /admin/hosts/[id] ...
+ GET /admin/hosts/da765775-5dca-4800-b0d6-384f54af79af 200 in 6.1s (compile: 4.1s, proxy.ts: 1077ms, render: 920ms)
+ POST /admin/hosts/da765775-5dca-4800-b0d6-384f54af79af 200 in 1086ms (compile: 56ms, proxy.ts: 349ms, render: 680ms)
+ GET /admin/hosts 200 in 1844ms (compile: 988ms, proxy.ts: 321ms, render: 536ms)
+ GET /admin/hosts 200 in 823ms (compile: 10ms, proxy.ts: 460ms, render: 354ms)
+ GET /admin/shows 200 in 941ms (compile: 424ms, proxy.ts: 255ms, render: 262ms)
+ GET /admin/shows/521020a0-5aeb-49b6-95b4-b7b4bbc37259/edit 200 in 3.0s (compile: 991ms, proxy.ts: 305ms, render: 1747ms)
+ GET /admin/hosts/new 200 in 1038ms (compile: 420ms, proxy.ts: 261ms, render: 357ms)
+[?25h

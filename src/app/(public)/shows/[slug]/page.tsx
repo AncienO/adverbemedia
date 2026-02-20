@@ -153,13 +153,6 @@ export default async function ShowPage({ params }: ShowPageProps) {
                             {show.title}
                         </h1>
 
-                        {/* Short Description */}
-                        {show.shortDescription && (
-                            <p className="text-lg font-semibold text-gray-700 mb-5">
-                                {show.shortDescription}
-                            </p>
-                        )}
-
                         {/* Full Description — paragraph-per-line like Vox */}
                         <div className="space-y-4 text-base md:text-lg text-gray-600 leading-relaxed mb-8 max-w-4xl">
                             {descriptionParagraphs.length > 0
@@ -171,41 +164,57 @@ export default async function ShowPage({ params }: ShowPageProps) {
                     </div>
                 </div>
 
-                {/* Dynamic Sections: Watch, Listen, Hosts, Ads, Related */}
+                {/* Dynamic Sections: Link, Hosts, Ads, Related, Connect */}
                 <div className="mt-16 w-full flex flex-col items-start gap-12 text-left">
 
-                    {/* Listen & Watch (Streaming Links) */}
+                    {/* Link Section (YouTube Preview) */}
                     <div className="w-full max-w-4xl">
-                        <StreamingLinks socialLinks={show.socialLinks} />
+                        <StreamingLinks socialLinks={show.socialLinks} variant="video" />
                     </div>
 
-                    {/* Hosts Section */}
+                    {/* Team Sections Grouped by Role */}
                     {show.hosts.length > 0 && (
-                        <div className="w-full max-w-4xl mb-48">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="w-0.5 h-5 bg-[#E4192B]" />
-                                <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Hosts</h3>
-                            </div>
-                            <div className="flex flex-wrap gap-10 justify-start">
-                                {show.hosts.map(host => (
-                                    <div key={host.id} className="flex items-center gap-6">
-                                        {host.avatar ? (
-                                            <div className="relative w-[143px] h-[143px] overflow-hidden shadow-sm border border-gray-100">
-                                                <Image src={host.avatar} alt={host.name} fill className="object-cover" style={{ objectPosition: 'top' }} sizes="143px" />
-                                            </div>
-                                        ) : (
-                                            <div className="w-[143px] h-[143px] bg-gray-100 flex items-center justify-center border border-gray-100">
-                                                <span className="text-3xl text-gray-400 font-bold">{host.name.charAt(0)}</span>
-                                            </div>
-                                        )}
-                                        <div className="text-left">
-                                            <p className="font-bold text-xl text-gray-900 leading-tight">{host.name}</p>
-                                            {host.role && <p className="text-base text-gray-500 mt-1">{host.role}</p>}
-                                        </div>
+                        Object.entries(
+                            show.hosts.reduce((acc, member) => {
+                                const roleName = member.role && member.role.trim() !== '' ? member.role : 'Host';
+                                const sectionTitle = roleName.toUpperCase() + (roleName.toLowerCase().endsWith('s') ? '' : 'S');
+                                if (!acc[sectionTitle]) acc[sectionTitle] = [];
+                                acc[sectionTitle].push(member);
+                                return acc;
+                            }, {} as Record<string, typeof show.hosts>)
+                        )
+                            .sort(([a], [b]) => {
+                                if (a === 'HOSTS') return -1;
+                                if (b === 'HOSTS') return 1;
+                                return a.localeCompare(b);
+                            })
+                            .map(([roleTitle, members], index, array) => (
+                                <div key={roleTitle} className={`w-full max-w-4xl ${index === array.length - 1 ? 'mb-48' : 'mb-12'}`}>
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="w-0.5 h-5 bg-[#E4192B]" />
+                                        <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">{roleTitle}</h3>
                                     </div>
-                                ))}
-                            </div>
-                        </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 justify-start">
+                                        {members.map(member => (
+                                            <div key={member.id} className="flex flex-col sm:flex-row items-start gap-6 h-full">
+                                                {member.avatar ? (
+                                                    <div className="relative w-[143px] h-[143px] flex-shrink-0 overflow-hidden shadow-sm border border-gray-100">
+                                                        <Image src={member.avatar} alt={member.name} fill className="object-cover" style={{ objectPosition: 'top' }} sizes="143px" />
+                                                    </div>
+                                                ) : (
+                                                    <div className="w-[143px] h-[143px] flex-shrink-0 bg-gray-100 flex items-center justify-center border border-gray-100">
+                                                        <span className="text-3xl text-gray-400 font-bold">{member.name.charAt(0)}</span>
+                                                    </div>
+                                                )}
+                                                <div className="text-left flex-1 min-w-0">
+                                                    <p className="font-bold text-xl text-gray-900 leading-tight truncate">{member.name}</p>
+                                                    {member.bio && <p className="text-base text-gray-500 mt-2 leading-relaxed whitespace-pre-wrap line-clamp-4">{member.bio}</p>}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))
                     )}
 
                     {/* Related Shows Section */}
@@ -217,21 +226,21 @@ export default async function ShowPage({ params }: ShowPageProps) {
                             </div>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                                 {relatedShows.map(rs => (
-                                    <Link key={rs.id} href={`/shows/${rs.slug}`} className="group relative aspect-square overflow-hidden rounded-lg shadow-md mb-3 transform transition-transform duration-300 group-hover:scale-105 block">
-                                        {!rs.cover_image_url || rs.cover_image_url === '/coming-soon.png' ? (
-                                            <ComingSoonVisual textSize="sm" dotSize="sm" />
-                                        ) : (
-                                            <Image
-                                                src={rs.cover_image_url}
-                                                alt={rs.title}
-                                                fill
-                                                className="object-cover"
-                                                sizes="(max-width: 768px) 50vw, 200px"
-                                            />
-                                        )}
-                                        <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
-                                            <p className="text-sm font-bold text-white group-hover:text-[#E4192B] transition-colors line-clamp-1">{rs.title}</p>
+                                    <Link key={rs.id} href={`/shows/${rs.slug}`} className="group block mb-3">
+                                        <div className="relative aspect-square overflow-hidden rounded-lg shadow-md mb-3 transform transition-transform duration-300 group-hover:scale-105">
+                                            {!rs.cover_image_url || rs.cover_image_url === '/coming-soon.png' ? (
+                                                <ComingSoonVisual textSize="sm" dotSize="sm" />
+                                            ) : (
+                                                <Image
+                                                    src={rs.cover_image_url}
+                                                    alt={rs.title}
+                                                    fill
+                                                    className="object-cover"
+                                                    sizes="(max-width: 768px) 50vw, 200px"
+                                                />
+                                            )}
                                         </div>
+                                        <p className="text-sm font-bold text-gray-900 group-hover:text-[#E4192B] transition-colors line-clamp-2">{rs.title}</p>
                                     </Link>
                                 ))}
                             </div>
@@ -250,6 +259,11 @@ export default async function ShowPage({ params }: ShowPageProps) {
                             </div>
                         </div>
                     )}
+
+                    {/* Connect Section */}
+                    <div className="w-full max-w-4xl">
+                        <StreamingLinks socialLinks={show.socialLinks} variant="links" />
+                    </div>
 
                 </div>
             </div>
