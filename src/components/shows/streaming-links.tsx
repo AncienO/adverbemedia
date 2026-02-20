@@ -2,12 +2,18 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Music, Radio, Video, Globe, Linkedin, Instagram } from 'lucide-react';
+import Image from 'next/image';
+import { Music, Radio, Video, Globe, Linkedin, Instagram, Facebook, Rss } from 'lucide-react';
 
-// Custom X (formerly Twitter) logo SVG
 const XLogo = () => (
     <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor" aria-label="X">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.736l7.737-8.835L1.254 2.25H8.08l4.258 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+    </svg>
+);
+
+const TikTokLogo = () => (
+    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor" aria-label="TikTok">
+        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.03 5.84-.04 8.76-.08 3.55-2.87 6.42-6.4 6.94-3.53.53-7.29-1.55-8.62-4.79-1.29-3.14.39-6.72 3.49-7.96 1.14-.49 2.51-.51 3.75-.15.01 1.48.01 2.96 0 4.45-.66-.27-1.47-.28-2.15.03-1.66.7-2.3 2.73-1.45 4.29.87 1.64 3.03 2.15 4.6 1.15.93-.57 1.54-1.57 1.6-2.67.07-4.22.02-8.43.02-12.65.37-.02.73-.02 1.1-.02z" />
     </svg>
 );
 
@@ -17,19 +23,26 @@ const LINK_META: Record<string, { label: string; icon: React.ReactNode; color: s
     youtube: { label: 'YouTube', icon: <Video className="w-4 h-4" />, color: '#FF0000' },
     twitter: { label: 'X', icon: <XLogo />, color: '#000000' },
     instagram: { label: 'Instagram', icon: <Instagram className="w-4 h-4" />, color: '#E1306C' },
+    facebook: { label: 'Facebook', icon: <Facebook className="w-4 h-4" />, color: '#1877F2' },
+    tiktok: { label: 'TikTok', icon: <TikTokLogo />, color: '#000000' },
+    rss: { label: 'RSS Feed', icon: <Rss className="w-4 h-4" />, color: '#F26522' },
     linkedin: { label: 'LinkedIn', icon: <Linkedin className="w-4 h-4" />, color: '#0077B5' },
     website: { label: 'Website', icon: <Globe className="w-4 h-4" />, color: '#333333' },
 };
 
 interface StreamingLinksProps {
     socialLinks?: Record<string, any> | null;
-    variant?: 'video' | 'links';
+    variant?: 'video' | 'listen' | 'links';
 }
 
 export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLinksProps) {
     const links = socialLinks ?? {};
-    const order: string[] = (links as any).order ?? Object.keys(links).filter(k => k !== 'order');
-    const allLinks = order.filter(k => !!(links as any)[k] && LINK_META[k]);
+
+    const toggles = (links as any).toggles ?? {};
+    const isLinkActive = (key: string) => toggles[key] !== false; // defaults to true for backward compatibility
+
+    const order: string[] = (links as any).order ?? Object.keys(links).filter(k => k !== 'order' && k !== 'toggles');
+    const allLinks = order.filter(k => !!(links as any)[k] && LINK_META[k] && isLinkActive(k));
 
     const youtubePreviewUrl = (links as any).youtubePreview as string | undefined;
     const getYouTubeId = (url: string) => {
@@ -45,7 +58,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             <div className="w-full">
                 <div className="flex items-center gap-3 mb-6">
                     <div className="w-0.5 h-5 bg-[#E4192B]" />
-                    <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Link</h3>
+                    <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Watch</h3>
                 </div>
                 <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg mb-6 max-w-3xl bg-black border border-gray-100">
                     <iframe
@@ -62,12 +75,103 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
         );
     }
 
+    if (variant === 'listen') {
+        const listenKeys = ['spotify', 'applePodcasts', 'rss'];
+        const activeListenLinks = listenKeys.filter(k => !!(links as any)[k] && LINK_META[k] && isLinkActive(k));
+
+        if (activeListenLinks.length === 0) return null;
+
+        const renderLink = (key: string) => {
+            const meta = LINK_META[key];
+            const href = (links as any)[key] as string;
+
+            if (key === 'spotify') {
+                return (
+                    <Link key={key} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                        <img src="/Spotify_listen.png" alt="Listen on Spotify" className="h-[40px] w-auto object-contain" />
+                    </Link>
+                );
+            }
+            if (key === 'applePodcasts') {
+                return (
+                    <Link key={key} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                        <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" className="h-[40px] w-auto object-contain" />
+                    </Link>
+                );
+            }
+            if (key === 'rss') {
+                return (
+                    <Link key={key} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                        <img src="/rssfeed.png" alt="RSS Feed" className="h-[46px] w-auto object-contain rounded-[4px]" />
+                    </Link>
+                );
+            }
+
+            return (
+                <Link
+                    key={key}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2 border-2 bg-white font-semibold text-sm transition-colors duration-200 w-44 justify-center"
+                    style={{ borderColor: meta.color, color: meta.color }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = meta.color;
+                        e.currentTarget.style.color = 'white';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'white';
+                        e.currentTarget.style.color = meta.color;
+                    }}
+                >
+                    {meta.icon}
+                    {meta.label}
+                </Link>
+            );
+        };
+
+        return (
+            <div className="w-full">
+                <div className="flex items-center gap-3 mb-6">
+                    <div className="w-0.5 h-5 bg-[#E4192B]" />
+                    <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Listen</h3>
+                </div>
+                <div className="flex flex-row flex-wrap gap-3 items-center">
+                    {activeListenLinks.map(renderLink)}
+                </div>
+            </div>
+        );
+    }
+
     if (variant === 'links') {
         if (allLinks.length === 0) return null;
 
         const renderLink = (key: string) => {
             const meta = LINK_META[key];
             const href = (links as any)[key] as string;
+
+            if (key === 'spotify') {
+                return (
+                    <Link key={key} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                        <img src="/Spotify_listen.png" alt="Listen on Spotify" className="h-[40px] w-auto object-contain" />
+                    </Link>
+                );
+            }
+            if (key === 'applePodcasts') {
+                return (
+                    <Link key={key} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                        <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" className="h-[40px] w-auto object-contain" />
+                    </Link>
+                );
+            }
+            if (key === 'rss') {
+                return (
+                    <Link key={key} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                        <img src="/rssfeed.png" alt="RSS Feed" className="h-[46px] w-auto object-contain rounded-[4px]" />
+                    </Link>
+                );
+            }
+
             return (
                 <Link
                     key={key}
@@ -97,7 +201,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
                     <div className="w-0.5 h-5 bg-[#E4192B]" />
                     <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Connect</h3>
                 </div>
-                <div className="flex flex-row flex-wrap gap-3">
+                <div className="flex flex-row flex-wrap gap-3 items-center">
                     {allLinks.map(renderLink)}
                 </div>
             </div>

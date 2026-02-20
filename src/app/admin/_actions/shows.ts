@@ -20,6 +20,9 @@ export async function createShow(formData: FormData) {
     const applePodcasts = formData.get('applePodcasts') as string;
     const twitter = formData.get('twitter') as string;
     const instagram = formData.get('instagram') as string;
+    const facebook = formData.get('facebook') as string;
+    const tiktok = formData.get('tiktok') as string;
+    const rss = formData.get('rss') as string;
     const adContent = formData.get('adContent') as string;
     const youtubePreview = formData.get('youtubePreview') as string;
     const relatedShowIdsRaw = formData.get('relatedShowIds') as string;
@@ -35,6 +38,17 @@ export async function createShow(formData: FormData) {
     if (applePodcasts) socialLinks.applePodcasts = applePodcasts;
     if (twitter) socialLinks.twitter = twitter;
     if (instagram) socialLinks.instagram = instagram;
+    if (facebook) socialLinks.facebook = facebook;
+    if (tiktok) socialLinks.tiktok = tiktok;
+    if (rss) socialLinks.rss = rss;
+
+    const toggles: Record<string, boolean> = {};
+    const ALL_PLATFORMS = ['spotify', 'youtube', 'applePodcasts', 'twitter', 'instagram', 'facebook', 'tiktok', 'rss', 'website'];
+    ALL_PLATFORMS.forEach(p => {
+        toggles[p] = formData.get(`${p}_active`) === 'true';
+    });
+    socialLinks.toggles = toggles;
+
     const linkOrderRaw = formData.get('linkOrder') as string;
     if (linkOrderRaw) {
         try { socialLinks.order = JSON.parse(linkOrderRaw); } catch { }
@@ -96,6 +110,9 @@ export async function updateShow(id: string, formData: FormData) {
     const applePodcasts = formData.get('applePodcasts') as string;
     const twitter = formData.get('twitter') as string;
     const instagram = formData.get('instagram') as string;
+    const facebook = formData.get('facebook') as string;
+    const tiktok = formData.get('tiktok') as string;
+    const rss = formData.get('rss') as string;
     const adContent = formData.get('adContent') as string;
     const youtubePreview = formData.get('youtubePreview') as string;
     const relatedShowIdsRaw = formData.get('relatedShowIds') as string;
@@ -111,6 +128,17 @@ export async function updateShow(id: string, formData: FormData) {
     if (applePodcasts) socialLinks.applePodcasts = applePodcasts;
     if (twitter) socialLinks.twitter = twitter;
     if (instagram) socialLinks.instagram = instagram;
+    if (facebook) socialLinks.facebook = facebook;
+    if (tiktok) socialLinks.tiktok = tiktok;
+    if (rss) socialLinks.rss = rss;
+
+    const toggles: Record<string, boolean> = {};
+    const ALL_PLATFORMS = ['spotify', 'youtube', 'applePodcasts', 'twitter', 'instagram', 'facebook', 'tiktok', 'rss', 'website'];
+    ALL_PLATFORMS.forEach(p => {
+        toggles[p] = formData.get(`${p}_active`) === 'true';
+    });
+    socialLinks.toggles = toggles;
+
     const linkOrderRaw = formData.get('linkOrder') as string;
     if (linkOrderRaw) {
         try { socialLinks.order = JSON.parse(linkOrderRaw); } catch { }

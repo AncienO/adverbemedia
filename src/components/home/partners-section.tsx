@@ -41,7 +41,7 @@ export function PartnersSection() {
                                 href="mailto:partnerships@adverbemedia.com"
                                 className="text-lg text-gray-500 hover:text-[#E4192B] transition-colors underline"
                             >
-                                theadverbe@gmail.com
+                                partnerships@adverbemedia.com
                             </a>
                         </div>
                     </div>

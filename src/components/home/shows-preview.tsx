@@ -13,8 +13,9 @@ interface ShowsPreviewProps {
 }
 
 export function ShowsPreview({ shows }: ShowsPreviewProps) {
-    // Duplicate for seamless infinite loop
-    const allShows = shows.length > 0 ? [...shows, ...shows] : [];
+    // Duplicate for seamless infinite loop (10 copies to ensure it covers very wide screens)
+    const DUPLICATE_COUNT = 10;
+    const allShows = shows.length > 0 ? Array(DUPLICATE_COUNT).fill(shows).flat() : [];
 
     return (
         <motion.section
@@ -44,7 +45,10 @@ export function ShowsPreview({ shows }: ShowsPreviewProps) {
                 />
 
                 {/* CSS-animated Scrolling Track — no JS-driven animation to avoid choppiness */}
-                <div className="animate-marquee flex w-max">
+                <div
+                    className="animate-marquee flex w-max"
+                    style={{ '--marquee-translate': `-${100 / DUPLICATE_COUNT}%` } as React.CSSProperties}
+                >
                     {allShows.map((show, i) => {
                         const isComingSoon = show.status === 'coming-soon';
                         return (

@@ -35,8 +35,13 @@ export function ShowForm({ show, categories, hosts, allShows, allHosts }: ShowFo
     // we should map those IDs. Let's assume we pass `allHosts` to the form.
     // Wait, let me adjust the props first.
 
-    const ALL_PLATFORMS = ['spotify', 'youtube', 'applePodcasts', 'twitter', 'instagram', 'website'];
-    const defaultOrder: string[] = show?.social_links?.order ?? ALL_PLATFORMS;
+    const ALL_PLATFORMS = ['spotify', 'youtube', 'applePodcasts', 'twitter', 'instagram', 'facebook', 'tiktok', 'rss', 'website'];
+
+    // Ensure that if new platforms are added later, existing shows still get them injected at the end
+    const prevOrder: string[] = show?.social_links?.order ?? [];
+    const missingPlatforms = ALL_PLATFORMS.filter(p => !prevOrder.includes(p));
+    const defaultOrder = [...prevOrder, ...missingPlatforms];
+
     const [linkOrder, setLinkOrder] = useState<string[]>(defaultOrder);
 
     const movePlatform = (index: number, dir: 'up' | 'down') => {
@@ -263,12 +268,14 @@ export function ShowForm({ show, categories, hosts, allShows, allHosts }: ShowFo
                         {linkOrder.map((platform, idx) => {
                             const labels: Record<string, string> = {
                                 spotify: 'Spotify', youtube: 'YouTube', applePodcasts: 'Apple Podcasts',
-                                twitter: 'Twitter / X', instagram: 'Instagram', website: 'Website',
+                                twitter: 'Twitter / X', instagram: 'Instagram', facebook: 'Facebook',
+                                tiktok: 'TikTok', rss: 'RSS Feed', website: 'Website',
                             };
                             const placeholders: Record<string, string> = {
                                 spotify: 'https://open.spotify.com/...', youtube: 'https://youtube.com/...',
                                 applePodcasts: 'https://podcasts.apple.com/...', twitter: 'https://x.com/...',
-                                instagram: 'https://instagram.com/...', website: 'https://yoursite.com',
+                                instagram: 'https://instagram.com/...', facebook: 'https://facebook.com/...',
+                                tiktok: 'https://tiktok.com/@...', rss: 'https://...', website: 'https://yoursite.com',
                             };
                             return (
                                 <div key={platform} className="flex items-center gap-3">
@@ -282,8 +289,14 @@ export function ShowForm({ show, categories, hosts, allShows, allHosts }: ShowFo
                                             <ChevronDown className="w-4 h-4" />
                                         </button>
                                     </div>
-                                    <div className="flex-1 space-y-1">
-                                        <label className="text-sm font-medium text-gray-700">{labels[platform]}</label>
+                                    <div className="flex-1">
+                                        <div className="flex justify-between items-center mb-1">
+                                            <label className="text-sm font-medium text-gray-700">{labels[platform]}</label>
+                                            <label className="flex items-center gap-2 cursor-pointer">
+                                                <input type="checkbox" name={`${platform}_active`} defaultChecked={show?.social_links?.toggles?.[platform] !== false} value="true" className="w-4 h-4 rounded text-[#E4192B] focus:ring-[#E4192B] border-gray-300" />
+                                                <span className="text-xs font-medium text-gray-600">Show Publicly</span>
+                                            </label>
+                                        </div>
                                         <input
                                             name={platform}
                                             defaultValue={show?.social_links?.[platform]}

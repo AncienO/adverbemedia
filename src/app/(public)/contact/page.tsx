@@ -47,8 +47,8 @@ export default function ContactPage() {
                                 </span>
                                 Email Us
                             </h3>
-                            <a href="mailto:theadverbe@gmail.com" className="block text-xl md:text-2xl font-medium text-gray-600 hover:text-[#E4192B] transition-colors">
-                                theadverbe@gmail.com
+                            <a href="mailto:talktous@adverbemedia.com" className="block text-xl md:text-2xl font-medium text-gray-600 hover:text-[#E4192B] transition-colors">
+                                talktous@adverbemedia.com
                             </a>
                         </div>
 

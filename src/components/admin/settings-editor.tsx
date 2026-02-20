@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus, Save, Trash2, Loader2 } from 'lucide-react';
 import { createSocialLink, updateSocialLink, deleteSocialLink } from '@/app/admin/_actions/settings';
@@ -22,6 +22,10 @@ export function SettingsEditor({ initialLinks }: { initialLinks: SocialLink[] })
     const [newPlatform, setNewPlatform] = useState('');
     const [newUrl, setNewUrl] = useState('');
     const router = useRouter();
+
+    useEffect(() => {
+        setLinks(initialLinks);
+    }, [initialLinks]);
 
     const handleSave = async (link: SocialLink) => {
         setSaving(link.id);

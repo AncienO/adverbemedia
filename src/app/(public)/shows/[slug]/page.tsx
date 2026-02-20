@@ -172,6 +172,11 @@ export default async function ShowPage({ params }: ShowPageProps) {
                         <StreamingLinks socialLinks={show.socialLinks} variant="video" />
                     </div>
 
+                    {/* Listen Section (Spotify, Apple Podcasts, RSS) */}
+                    <div className="w-full max-w-4xl">
+                        <StreamingLinks socialLinks={show.socialLinks} variant="listen" />
+                    </div>
+
                     {/* Team Sections Grouped by Role */}
                     {show.hosts.length > 0 && (
                         Object.entries(
@@ -189,7 +194,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
                                 return a.localeCompare(b);
                             })
                             .map(([roleTitle, members], index, array) => (
-                                <div key={roleTitle} className={`w-full max-w-4xl ${index === array.length - 1 ? 'mb-48' : 'mb-12'}`}>
+                                <div key={roleTitle} className={`w-full max-w-4xl ${index === array.length - 1 ? 'mb-24' : 'mb-12'}`}>
                                     <div className="flex items-center gap-3 mb-6">
                                         <div className="w-0.5 h-5 bg-[#E4192B]" />
                                         <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">{roleTitle}</h3>
