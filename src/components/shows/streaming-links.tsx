@@ -112,28 +112,35 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
         if (key === 'instagram') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/instagram-logo-8869.svg" alt="Follow on Instagram" className="h-[40px] w-auto object-contain" />
+                    <img src="/instagram-logo-8869.svg" alt="Follow on Instagram" className="h-[30px] w-auto object-contain" />
                 </Link>
             );
         }
         if (key === 'facebook') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/facebook-2870.svg" alt="Follow on Facebook" className="h-[40px] w-auto object-contain" />
+                    <img src="/facebook-2870.svg" alt="Follow on Facebook" className="h-[30px] w-auto object-contain" />
                 </Link>
             );
         }
         if (key === 'tiktok') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/tiktok-logo-10296.svg" alt="Follow on TikTok" className="h-[40px] w-auto object-contain" />
+                    <img src="/tiktok-logo-10296.svg" alt="Follow on TikTok" className="h-[30px] w-auto object-contain" />
                 </Link>
             );
         }
         if (key === 'twitter') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/twitter-x-logo-black-round-20851.svg" alt="Follow on X" className="h-[40px] w-auto object-contain" />
+                    <img src="/twitter-x-logo-black-round-20851.svg" alt="Follow on X" className="h-[30px] w-auto object-contain" />
+                </Link>
+            );
+        }
+        if (key === 'linkedin') {
+            return (
+                <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                    <img src="/linkedin-logo-15916.svg" alt="Follow on LinkedIn" className="h-[30px] w-auto object-contain" />
                 </Link>
             );
         }

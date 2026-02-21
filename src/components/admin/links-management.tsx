@@ -19,6 +19,7 @@ import {
     Twitter,
     Facebook,
     Rss,
+    Linkedin,
 } from 'lucide-react';
 import { updateShowLinks } from '@/app/admin/_actions/links';
 import { updateSocialLink, createSocialLink, deleteSocialLink } from '@/app/admin/_actions/settings';
@@ -32,6 +33,7 @@ const PLATFORMS = [
     { id: 'twitter', label: 'X (Twitter)', icon: Twitter },
     { id: 'facebook', label: 'Facebook', icon: Facebook },
     { id: 'tiktok', label: 'TikTok', icon: Music },
+    { id: 'linkedin', label: 'LinkedIn', icon: Linkedin },
     { id: 'rss', label: 'RSS Feed', icon: Rss },
     { id: 'website', label: 'Website', icon: Globe },
 ];
