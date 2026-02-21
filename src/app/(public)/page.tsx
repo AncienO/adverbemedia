@@ -5,6 +5,8 @@ import { ShowsPreview } from '@/components/home/shows-preview';
 import { PartnersSection } from '@/components/home/partners-section';
 import { Show } from '@/types';
 
+export const revalidate = 0;
+
 export default async function Home() {
   const supabase = await createClient();
 

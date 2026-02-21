@@ -32,17 +32,35 @@ const LINK_META: Record<string, { label: string; icon: React.ReactNode; color: s
 
 interface StreamingLinksProps {
     socialLinks?: Record<string, any> | null;
-    variant?: 'video' | 'listen' | 'links';
+    variant?: 'video' | 'listenWatch' | 'listen' | 'links';
 }
 
 export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLinksProps) {
     const links = socialLinks ?? {};
 
-    const toggles = (links as any).toggles ?? {};
-    const isLinkActive = (key: string) => toggles[key] !== false; // defaults to true for backward compatibility
+    // New structure uses 'listenWatch', 'listen', and 'connect' arrays
+    const listenWatchList = (links as any).listenWatch ?? [];
+    const listenList = (links as any).listen ?? [];
+    const connectList = (links as any).connect ?? [];
 
-    const order: string[] = (links as any).order ?? Object.keys(links).filter(k => k !== 'order' && k !== 'toggles');
-    const allLinks = order.filter(k => !!(links as any)[k] && LINK_META[k] && isLinkActive(k));
+    // Fallback for old structure (migration on the fly)
+    const toggles = (links as any).toggles ?? {};
+    const order = (links as any).order ?? Object.keys(links).filter((k: string) => k !== 'order' && k !== 'toggles' && k !== 'listen' && k !== 'connect' && k !== 'listenWatch' && k !== 'youtubePreview');
+
+    const getFallbackLinks = (section: 'listenWatch' | 'listen' | 'connect') => {
+        return order
+            .filter((k: string) => !!(links as any)[k] && LINK_META[k] && toggles[k] !== false)
+            .filter((k: string) => {
+                if (section === 'listenWatch') return ['spotify', 'applePodcasts', 'youtube'].includes(k);
+                if (section === 'listen') return ['rss'].includes(k); // Audio-only for generic 'listen' fallback
+                return !['spotify', 'applePodcasts', 'rss', 'youtube'].includes(k);
+            })
+            .map((k: string) => ({ platform: k, url: (links as any)[k], isActive: true }));
+    };
+
+    const finalListenWatch = listenWatchList.length > 0 ? listenWatchList : getFallbackLinks('listenWatch');
+    const finalListen = listenList.length > 0 ? listenList : getFallbackLinks('listen');
+    const finalConnect = connectList.length > 0 ? connectList : getFallbackLinks('connect');
 
     const youtubePreviewUrl = (links as any).youtubePreview as string | undefined;
     const getYouTubeId = (url: string) => {
@@ -51,6 +69,68 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
         return (match && match[2].length === 11) ? match[2] : null;
     };
     const youtubeId = youtubePreviewUrl ? getYouTubeId(youtubePreviewUrl) : null;
+
+    const renderBadge = (link: any, index: number) => {
+        if (!link.isActive) return null;
+        const key = link.platform;
+        const href = link.url;
+        const meta = LINK_META[key];
+
+        if (!meta && !href) return null;
+
+        // Specialized Image Badges
+        if (key === 'spotify') {
+            return (
+                <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                    <img src="/Spotify_listen.png" alt="Listen on Spotify" className="h-[40px] w-auto object-contain" />
+                </Link>
+            );
+        }
+        if (key === 'applePodcasts') {
+            return (
+                <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                    <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" className="h-[40px] w-auto object-contain" />
+                </Link>
+            );
+        }
+        if (key === 'youtube') {
+            return (
+                <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                    <img src="/Youtube_watch.png" alt="Watch on YouTube" className="h-[40px] w-auto object-contain" />
+                </Link>
+            );
+        }
+        if (key === 'rss') {
+            return (
+                <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                    <img src="/rssfeed.png" alt="RSS Feed" className="h-[46px] w-auto object-contain rounded-[4px]" />
+                </Link>
+            );
+        }
+
+        // Default Button Badge
+        return (
+            <Link
+                key={`${key}-${index}`}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2 border-2 bg-white font-semibold text-sm transition-colors duration-200 w-44 justify-center"
+                style={{ borderColor: meta?.color || '#333', color: meta?.color || '#333' }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = meta?.color || '#333';
+                    e.currentTarget.style.color = 'white';
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'white';
+                    e.currentTarget.style.color = meta?.color || '#333';
+                }}
+            >
+                {meta?.icon || <Globe className="w-4 h-4" />}
+                {meta?.label || 'Link'}
+            </Link>
+        );
+    };
 
     if (variant === 'video') {
         if (!youtubeId) return null;
@@ -75,60 +155,27 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
         );
     }
 
+    if (variant === 'listenWatch') {
+        const linksToRender = finalListenWatch.filter((l: any) => l.isActive);
+        if (linksToRender.length === 0) return null;
+
+        return (
+            <div className="w-full">
+                <div className="flex items-center gap-3 mb-6">
+                    <div className="w-0.5 h-5 bg-[#E4192B]" />
+                    <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Listen & Watch</h3>
+                </div>
+                <div className="flex flex-row flex-wrap gap-3 items-center">
+                    {linksToRender.map(renderBadge)}
+                </div>
+            </div>
+        );
+    }
+
     if (variant === 'listen') {
-        const listenKeys = ['spotify', 'applePodcasts', 'rss'];
-        const activeListenLinks = listenKeys.filter(k => !!(links as any)[k] && LINK_META[k] && isLinkActive(k));
-
-        if (activeListenLinks.length === 0) return null;
-
-        const renderLink = (key: string) => {
-            const meta = LINK_META[key];
-            const href = (links as any)[key] as string;
-
-            if (key === 'spotify') {
-                return (
-                    <Link key={key} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                        <img src="/Spotify_listen.png" alt="Listen on Spotify" className="h-[40px] w-auto object-contain" />
-                    </Link>
-                );
-            }
-            if (key === 'applePodcasts') {
-                return (
-                    <Link key={key} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                        <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" className="h-[40px] w-auto object-contain" />
-                    </Link>
-                );
-            }
-            if (key === 'rss') {
-                return (
-                    <Link key={key} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                        <img src="/rssfeed.png" alt="RSS Feed" className="h-[46px] w-auto object-contain rounded-[4px]" />
-                    </Link>
-                );
-            }
-
-            return (
-                <Link
-                    key={key}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2 border-2 bg-white font-semibold text-sm transition-colors duration-200 w-44 justify-center"
-                    style={{ borderColor: meta.color, color: meta.color }}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = meta.color;
-                        e.currentTarget.style.color = 'white';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'white';
-                        e.currentTarget.style.color = meta.color;
-                    }}
-                >
-                    {meta.icon}
-                    {meta.label}
-                </Link>
-            );
-        };
+        // Strictly only links in the "Listen" section
+        const linksToRender = finalListen.filter((l: any) => l.isActive);
+        if (linksToRender.length === 0) return null;
 
         return (
             <div className="w-full">
@@ -137,64 +184,14 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
                     <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Listen</h3>
                 </div>
                 <div className="flex flex-row flex-wrap gap-3 items-center">
-                    {activeListenLinks.map(renderLink)}
+                    {linksToRender.map(renderBadge)}
                 </div>
             </div>
         );
     }
 
     if (variant === 'links') {
-        if (allLinks.length === 0) return null;
-
-        const renderLink = (key: string) => {
-            const meta = LINK_META[key];
-            const href = (links as any)[key] as string;
-
-            if (key === 'spotify') {
-                return (
-                    <Link key={key} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                        <img src="/Spotify_listen.png" alt="Listen on Spotify" className="h-[40px] w-auto object-contain" />
-                    </Link>
-                );
-            }
-            if (key === 'applePodcasts') {
-                return (
-                    <Link key={key} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                        <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" className="h-[40px] w-auto object-contain" />
-                    </Link>
-                );
-            }
-            if (key === 'rss') {
-                return (
-                    <Link key={key} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                        <img src="/rssfeed.png" alt="RSS Feed" className="h-[46px] w-auto object-contain rounded-[4px]" />
-                    </Link>
-                );
-            }
-
-            return (
-                <Link
-                    key={key}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2 border-2 bg-white font-semibold text-sm transition-colors duration-200 w-44 justify-center"
-                    style={{ borderColor: meta.color, color: meta.color }}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = meta.color;
-                        e.currentTarget.style.color = 'white';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'white';
-                        e.currentTarget.style.color = meta.color;
-                    }}
-                >
-                    {meta.icon}
-                    {meta.label}
-                </Link>
-            );
-        };
-
+        if (finalConnect.length === 0) return null;
         return (
             <div className="w-full">
                 <div className="flex items-center gap-3 mb-6">
@@ -202,7 +199,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
                     <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Connect</h3>
                 </div>
                 <div className="flex flex-row flex-wrap gap-3 items-center">
-                    {allLinks.map(renderLink)}
+                    {finalConnect.map(renderBadge)}
                 </div>
             </div>
         );

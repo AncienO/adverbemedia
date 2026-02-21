@@ -4,12 +4,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Globe, LayoutDashboard, PlayCircle, FileText, Newspaper, Briefcase, Building2, Users, Settings, Mail } from 'lucide-react';
+import { Globe, LayoutDashboard, PlayCircle, FileText, Newspaper, Briefcase, Building2, Users, Settings, Mail, Link as LinkIcon } from 'lucide-react';
 import { SignOutButton } from '@/components/admin/sign-out-button';
 
 const navigation = [
     { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
     { name: 'Shows', href: '/admin/shows', icon: PlayCircle },
+    { name: 'Links', href: '/admin/links', icon: LinkIcon },
     { name: 'Episodes', href: '/admin/episodes', icon: FileText },
     { name: 'News', href: '/admin/news', icon: Newspaper },
     { name: 'Careers', href: '/admin/careers', icon: Briefcase },

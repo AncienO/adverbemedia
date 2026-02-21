@@ -30,9 +30,32 @@ const LINK_META: Record<string, { label: string; icon: React.ReactNode; color: s
 
 export function NowStreaming({ show }: NowStreamingProps) {
     const links = show.socialLinks ?? {};
-    const order: string[] = (links as any).order ?? Object.keys(links).filter(k => k !== 'order');
-    const ALLOWED_LINKS = ['youtube', 'applePodcasts', 'spotify'];
-    const streamingLinks = order.filter(k => !!(links as any)[k] && LINK_META[k] && ALLOWED_LINKS.includes(k));
+
+    // New structure
+    const listenWatchList = (links as any).listenWatch ?? [];
+    const listenList = (links as any).listen ?? [];
+    const connectList = (links as any).connect ?? [];
+    const toggles = (links as any).toggles ?? {};
+    const order = (links as any).order ?? Object.keys(links).filter(k => k !== 'order' && k !== 'toggles' && k !== 'listen' && k !== 'connect');
+
+    const getFallbackLinks = (section: 'listenWatch' | 'listen' | 'connect') => {
+        return order
+            .filter((k: string) => !!(links as any)[k] && LINK_META[k] && toggles[k] !== false)
+            .filter((k: string) => {
+                if (section === 'listenWatch') return ['spotify', 'applePodcasts', 'youtube'].includes(k);
+                if (section === 'listen') return ['spotify', 'applePodcasts'].includes(k);
+                return ['youtube'].includes(k);
+            })
+            .map((k: string) => ({ platform: k, url: (links as any)[k], isActive: true }));
+    };
+
+    const finalListenWatch = listenWatchList.length > 0 ? listenWatchList : getFallbackLinks('listenWatch');
+
+    // Homepage banner strictly uses the "Listen & Watch" section as defined by the admin
+    const prioritizedLinks = finalListenWatch.filter((l: any) => l.isActive);
+
+    const youtubeLink = prioritizedLinks.find((l: any) => l.platform === 'youtube');
+    const audioPlatforms = prioritizedLinks.filter((l: any) => (l.platform === 'spotify' || l.platform === 'applePodcasts' || l.platform === 'rss'));
 
     return (
         <article className="flex flex-col gap-6 h-full">
@@ -77,57 +100,48 @@ export function NowStreaming({ show }: NowStreamingProps) {
                 </p>
 
                 {/* Platform Links — stacked, border fits the text, aligned bottom */}
-                {streamingLinks.length > 0 && (
+                {(youtubeLink || audioPlatforms.length > 0) && (
                     <div className="flex flex-col gap-3 mt-auto">
                         <span className="text-sm font-semibold text-gray-700">Listen &amp; Watch:</span>
                         <div className="flex flex-col gap-2 items-start">
-                            {streamingLinks.includes('youtube') && (
+                            {youtubeLink && (
                                 <Link
                                     key="youtube"
-                                    href={(links as any)['youtube'] as string}
+                                    href={youtubeLink.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-4 py-2 border-2 bg-white hover:text-white transition-colors duration-200 font-medium text-sm w-44 justify-center"
-                                    style={{ borderColor: LINK_META.youtube.color, color: LINK_META.youtube.color }}
-                                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = LINK_META.youtube.color)}
-                                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'white')}
+                                    className="block transition-transform hover:scale-105 duration-200"
                                 >
-                                    {LINK_META.youtube.icon}
-                                    {LINK_META.youtube.label}
+                                    <img src="/Youtube_watch.png" alt="Watch on YouTube" className="h-[40px] w-auto object-contain" />
                                 </Link>
                             )}
-                            {(streamingLinks.includes('spotify') || streamingLinks.includes('applePodcasts')) && (
-                                <div className="flex flex-row gap-2 items-center flex-wrap">
-                                    {streamingLinks.includes('spotify') && (
-                                        <Link
-                                            key="spotify"
-                                            href={(links as any)['spotify'] as string}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 px-4 py-2 border-2 bg-white hover:text-white transition-colors duration-200 font-medium text-sm w-44 justify-center"
-                                            style={{ borderColor: LINK_META.spotify.color, color: LINK_META.spotify.color }}
-                                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = LINK_META.spotify.color)}
-                                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'white')}
-                                        >
-                                            {LINK_META.spotify.icon}
-                                            {LINK_META.spotify.label}
-                                        </Link>
-                                    )}
-                                    {streamingLinks.includes('applePodcasts') && (
-                                        <Link
-                                            key="applePodcasts"
-                                            href={(links as any)['applePodcasts'] as string}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 px-4 py-2 border-2 bg-white hover:text-white transition-colors duration-200 font-medium text-sm w-44 justify-center"
-                                            style={{ borderColor: LINK_META.applePodcasts.color, color: LINK_META.applePodcasts.color }}
-                                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = LINK_META.applePodcasts.color)}
-                                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'white')}
-                                        >
-                                            {LINK_META.applePodcasts.icon}
-                                            {LINK_META.applePodcasts.label}
-                                        </Link>
-                                    )}
+                            {audioPlatforms.length > 0 && (
+                                <div className="flex flex-row gap-3 items-center flex-wrap">
+                                    {audioPlatforms.map((link: { platform: string; url: string }, idx: number) => {
+                                        const key = link.platform;
+                                        if (key === 'spotify') {
+                                            return (
+                                                <Link key={`spotify-${idx}`} href={link.url} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                                                    <img src="/Spotify_listen.png" alt="Listen on Spotify" className="h-[40px] w-auto object-contain" />
+                                                </Link>
+                                            );
+                                        }
+                                        if (key === 'applePodcasts') {
+                                            return (
+                                                <Link key={`apple-${idx}`} href={link.url} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                                                    <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" className="h-[40px] w-auto object-contain" />
+                                                </Link>
+                                            );
+                                        }
+                                        if (key === 'rss') {
+                                            return (
+                                                <Link key={`rss-${idx}`} href={link.url} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
+                                                    <img src="/rssfeed.png" alt="RSS Feed" className="h-[46px] w-auto object-contain rounded-[4px]" />
+                                                </Link>
+                                            );
+                                        }
+                                        return null;
+                                    })}
                                 </div>
                             )}
                         </div>

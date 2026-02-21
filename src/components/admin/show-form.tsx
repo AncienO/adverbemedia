@@ -23,34 +23,16 @@ export function ShowForm({ show, categories, hosts, allShows, allHosts }: ShowFo
     const [status, setStatus] = useState(show?.status || 'coming-soon');
     const [coverImageUrl, setCoverImageUrl] = useState(show?.cover_image_url || '');
 
-    // Initialize selected hosts from the DB. 
-    // `hosts` contains the full host objects assigned to this show. Map them to their IDs.
     const [selectedHostIds, setSelectedHostIds] = useState<string[]>(
         hosts?.map(h => h.id) || []
     );
-    const [hostAvatarUrl, setHostAvatarUrl] = useState(''); // No longer needed
     const [selectedRelatedShows, setSelectedRelatedShows] = useState<string[]>(show?.related_show_ids || []);
 
-    // We expect an array of all team members. If the old `hosts` prop only contained assigned hosts, 
-    // we should map those IDs. Let's assume we pass `allHosts` to the form.
-    // Wait, let me adjust the props first.
-
     const ALL_PLATFORMS = ['spotify', 'youtube', 'applePodcasts', 'twitter', 'instagram', 'facebook', 'tiktok', 'rss', 'website'];
-
-    // Ensure that if new platforms are added later, existing shows still get them injected at the end
     const prevOrder: string[] = show?.social_links?.order ?? [];
     const missingPlatforms = ALL_PLATFORMS.filter(p => !prevOrder.includes(p));
     const defaultOrder = [...prevOrder, ...missingPlatforms];
-
-    const [linkOrder, setLinkOrder] = useState<string[]>(defaultOrder);
-
-    const movePlatform = (index: number, dir: 'up' | 'down') => {
-        const next = [...linkOrder];
-        const swap = dir === 'up' ? index - 1 : index + 1;
-        if (swap < 0 || swap >= next.length) return;
-        [next[index], next[swap]] = [next[swap], next[index]];
-        setLinkOrder(next);
-    };
+    const [linkOrder] = useState<string[]>(defaultOrder);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -71,7 +53,6 @@ export function ShowForm({ show, categories, hosts, allShows, allHosts }: ShowFo
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
-            {/* Header */}
             <div className="flex items-center gap-4">
                 <Link href="/admin/shows">
                     <Button variant="ghost" size="sm" className="gap-2 text-gray-500 hover:text-gray-900">
@@ -189,10 +170,9 @@ export function ShowForm({ show, categories, hosts, allShows, allHosts }: ShowFo
                     </div>
                 </section>
 
-                {/* Cover Image Preview / Upload */}
+                {/* Cover Image */}
                 <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-6">
                     <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-4">Cover Image</h2>
-
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                         <FileUpload
                             onUpload={(url) => setCoverImageUrl(url)}
@@ -202,16 +182,12 @@ export function ShowForm({ show, categories, hosts, allShows, allHosts }: ShowFo
                             currentUrl={coverImageUrl}
                             label="Show Cover Art"
                         />
-
                         {status === 'coming-soon' && !coverImageUrl && (
                             <div className="space-y-4">
                                 <label className="text-sm font-medium text-gray-700">Default Coming Soon Preview</label>
                                 <div className="w-full aspect-square max-w-[200px] rounded-lg overflow-hidden border border-gray-100 shadow-sm relative">
                                     <ComingSoonVisual textSize="md" dotSize="md" />
                                 </div>
-                                <p className="text-xs text-gray-500">
-                                    Since no image is uploaded, this standardized "Coming Soon" visual will be displayed on the public site.
-                                </p>
                             </div>
                         )}
                     </div>
@@ -226,10 +202,8 @@ export function ShowForm({ show, categories, hosts, allShows, allHosts }: ShowFo
                             + Add New Team Member
                         </Link>
                     </div>
-
                     <div className="space-y-4">
-                        <p className="text-sm text-gray-600">Select the team members connected to this show. Team members can be managed in the <Link href="/admin/hosts" target="_blank" className="underline font-medium hover:text-black">Team section</Link>.</p>
-
+                        <p className="text-sm text-gray-600">Select the team members connected to this show.</p>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                             {allHosts?.map((h: any) => (
                                 <label key={h.id} className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors ${selectedHostIds.includes(h.id) ? 'border-[#E4192B] bg-[#E4192B]/5' : 'border-gray-100 hover:bg-gray-50'}`}>
@@ -238,11 +212,8 @@ export function ShowForm({ show, categories, hosts, allShows, allHosts }: ShowFo
                                         className="w-4 h-4 text-[#E4192B] rounded focus:ring-[#E4192B]"
                                         checked={selectedHostIds.includes(h.id)}
                                         onChange={(e) => {
-                                            if (e.target.checked) {
-                                                setSelectedHostIds([...selectedHostIds, h.id]);
-                                            } else {
-                                                setSelectedHostIds(selectedHostIds.filter(id => id !== h.id));
-                                            }
+                                            if (e.target.checked) setSelectedHostIds([...selectedHostIds, h.id]);
+                                            else setSelectedHostIds(selectedHostIds.filter(id => id !== h.id));
                                         }}
                                     />
                                     <div className="flex flex-col">
@@ -252,75 +223,23 @@ export function ShowForm({ show, categories, hosts, allShows, allHosts }: ShowFo
                                 </label>
                             ))}
                         </div>
-                        {(!allHosts || allHosts.length === 0) && (
-                            <div className="p-4 border rounded-lg border-dashed text-center text-sm text-gray-400">
-                                No team members found. Create one first!
-                            </div>
-                        )}
                     </div>
                 </section>
 
-                {/* Social Links — with sortable order */}
+                {/* Social Links — Simplified */}
                 <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-8">
-                    <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-4">Social &amp; Streaming Links</h2>
-                    <p className="text-xs text-gray-400">Use the arrows to set the display order of links on the public site.</p>
-                    <div className="flex flex-col gap-4">
-                        {linkOrder.map((platform, idx) => {
-                            const labels: Record<string, string> = {
-                                spotify: 'Spotify', youtube: 'YouTube', applePodcasts: 'Apple Podcasts',
-                                twitter: 'Twitter / X', instagram: 'Instagram', facebook: 'Facebook',
-                                tiktok: 'TikTok', rss: 'RSS Feed', website: 'Website',
-                            };
-                            const placeholders: Record<string, string> = {
-                                spotify: 'https://open.spotify.com/...', youtube: 'https://youtube.com/...',
-                                applePodcasts: 'https://podcasts.apple.com/...', twitter: 'https://x.com/...',
-                                instagram: 'https://instagram.com/...', facebook: 'https://facebook.com/...',
-                                tiktok: 'https://tiktok.com/@...', rss: 'https://...', website: 'https://yoursite.com',
-                            };
-                            return (
-                                <div key={platform} className="flex items-center gap-3">
-                                    <div className="flex flex-col gap-1">
-                                        <button type="button" onClick={() => movePlatform(idx, 'up')} disabled={idx === 0}
-                                            className="p-1 rounded text-gray-400 hover:text-gray-700 disabled:opacity-30">
-                                            <ChevronUp className="w-4 h-4" />
-                                        </button>
-                                        <button type="button" onClick={() => movePlatform(idx, 'down')} disabled={idx === linkOrder.length - 1}
-                                            className="p-1 rounded text-gray-400 hover:text-gray-700 disabled:opacity-30">
-                                            <ChevronDown className="w-4 h-4" />
-                                        </button>
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="flex justify-between items-center mb-1">
-                                            <label className="text-sm font-medium text-gray-700">{labels[platform]}</label>
-                                            <label className="flex items-center gap-2 cursor-pointer">
-                                                <input type="checkbox" name={`${platform}_active`} defaultChecked={show?.social_links?.toggles?.[platform] !== false} value="true" className="w-4 h-4 rounded text-[#E4192B] focus:ring-[#E4192B] border-gray-300" />
-                                                <span className="text-xs font-medium text-gray-600">Show Publicly</span>
-                                            </label>
-                                        </div>
-                                        <input
-                                            name={platform}
-                                            defaultValue={show?.social_links?.[platform]}
-                                            placeholder={placeholders[platform]}
-                                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors"
-                                        />
-                                    </div>
-                                </div>
-                            );
-                        })}
+                    <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+                        <h2 className="text-lg font-semibold text-gray-800">Links & Streaming</h2>
+                        <Link href={`/admin/links?show=${show?.id || ''}`}>
+                            <Button type="button" variant="outline" size="sm" className="text-[#E4192B] border-[#E4192B] hover:bg-[#E4192B] hover:text-white">
+                                Manage Links Advanced
+                            </Button>
+                        </Link>
                     </div>
-                    {/* YouTube Preview Field */}
-                    <div className="pt-6 border-t border-gray-100 mt-6 flex flex-col gap-2">
-                        <label className="text-sm font-medium text-gray-700">Featured YouTube Video Preview</label>
-                        <input
-                            name="youtubePreview"
-                            defaultValue={show?.social_links?.youtubePreview}
-                            placeholder="https://youtube.com/watch?v=..."
-                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors"
-                        />
-                        <p className="text-xs text-gray-400">Add a direct link to a YouTube video to embed it natively on the show detail page under the Watch section.</p>
-                    </div>
-                    {/* Hidden field to pass link order to server */}
-                    <input type="hidden" name="linkOrder" value={JSON.stringify(linkOrder)} />
+
+                    <p className="text-sm text-gray-500">
+                        Links and video previews are now managed in the central <Link href="/admin/links" className="text-[#E4192B] underline font-medium">Link Management</Link> page. This allows for reordering, duplication, and custom labels.
+                    </p>
                 </section>
 
                 {/* Actions */}

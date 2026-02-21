@@ -172,7 +172,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
                         <StreamingLinks socialLinks={show.socialLinks} variant="video" />
                     </div>
 
-                    {/* Listen Section (Spotify, Apple Podcasts, RSS) */}
+                    {/* Listen Section (Audio/RSS) */}
                     <div className="w-full max-w-4xl">
                         <StreamingLinks socialLinks={show.socialLinks} variant="listen" />
                     </div>
