@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -10,13 +11,18 @@ export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
-    const menuItems = [
+    const pathname = usePathname();
+    const isHomePage = pathname === '/';
+
+    const baseMenuItems = [
         { name: 'Company', href: '/company' },
         { name: 'Our Network', href: '/shows' }, // Assuming 'Our Network' links to shows
         { name: 'News', href: '/news' },
         { name: 'Careers', href: '/careers' },
         { name: 'Contact Us', href: '/contact' }
     ];
+
+    const menuItems = isHomePage ? baseMenuItems : [{ name: 'Home', href: '/' }, ...baseMenuItems];
 
     return (
         <header className="fixed top-6 left-0 right-0 z-50 bg-white w-[94%] lg:w-[85%] mx-auto shadow-xl">

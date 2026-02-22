@@ -29,6 +29,7 @@ const ebGaramond = EB_Garamond({
 
 import { Great_Vibes } from "next/font/google"; // Import Great Vibes
 import { CursorFollower } from "@/components/ui/cursor-follower";
+import { SWRegistration } from "@/components/shared/sw-registration";
 
 const greatVibes = Great_Vibes({
   weight: "400",
@@ -54,6 +55,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${dancingScript.variable} ${greatVibes.variable} ${ebGaramond.variable} antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
+        <SWRegistration />
         <CursorFollower />
         {children}
       </body>

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
 export function Hero() {
@@ -24,6 +25,18 @@ export function Hero() {
                         backgroundAttachment: "fixed"
                     }}
                 />
+                {/* Preload safeguard for hero image */}
+                <div className="sr-only">
+                    <Image
+                        src="/hero-bg.png"
+                        alt=""
+                        width={1920}
+                        height={1080}
+                        priority
+                        loading="eager"
+                        fetchPriority="high"
+                    />
+                </div>
 
                 {/* Gradient Overlay: 15% Dark to 85% Image */}
                 <div
