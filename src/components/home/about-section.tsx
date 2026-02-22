@@ -13,9 +13,9 @@ export function AboutSection() {
                 className="grid md:grid-cols-2"
             >
                 {/* Left Side - Title */}
-                <div className="flex items-center justify-start py-20 md:py-32 pl-[5%] md:pl-[20%] pr-6 md:pr-12" style={{ backgroundColor: '#000000' }}>
+                <div className="flex items-center justify-center py-20 md:py-32 pl-[5%] lg:pl-[20%] pr-[5%] lg:pr-[20%]" style={{ backgroundColor: '#000000' }}>
                     <h2
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-center md:text-left"
+                        className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-center"
                     >
                         <span className="block">One Home</span>
                         <span className="block">Many Conversations<span className="text-[#E4192B]">.</span></span>
@@ -24,7 +24,7 @@ export function AboutSection() {
 
                 {/* Right Side - Text */}
                 <div className="flex items-center py-20 md:py-32 px-6 md:px-12 pr-[5%] md:pr-[10%]" style={{ backgroundColor: '#000000' }}>
-                    <div className="space-y-6 text-lg md:text-xl leading-relaxed" style={{ color: '#CCCCCC' }}>
+                    <div className="space-y-6 text-lg md:text-xl leading-relaxed text-center" style={{ color: '#CCCCCC' }}>
                         <p>
                             Adverbe is a portfolio of original podcast productions, each serving a distinct audience with content they can&apos;t find elsewhere. We develop shows, and build the editorial infrastructure that turns ideas into sustainable media properties.
                         </p>

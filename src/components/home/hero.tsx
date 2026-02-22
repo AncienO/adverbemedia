@@ -17,7 +17,7 @@ export function Hero() {
             {/* Background Image with Gradient Mask */}
             <div className="absolute inset-0 z-0">
                 <div
-                    className="absolute inset-0 bg-cover bg-no-repeat"
+                    className="absolute inset-0 bg-cover bg-no-repeat hero-background-image"
                     style={{
                         backgroundImage: "url('/hero-bg.png')",
                         backgroundPosition: "right center",
@@ -81,7 +81,7 @@ export function Hero() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-                            className="block whitespace-nowrap leading-none mb-2 text-[#E4192B]"
+                            className="block sm:whitespace-nowrap leading-none mb-2 text-[#E4192B]"
                         >
                             Podcasts
                         </motion.span>
@@ -89,7 +89,7 @@ export function Hero() {
                             initial={{ opacity: 0, x: -50 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-                            className="block whitespace-nowrap text-white"
+                            className="block sm:whitespace-nowrap text-white"
                         >
                             worth your time<span className="text-[#E4192B]">.</span>
                         </motion.span>
@@ -107,7 +107,7 @@ export function Hero() {
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
-                        className="pt-0 flex flex-col sm:flex-row gap-8"
+                        className="pt-4 md:pt-0 flex flex-col sm:flex-row gap-8"
                     >
                         <Link href="/shows" className="group">
                             <span className="text-white text-base md:text-lg font-bold underline underline-offset-8 decoration-2 decoration-[#E4192B] group-hover:decoration-white transition-all duration-300">

@@ -19,11 +19,11 @@ export function Header() {
     ];
 
     return (
-        <header className="fixed top-6 left-0 right-0 z-50 bg-white w-[85%] mx-auto shadow-xl">
-            <div className="w-full pl-[5%] md:pl-[10%] pr-[5%] md:pr-[10%] py-3 md:py-4 flex justify-between items-center relative">
+        <header className="fixed top-6 left-0 right-0 z-50 bg-white w-[94%] lg:w-[85%] mx-auto shadow-xl">
+            <div className="w-full pl-[5%] lg:pl-[10%] pr-[5%] lg:pr-[10%] py-3 md:py-4 flex justify-between items-center relative">
                 {/* Logo - Top Left */}
                 <Link href="/" className="flex items-center z-50">
-                    <div className="relative w-[80px] h-auto">
+                    <div className="relative w-[80px] h-auto header-logo">
                         <svg
                             viewBox="0 0 600 316"
                             className="w-full h-full"
@@ -68,7 +68,7 @@ export function Header() {
                 <div className="relative z-50">
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="p-2 -mr-2 text-black hover:text-[#E4192B] transition-colors"
+                        className="p-2 -mr-2 text-black hover:text-[#E4192B] transition-colors header-menu-toggle"
                         aria-label="Toggle Menu"
                     >
                         {isMenuOpen ? (
@@ -113,6 +113,19 @@ export function Header() {
                                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                     className="fixed top-0 right-0 h-full w-[300px] bg-white shadow-2xl z-50 flex flex-col pt-20"
                                 >
+                                    {/* Close Button - Mobile/Tablet only */}
+                                    <motion.button
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.8 }}
+                                        transition={{ duration: 0.2, delay: 0.1 }}
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="absolute top-6 right-6 p-2 text-black hover:text-[#E4192B] transition-colors lg:hidden header-close-icon"
+                                        aria-label="Close Menu"
+                                    >
+                                        <X className="w-8 h-8" />
+                                    </motion.button>
+
                                     <nav className="flex flex-col">
                                         {menuItems.map((item) => (
                                             <div key={item.name} className="relative overflow-hidden group w-full">

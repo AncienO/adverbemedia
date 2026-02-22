@@ -114,11 +114,12 @@ export default async function ShowPage({ params }: ShowPageProps) {
                             ) : (
                                 <Image
                                     src={show.coverImage || '/coming-soon.png'}
-                                    alt={show.title}
+                                    alt={`Hero cover for ${show.title}`}
                                     fill
                                     className="object-cover"
                                     sizes="(max-width: 768px) 100vw, 576px"
                                     priority
+                                    loading="eager"
                                 />
                             )}
                         </div>
@@ -204,7 +205,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
                                             <div key={member.id} className="flex flex-col sm:flex-row items-start gap-6 h-full">
                                                 {member.avatar ? (
                                                     <div className="relative w-[143px] h-[143px] flex-shrink-0 overflow-hidden shadow-sm border border-gray-100">
-                                                        <Image src={member.avatar} alt={member.name} fill className="object-cover" style={{ objectPosition: 'top' }} sizes="143px" />
+                                                        <Image src={member.avatar} alt={`Avatar of ${member.name}`} fill className="object-cover" style={{ objectPosition: 'top' }} sizes="143px" loading="lazy" />
                                                     </div>
                                                 ) : (
                                                     <div className="w-[143px] h-[143px] flex-shrink-0 bg-gray-100 flex items-center justify-center border border-gray-100">
@@ -238,10 +239,11 @@ export default async function ShowPage({ params }: ShowPageProps) {
                                             ) : (
                                                 <Image
                                                     src={rs.cover_image_url}
-                                                    alt={rs.title}
+                                                    alt={`Related show: ${rs.title}`}
                                                     fill
                                                     className="object-cover"
                                                     sizes="(max-width: 768px) 50vw, 200px"
+                                                    loading="lazy"
                                                 />
                                             )}
                                         </div>

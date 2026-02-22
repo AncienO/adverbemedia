@@ -82,28 +82,28 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
         if (key === 'spotify') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/Spotify_listen.png" alt="Listen on Spotify" className="h-[40px] w-auto object-contain" />
+                    <img src="/Spotify_listen.png" alt="Listen on Spotify" width={160} height={40} className="h-[40px] w-auto object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
         if (key === 'applePodcasts') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" className="h-[40px] w-auto object-contain" />
+                    <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" width={160} height={40} className="h-[40px] w-auto object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
         if (key === 'youtube') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/Youtube_watch.png" alt="Watch on YouTube" className="h-[40px] w-auto object-contain" />
+                    <img src="/Youtube_watch.png" alt="Watch on YouTube" width={160} height={40} className="h-[40px] w-auto object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
         if (key === 'rss') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/rssfeed.png" alt="RSS Feed" className="h-[46px] w-auto object-contain rounded-[4px]" />
+                    <img src="/rssfeed.png" alt="RSS Feed" width={46} height={46} className="h-[46px] w-auto object-contain rounded-[4px]" loading="lazy" decoding="async" />
                 </Link>
             );
         }
@@ -112,35 +112,35 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
         if (key === 'instagram') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/instagram-logo-8869.svg" alt="Follow on Instagram" className="h-[30px] w-auto object-contain" />
+                    <img src="/instagram-logo-8869.svg" alt="Follow on Instagram" width={30} height={30} className="h-[30px] w-auto object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
         if (key === 'facebook') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/facebook-2870.svg" alt="Follow on Facebook" className="h-[30px] w-auto object-contain" />
+                    <img src="/facebook-2870.svg" alt="Follow on Facebook" width={30} height={30} className="h-[30px] w-auto object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
         if (key === 'tiktok') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/tiktok-logo-10296.svg" alt="Follow on TikTok" className="h-[30px] w-auto object-contain" />
+                    <img src="/tiktok-logo-10296.svg" alt="Follow on TikTok" width={30} height={30} className="h-[30px] w-auto object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
         if (key === 'twitter') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/twitter-x-logo-black-round-20851.svg" alt="Follow on X" className="h-[30px] w-auto object-contain" />
+                    <img src="/twitter-x-logo-black-round-20851.svg" alt="Follow on X" width={30} height={30} className="h-[30px] w-auto object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
         if (key === 'linkedin') {
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
-                    <img src="/linkedin-logo-15916.svg" alt="Follow on LinkedIn" className="h-[30px] w-auto object-contain" />
+                    <img src="/linkedin-logo-15916.svg" alt="Follow on LinkedIn" width={30} height={30} className="h-[30px] w-auto object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }

@@ -43,6 +43,7 @@ export function ComingSoon({ shows }: ComingSoonProps) {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
+                            className="border-b border-[#D0D0D0] pb-12 last:border-0 last:pb-0"
                         >
                             <Link
                                 href={`/shows/${show.slug}`}
@@ -55,10 +56,11 @@ export function ComingSoon({ shows }: ComingSoonProps) {
                                     ) : (
                                         <Image
                                             src={show.coverImage || '/coming-soon.png'}
-                                            alt={show.title}
+                                            alt={`Coming soon: ${show.title}`}
                                             fill
                                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                                             sizes="192px"
+                                            loading="lazy"
                                         />
                                     )}
                                 </div>

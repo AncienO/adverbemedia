@@ -41,7 +41,7 @@ export function ActiveShowsGrid({ shows }: ActiveShowsGridProps) {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.1 }}
-                    className="flex flex-nowrap justify-start gap-4 md:gap-8 w-full"
+                    className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-8 w-full"
                 >
                     {shows.map(show => (
                         <motion.div

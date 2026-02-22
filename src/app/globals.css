@@ -224,3 +224,121 @@ h6 {
     animation: dot-blink 1.5s linear infinite;
   }
 }
+
+/* Mobile & Tablet Optimization (Approvals: implementation_plan.md) */
+@media (max-width: 1024px) {
+  :root {
+    --radius: 0.375rem;
+    /* Slightly smaller radius for mobile */
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    font-size: 16px;
+    /* Base font size for better legibility */
+  }
+
+  /* Ensure items within these stacked containers take full width if they were flex-nowrap */
+  .flex-nowrap>* {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Increase tap targets for buttons globally */
+  button,
+  [role="button"],
+  .btn,
+  .button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Ensure padding is consistent on smaller screens */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Reduce large gap/padding values that might be too much on mobile */
+  .py-32 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  .py-20 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* Fix for horizontal scroll issues on some grids */
+  .flex-nowrap {
+    flex-wrap: wrap !important;
+  }
+
+  /* Reduce Header Logo and Menu Icon by 20% */
+  .header-logo {
+    transform: scale(0.8) !important;
+    transform-origin: left center !important;
+  }
+
+  .header-menu-toggle,
+  .header-close-icon {
+    transform: scale(0.8) !important;
+    transform-origin: right center !important;
+  }
+}
+
+/* Tablet specific tweaks */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .md\:pl-\[10\%\] {
+    padding-left: 5% !important;
+  }
+
+  .md\:pr-\[10\%\] {
+    padding-right: 5% !important;
+  }
+
+  /* Tablet-specific Hero Image adjustments: Zoom based on height */
+  .hero-background-image {
+    background-size: auto 100vh !important;
+    background-position: center center !important;
+  }
+}
+
+/* Phone specific tweaks */
+@media (max-width: 767px) {
+
+  /* Task: Scale Hero Image based on Viewport Height */
+  .hero-background-image {
+    background-attachment: scroll !important;
+    background-size: auto 100vh !important;
+    background-position: center top !important;
+    width: 100% !important;
+    height: 100% !important;
+    will-change: transform;
+  }
+
+  h1 {
+    font-size: 2.5rem !important;
+    line-height: 1.1 !important;
+  }
+
+  h2 {
+    font-size: 2rem !important;
+  }
+
+  .text-4xl {
+    font-size: 2rem !important;
+  }
+
+  .text-5xl {
+    font-size: 2.5rem !important;
+  }
+
+  .text-6xl {
+    font-size: 3rem !important;
+  }
+}

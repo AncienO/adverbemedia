@@ -54,10 +54,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 <div className="relative w-full aspect-[21/9] mb-16 bg-gray-100">
                     <Image
                         src={article.cover_image_url}
-                        alt={article.title}
+                        alt={`Cover image for ${article.title}`}
                         fill
                         className="object-cover"
                         priority
+                        loading="eager"
                     />
                 </div>
             )}

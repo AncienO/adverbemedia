@@ -65,10 +65,11 @@ export function ShowsPreview({ shows }: ShowsPreviewProps) {
                                         ) : (
                                             <Image
                                                 src={show.coverImage || '/coming-soon.png'}
-                                                alt={show.title}
+                                                alt={`Cover image for ${show.title}`}
                                                 fill
                                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                                                 sizes="(max-width: 768px) 224px, 256px"
+                                                loading="lazy"
                                             />
                                         )}
                                     </div>
