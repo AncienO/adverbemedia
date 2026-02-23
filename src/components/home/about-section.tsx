@@ -13,11 +13,11 @@ export function AboutSection() {
                 className="grid md:grid-cols-2"
             >
                 {/* Left Side - Title */}
-                <div className="flex items-center justify-center py-20 md:py-32 pl-[5%] lg:pl-[20%] pr-[5%] lg:pr-[20%]" style={{ backgroundColor: '#000000' }}>
+                <div className="flex flex-col justify-center py-20 md:py-32 pl-[5%] md:pl-[10%] lg:pl-[20%]" style={{ backgroundColor: '#000000' }}>
                     <h2
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-center"
+                        className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-center md:text-left"
                     >
-                        <span className="block">One Home</span>
+                        <span className="block mb-2 md:mb-4">One Home</span>
                         <span className="block">Many Conversations<span className="text-[#E4192B]">.</span></span>
                     </h2>
                 </div>
