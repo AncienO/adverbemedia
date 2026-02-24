@@ -44,7 +44,7 @@ export default function ForBrandsAndAdvertisersPage() {
                 }
             `}</style>
 
-            <section className="relative w-full h-[calc(70vh+128px)] md:h-[calc(80vh+128px)] flex items-center overflow-hidden">
+            <section className="relative w-full min-h-[calc(70vh+128px)] md:min-h-[calc(80vh+128px)] flex items-center pb-16 md:pb-24 overflow-hidden">
                 {/* Conveyor Belt Background - Fix: Two identical images to maintain aspect ratio */}
                 <div className="absolute inset-0 flex w-fit h-full hero-conveyor pointer-events-none">
                     <img
@@ -68,11 +68,11 @@ export default function ForBrandsAndAdvertisersPage() {
                         className="h-full w-auto max-w-none"
                     />
                 </div>
-                <div className="w-[94%] md:w-[75%] mx-auto relative z-20 pt-32">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 w-full p-8 md:p-12">
+                <div className="w-[94%] md:w-[85%] lg:w-[80%] xl:w-[75%] mx-auto relative z-20 pt-32">
+                    <div className="flex flex-col lg:flex-row flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between gap-8 md:gap-12 w-full p-8 md:p-12">
 
                         {/* Left: Bold Title */}
-                        <div className="flex-1 text-left">
+                        <div className="flex-1 shrink-0 min-w-min text-left">
                             <p
                                 className="font-bold leading-tight tracking-tighter"
                                 style={{
@@ -91,10 +91,10 @@ export default function ForBrandsAndAdvertisersPage() {
                         </div>
 
                         {/* Center: Slim Vertical Divider */}
-                        <div className="hidden md:block w-[5px] self-stretch bg-white min-h-[100px]" />
+                        <div className="hidden lg:block w-[5px] self-stretch bg-white min-h-[100px]" />
 
                         {/* Right: Body Text */}
-                        <div className="flex-1 max-w-xl text-left">
+                        <div className="flex-1 shrink-0 max-w-xl text-left">
                             <p className="text-xl md:text-3xl text-white leading-relaxed font-bold">
                                 Adverbe produces original podcast shows across marketing, leadership, faith, design, and sport. Our listeners are professionals, decision-makers, and culturally engaged audiences who choose to spend their time with our content. That&apos;s attention worth investing in.
                             </p>
