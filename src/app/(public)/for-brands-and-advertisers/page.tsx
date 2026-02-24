@@ -48,22 +48,22 @@ export default function ForBrandsAndAdvertisersPage() {
                 {/* Conveyor Belt Background - Fix: Two identical images to maintain aspect ratio */}
                 <div className="absolute inset-0 flex w-fit h-full hero-conveyor pointer-events-none">
                     <img
-                        src="/abstract_BAP.png" /* INSERT IMAGE PATH HERE */
+                        src="/dark_version.png" /* INSERT IMAGE PATH HERE */
                         alt=""
                         className="h-full w-auto max-w-none"
                     />
                     <img
-                        src="/abstract_BAP.png" /* INSERT IMAGE PATH HERE */
+                        src="/dark_version.png" /* INSERT IMAGE PATH HERE */
                         alt=""
                         className="h-full w-auto max-w-none"
                     />
                     <img
-                        src="/abstract_BAP.png" /* INSERT IMAGE PATH HERE */
+                        src="/dark_version.png" /* INSERT IMAGE PATH HERE */
                         alt=""
                         className="h-full w-auto max-w-none"
                     />
                     <img
-                        src="/abstract_BAP.png" /* INSERT IMAGE PATH HERE */
+                        src="/dark_version.png" /* INSERT IMAGE PATH HERE */
                         alt=""
                         className="h-full w-auto max-w-none"
                     />
@@ -76,7 +76,7 @@ export default function ForBrandsAndAdvertisersPage() {
                             <p
                                 className="font-bold leading-tight tracking-tighter"
                                 style={{
-                                    fontFamily: "'Helvetica', sans-serif",
+                                    fontFamily: "'Adobe Garamond', Garamond, serif",
                                     fontSize: '6vw',
                                     fontWeight: 'bold',
                                     color: 'white'
@@ -85,7 +85,7 @@ export default function ForBrandsAndAdvertisersPage() {
                                 Put your brand
                                 <br />
                                 <span style={{ whiteSpace: 'nowrap' }}>
-                                    where it&apos;s heard<span style={{ color: 'white', fontFamily: "'Adobe Garamond', Garamond, serif" }}>.</span>
+                                    where it&apos;s heard<span style={{ color: '#E31837', fontFamily: "'Adobe Garamond', Garamond, serif" }}>.</span>
                                 </span>
                             </p>
                         </div>
@@ -123,7 +123,7 @@ export default function ForBrandsAndAdvertisersPage() {
                             }}
                             className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-black text-left"
                         >
-                            Our Network<span className="text-[#E4192B]">.</span>
+                            Our network<span className="text-[#E4192B]">.</span>
                         </motion.h2>
 
                         <motion.div
@@ -182,7 +182,7 @@ export default function ForBrandsAndAdvertisersPage() {
                         className="flex flex-col md:flex-row items-start gap-8 md:gap-16 w-full relative pb-16 md:pb-20"
                     >
                         {/* Left Column — Text Block */}
-                        <div className="flex-[0.45] w-full flex flex-col justify-center gap-6 md:gap-8 text-left self-center">
+                        <div className="flex-[0.45] w-full flex flex-col justify-center gap-6 md:gap-8 text-left self-start">
                             <motion.h2
                                 variants={{
                                     hidden: { opacity: 0, y: 30 },
@@ -207,12 +207,12 @@ export default function ForBrandsAndAdvertisersPage() {
                         </div>
 
                         {/* Right Column — Vertical Stats Stack */}
-                        <div className="flex-[0.45] w-full flex flex-col gap-12 md:gap-16 ml-auto">
-                            <div className="flex flex-col gap-12">
+                        <div className="flex-[0.45] w-full flex flex-col gap-8 md:gap-10 ml-auto overflow-hidden">
+                            <div className="flex flex-col gap-6">
                                 {[
                                     { number: "90%", desc: "Of podcast listeners say they listen to ads." },
                                     { number: "80%", desc: "Can recall a brand that advertised on a podcast." },
-                                    { number: "70–80%", desc: "Listen to the end of the episode." },
+                                    { number: "70-80%", desc: "Listen to the end of the episode." },
                                     { number: "50%", desc: "Are more likely to buy from a brand they heard on a podcast." }
                                 ].map((stat, i) => (
                                     <motion.div
@@ -223,10 +223,10 @@ export default function ForBrandsAndAdvertisersPage() {
                                         }}
                                         className="flex flex-col gap-2 text-left"
                                     >
-                                        <span className="text-[#E4192B] font-bold tracking-tight text-6xl md:text-7xl lg:text-8xl" style={{ fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif' }}>
+                                        <span className="text-[#E4192B] font-bold tracking-tight" style={{ fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif', fontSize: 'clamp(2.5rem, 8vh, 6rem)', lineHeight: '1' }}>
                                             {stat.number}
                                         </span>
-                                        <span className="text-black font-light leading-relaxed" style={{ color: '#000000', fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif', fontSize: '200%' }}>
+                                        <span className="text-black font-light leading-relaxed" style={{ color: '#000000', fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif', fontSize: 'clamp(1rem, 2.5vh, 1.75rem)', lineHeight: '1.2' }}>
                                             {stat.desc}
                                         </span>
                                     </motion.div>
@@ -251,222 +251,179 @@ export default function ForBrandsAndAdvertisersPage() {
             </section>
 
             {/* Section 3 — What We Offer (Full Width Red Background) */}
-            <section className="w-full py-20 md:py-32 bg-[#E4192B] text-white">
-
-                <div className="w-[94%] md:w-[80%] mx-auto flex flex-col items-center md:items-start gap-8">
-                    <motion.h2
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={{
-                            hidden: { opacity: 0, y: 30 },
-                            visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } }
-                        }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-center md:text-left"
-                    >
-                        What we offer<span style={{ color: '#000000' }}>.</span>
-                    </motion.h2>
-
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={{
-                            hidden: { opacity: 0, y: 30 },
-                            visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.2 } }
-                        }}
-                        className="text-lg md:text-xl leading-relaxed text-center md:text-left text-white font-medium w-full"
-                    >
-                        <p>
-                            Every partnership is built around your objectives. Here&apos;s how brands work with Adverbe:
-                        </p>
-                    </motion.div>
-                </div>
-
-            </section>
-
-            {/* Section 4 — Two Column Layout (Host-Read Ads & Produced Spots) */}
-            <section className="w-full py-20 md:py-32 bg-white">
-                <div className="w-[94%] md:w-[80%] mx-auto flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-24">
-                    {/* Column 1 — Host-Read Ads */}
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="flex-1 space-y-8 flex flex-col items-center md:items-start"
-                    >
-                        <motion.h3
+            {/* Section 3 — What We Offer (Unified Grid Layout) */}
+            <section className="w-full py-20 md:py-32 bg-[#E4192B] text-white relative">
+                <div className="w-[94%] md:w-[80%] mx-auto space-y-16 relative z-10">
+                    {/* Section Title & Subtext */}
+                    <div className="flex flex-col items-center md:items-start gap-6">
+                        <motion.h2
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
                             variants={{
                                 hidden: { opacity: 0, y: 30 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } }
                             }}
-                            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-black text-center md:text-left"
+                            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight !text-black text-center md:text-left"
                         >
-                            Host-Read Ads<span className="text-[#E4192B]">.</span>
-                        </motion.h3>
+                            What we offer<span className="text-white">.</span>
+                        </motion.h2>
+
+                        {/* Animated Line */}
+                        <motion.div
+                            initial={{ scaleX: 0 }}
+                            whileInView={{ scaleX: 1 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+                            className="w-32 h-1 bg-black rounded-full mx-auto md:mx-0 origin-center md:origin-left"
+                        />
 
                         <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
                             variants={{
                                 hidden: { opacity: 0, y: 30 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.2 } }
                             }}
-                            className="text-lg md:text-xl leading-relaxed text-center md:text-left text-black/80 font-light"
-                            style={{ fontSize: '200%' }}
+                            className="text-lg md:text-xl leading-relaxed text-center md:text-left text-white font-medium w-full"
                         >
                             <p>
-                                Our hosts read your message in their own voice and style. Pre-roll, mid-roll, or post-roll placements — delivered with the trust and credibility the audience already gives the host. This is the highest-engagement format in podcast advertising.
+                                Every partnership is built around your objectives. Here&apos;s how brands work with Adverbe:
                             </p>
                         </motion.div>
-                    </motion.div>
+                    </div>
 
-                    {/* Column 2 — Produced Spots */}
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="flex-1 space-y-8 flex flex-col items-center md:items-start"
-                    >
-                        <motion.h3
-                            variants={{
-                                hidden: { opacity: 0, y: 30 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } }
-                            }}
-                            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-black text-center md:text-left"
-                        >
-                            Produced Spots<span className="text-[#E4192B]">.</span>
-                        </motion.h3>
-
+                    {/* Offerings Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
+                        {/* Cell 1 — Host-Read Ads */}
                         <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
                             variants={{
                                 hidden: { opacity: 0, y: 30 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.2 } }
                             }}
-                            className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left"
-                            style={{ fontSize: '200%' }}
+                            className="border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
                         >
-                            <p>
-                                Pre-produced audio or video ads placed within episodes. You control the creative; we handle placement and distribution across audio and video platforms.
-                            </p>
+                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white text-center md:text-left">
+                                Host-Read Ads<span className="text-white">.</span>
+                            </h3>
+                            <div
+                                className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
+                                style={{ fontSize: '200%' }}
+                            >
+                                <p>
+                                    Our hosts read your message in their own voice and style. Pre-roll, mid-roll, or post-roll placements — delivered with the trust and credibility the audience already gives the host. This is the highest-engagement format in podcast advertising.
+                                </p>
+                            </div>
                         </motion.div>
-                    </motion.div>
+
+                        {/* Cell 2 — Produced Spots */}
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                            variants={{
+                                hidden: { opacity: 0, y: 30 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.3 } }
+                            }}
+                            className="border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
+                        >
+                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white text-center md:text-left">
+                                Produced Spots<span className="text-white">.</span>
+                            </h3>
+                            <div
+                                className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
+                                style={{ fontSize: '200%' }}
+                            >
+                                <p>
+                                    Pre-produced audio or video ads placed within episodes. You control the creative; we handle placement and distribution across audio and video platforms.
+                                </p>
+                            </div>
+                        </motion.div>
+
+                        {/* Cell 3 — Show Sponsorship */}
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                            variants={{
+                                hidden: { opacity: 0, y: 30 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.4 } }
+                            }}
+                            className="border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
+                        >
+                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white text-center md:text-left">
+                                Show Sponsorship<span className="text-white">.</span>
+                            </h3>
+                            <div
+                                className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
+                                style={{ fontSize: '200%' }}
+                            >
+                                <p>
+                                    Become the presenting sponsor of an Adverbe show. Your brand is integrated into the opening, mid-point, and close of every episode — plus visibility across video, social, and event touchpoints. This is the deepest association with our content and audience.
+                                </p>
+                            </div>
+                        </motion.div>
+
+                        {/* Cell 4 — Custom Content */}
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                            variants={{
+                                hidden: { opacity: 0, y: 30 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.5 } }
+                            }}
+                            className="border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
+                        >
+                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white text-center md:text-left">
+                                Custom Content<span className="text-white">.</span>
+                            </h3>
+                            <div
+                                className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
+                                style={{ fontSize: '200%' }}
+                            >
+                                <p>
+                                    Commission bespoke episodes, branded segments, or mini-series produced by the Adverbe team. Your message, our editorial quality and production standards. Ideal for product launches, campaigns, or thought leadership positioning.
+                                </p>
+                            </div>
+                        </motion.div>
+
+                        {/* Cell 5 — Network Packages */}
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                            variants={{
+                                hidden: { opacity: 0, y: 30 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.6 } }
+                            }}
+                            className="col-span-1 md:col-span-2 border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
+                        >
+                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white text-center md:text-left">
+                                Network Packages<span className="text-white">.</span>
+                            </h3>
+                            <div
+                                className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
+                                style={{ fontSize: '200%' }}
+                            >
+                                <p>
+                                    Reach multiple audience segments through placements across two or more Adverbe shows. A financial services brand can reach C-suite executives through On Leadership and marketing professionals through MAD Conversations — all within one partnership.
+                                </p>
+                            </div>
+                        </motion.div>
+                    </div>
                 </div>
             </section>
-
-            {/* Divider */}
-            <div className="w-[12%] h-[1px] bg-[#E4192B]/20 mx-auto my-12" />
-
-            {/* Section 5 — Two Column Layout (Show Sponsorship & Custom Content) */}
-            <section className="w-full py-20 md:py-32 bg-white">
-                <div className="w-[94%] md:w-[80%] mx-auto flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-24">
-                    {/* Column 1 — Show Sponsorship */}
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="flex-1 space-y-8 flex flex-col items-center md:items-start"
-                    >
-                        <motion.h3
-                            variants={{
-                                hidden: { opacity: 0, y: 30 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } }
-                            }}
-                            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-black text-center md:text-left"
-                        >
-                            Show Sponsorship<span className="text-[#E4192B]">.</span>
-                        </motion.h3>
-
-                        <motion.div
-                            variants={{
-                                hidden: { opacity: 0, y: 30 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.2 } }
-                            }}
-                            className="text-lg md:text-xl leading-relaxed text-center md:text-left text-black/80 font-light"
-                            style={{ fontSize: '200%' }}
-                        >
-                            <p>
-                                Become the presenting sponsor of an Adverbe show. Your brand is integrated into the opening, mid-point, and close of every episode — plus visibility across video, social, and event touchpoints. This is the deepest association with our content and audience.
-                            </p>
-                        </motion.div>
-                    </motion.div>
-
-                    {/* Column 2 — Custom Content */}
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="flex-1 space-y-8 flex flex-col items-center md:items-start"
-                    >
-                        <motion.h3
-                            variants={{
-                                hidden: { opacity: 0, y: 30 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } }
-                            }}
-                            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-black text-center md:text-left"
-                        >
-                            Custom Content<span className="text-[#E4192B]">.</span>
-                        </motion.h3>
-
-                        <motion.div
-                            variants={{
-                                hidden: { opacity: 0, y: 30 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.2 } }
-                            }}
-                            className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left"
-                            style={{ fontSize: '200%' }}
-                        >
-                            <p>
-                                Commission bespoke episodes, branded segments, or mini-series produced by the Adverbe team. Your message, our editorial quality and production standards. Ideal for product launches, campaigns, or thought leadership positioning.
-                            </p>
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Divider */}
-            <div className="w-[12%] h-[1px] bg-[#E4192B]/20 mx-auto my-12" />
-
-            {/* Section 6 — Single Column Layout (Network Packages) */}
-            <section className="w-full py-20 md:py-32 bg-white">
-                <div className="w-[94%] md:w-[80%] mx-auto flex flex-col items-center md:items-start space-y-8">
-                    <motion.h2
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={{
-                            hidden: { opacity: 0, y: 30 },
-                            visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } }
-                        }}
-                        className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-black text-center md:text-left"
-                    >
-                        Network Packages<span className="text-[#E4192B]">.</span>
-                    </motion.h2>
-
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={{
-                            hidden: { opacity: 0, y: 30 },
-                            visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.2 } }
-                        }}
-                        className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left max-w-4xl"
-                        style={{ fontSize: '200%' }}
-                    >
-                        <p>
-                            Reach multiple audience segments through placements across two or more Adverbe shows. A financial services brand can reach C-suite executives through On Leadership and marketing professionals through MAD Conversations — all within one partnership.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Divider */}
-            <div className="w-[12%] h-[1px] bg-[#E4192B]/20 mx-auto my-12" />
 
             {/* Section 7 — Why Adverbe (2x2 Grid) */}
             <section className="w-full py-20 md:py-32 bg-white relative">
                 {/* Scroll-Revealed Top Gradient */}
                 <motion.div
-                    className="absolute inset-x-0 top-0 h-[70%] bg-gradient-to-b from-[rgba(228,25,43,0.5)] to-transparent pointer-events-none z-0"
+                    className="absolute inset-x-0 top-0 h-[70%] bg-gradient-to-b from-[#E4192B]/50 to-transparent pointer-events-none z-0"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: isScrollingDown ? 1 : 0 }}
                     transition={{ duration: 0.6, ease: isScrollingDown ? "easeIn" : "easeOut" }}

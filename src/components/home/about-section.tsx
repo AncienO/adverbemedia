@@ -17,8 +17,8 @@ export function AboutSection() {
                     <h2
                         className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-center md:text-left"
                     >
-                        <span className="block mb-2 md:mb-4">One Home</span>
-                        <span className="block">Many Conversations<span className="text-[#E4192B]">.</span></span>
+                        <span className="block mb-2 md:mb-4">One home</span>
+                        <span className="block">Many conversations<span className="text-[#E4192B]">.</span></span>
                     </h2>
                 </div>
 

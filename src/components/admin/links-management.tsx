@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import {
     Plus,
@@ -182,8 +183,8 @@ export function LinksManagement({ shows, globalLinks }: LinksManagementProps) {
         });
         setLoading(false);
         if (result.error) setMessage({ type: 'error', text: result.error });
-        else setMessage({ type: 'success', text: 'Show links updated successfully!' });
-        setTimeout(() => setMessage(null), 3000);
+        else setMessage({ type: 'success', text: 'Links have been updated successfully.' });
+        setTimeout(() => setMessage(null), 3500);
     };
 
     const handleSaveFooter = async (link: any) => {
@@ -194,6 +195,10 @@ export function LinksManagement({ shows, globalLinks }: LinksManagementProps) {
         formData.set('isActive', String(link.is_active));
         formData.set('sortOrder', String(link.sort_order));
         await updateSocialLink(link.id, formData);
+
+        setMessage({ type: 'success', text: 'Links have been updated successfully.' });
+        setTimeout(() => setMessage(null), 3500);
+
         router.refresh();
     };
 
@@ -220,11 +225,21 @@ export function LinksManagement({ shows, globalLinks }: LinksManagementProps) {
                 </select>
             </div>
 
-            {message && (
-                <div className={`p-4 rounded-lg text-sm font-medium ${message.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
-                    {message.text}
-                </div>
-            )}
+            <div className="relative z-50">
+                <AnimatePresence>
+                    {message && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, transition: { duration: 0.5 } }}
+                            className={`p-4 rounded-lg text-sm font-medium shadow-sm flex items-center justify-between ${message.type === 'success' ? 'bg-green-600 text-white' : 'bg-red-50 text-red-700'
+                                }`}
+                        >
+                            {message.text}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
 
             {selectedTarget === 'global' ? (
                 <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-6">
@@ -237,7 +252,11 @@ export function LinksManagement({ shows, globalLinks }: LinksManagementProps) {
                                     <input
                                         defaultValue={link.platform}
                                         className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white"
-                                        onBlur={(e) => handleSaveFooter({ ...link, platform: e.target.value })}
+                                        onBlur={(e) => {
+                                            const newPlatform = e.target.value;
+                                            const newIconKey = newPlatform.toLowerCase().replace(/[^a-z0-9]/g, '');
+                                            handleSaveFooter({ ...link, platform: newPlatform, icon_key: newIconKey });
+                                        }}
                                     />
                                 </div>
                                 <div className="flex-1 w-full">

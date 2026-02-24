@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Instagram, Twitter, Youtube, Facebook } from 'lucide-react';
+import { Instagram, Twitter, Youtube, Facebook, Globe } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 
 export async function Footer() {
@@ -20,16 +20,23 @@ export async function Footer() {
 
     const socialLinks = (dbLinks || []).map((link) => {
         let icon = null;
-        const key = link.icon_key?.toLowerCase();
-        if (key === 'instagram') icon = Instagram;
-        else if (key === 'twitter' || key === 'x') icon = Twitter;
-        else if (key === 'youtube') icon = Youtube;
-        else if (key === 'facebook') icon = Facebook;
+        let dbKey = link.icon_key?.toLowerCase() || '';
+
+        // If the key is 'globe' or empty, fallback to the sanitized platform name
+        if (!dbKey || dbKey === 'globe') {
+            dbKey = link.platform.toLowerCase().replace(/[^a-z0-9]/g, '');
+        }
+
+        if (dbKey === 'instagram') icon = Instagram;
+        else if (dbKey === 'twitter' || dbKey === 'x') icon = Twitter;
+        else if (dbKey === 'youtube') icon = Youtube;
+        else if (dbKey === 'facebook') icon = Facebook;
+        else icon = Globe;
 
         return {
             name: link.platform,
             href: link.url,
-            icon_key: key || link.platform.toLowerCase(),
+            icon_key: dbKey,
             icon
         };
     });
@@ -105,7 +112,7 @@ export async function Footer() {
                     {/* Copyright */}
                     <div className="pt-8 border-t border-gray-800 text-center">
                         <p className="text-sm text-gray-400">
-                            &copy; 2026 Vermé Studios. All Rights Reserved.
+                            &copy; 2026, Vermé Studios. All Rights Reserved.
                         </p>
                     </div>
                 </div>
