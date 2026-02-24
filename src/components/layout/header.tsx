@@ -146,7 +146,7 @@ export function Header() {
                                                 )}
                                                 <Link
                                                     href={item.href}
-                                                    className={`block w-full px-8 py-4 text-2xl md:text-3xl font-bold transition-colors duration-300 lowercase tracking-tight relative z-20 ${hoveredItem === item.name ? 'text-white' : 'text-black'
+                                                    className={`block w-full px-8 py-4 text-2xl md:text-3xl font-bold transition-colors duration-300 capitalize tracking-tight relative z-20 ${hoveredItem === item.name ? 'text-white' : 'text-black'
                                                         }`}
                                                     style={{ fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif' }}
                                                     onClick={() => setIsMenuOpen(false)}

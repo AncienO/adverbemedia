@@ -121,45 +121,76 @@ export async function updateShow(id: string, formData: FormData) {
         try { relatedShowIds = JSON.parse(relatedShowIdsRaw); } catch { }
     }
 
-    const socialLinks: Record<string, any> = {};
-    if (spotify) socialLinks.spotify = spotify;
-    if (youtube) socialLinks.youtube = youtube;
-    if (youtubePreview) socialLinks.youtubePreview = youtubePreview;
-    if (applePodcasts) socialLinks.applePodcasts = applePodcasts;
-    if (twitter) socialLinks.twitter = twitter;
-    if (instagram) socialLinks.instagram = instagram;
-    if (facebook) socialLinks.facebook = facebook;
-    if (tiktok) socialLinks.tiktok = tiktok;
-    if (rss) socialLinks.rss = rss;
+    // Fetch pre-populated links from hidden input
+    const socialLinksRaw = formData.get('social_links') as string;
+    let socialLinks = socialLinksRaw ? JSON.parse(socialLinksRaw) : null;
+    let hasLinkUpdates = false;
 
-    const toggles: Record<string, boolean> = {};
+    // We initialize an object to collect any new explicit link fields
+    const explicitLinks: Record<string, any> = {};
+    if (formData.has('spotify')) explicitLinks.spotify = spotify;
+    if (formData.has('youtube')) explicitLinks.youtube = youtube;
+    if (formData.has('youtubePreview')) explicitLinks.youtubePreview = youtubePreview;
+    if (formData.has('applePodcasts')) explicitLinks.applePodcasts = applePodcasts;
+    if (formData.has('twitter')) explicitLinks.twitter = twitter;
+    if (formData.has('instagram')) explicitLinks.instagram = instagram;
+    if (formData.has('facebook')) explicitLinks.facebook = facebook;
+    if (formData.has('tiktok')) explicitLinks.tiktok = tiktok;
+    if (formData.has('rss')) explicitLinks.rss = rss;
+
+    if (Object.keys(explicitLinks).length > 0) {
+        socialLinks = { ...(socialLinks || {}), ...explicitLinks };
+        hasLinkUpdates = true;
+    }
+
+    const toggles: Record<string, boolean> = socialLinks?.toggles || {};
+    let submittedToggles = false;
     const ALL_PLATFORMS = ['spotify', 'youtube', 'applePodcasts', 'twitter', 'instagram', 'facebook', 'tiktok', 'rss', 'website'];
     ALL_PLATFORMS.forEach(p => {
-        toggles[p] = formData.get(`${p}_active`) === 'true';
+        if (formData.has(`${p}_active`)) {
+            toggles[p] = formData.get(`${p}_active`) === 'true';
+            submittedToggles = true;
+        }
     });
-    socialLinks.toggles = toggles;
 
-    const linkOrderRaw = formData.get('linkOrder') as string;
-    if (linkOrderRaw) {
-        try { socialLinks.order = JSON.parse(linkOrderRaw); } catch { }
+    if (submittedToggles) {
+        socialLinks = { ...(socialLinks || {}), toggles };
+        hasLinkUpdates = true;
+    }
+
+    if (formData.has('linkOrder')) {
+        const linkOrderRaw = formData.get('linkOrder') as string;
+        try {
+            socialLinks = { ...(socialLinks || {}), order: JSON.parse(linkOrderRaw) };
+            hasLinkUpdates = true;
+        } catch { }
+    }
+
+    // Safeguard: only override social_links if there was any form data (or existing data sent)
+    // If socialLinksRaw was provided, we definitely update it. Otherwise, only update if new fields were sent.
+
+    // Build update payload
+    const updatePayload: any = {
+        title,
+        slug,
+        description,
+        short_description: shortDescription,
+        summary,
+        cover_image_url: coverImageUrl,
+        category_id: categoryId || null,
+        status,
+        ad_content: adContent,
+        related_show_ids: relatedShowIds,
+        updated_at: new Date().toISOString(),
+    };
+
+    if (socialLinksRaw !== null || hasLinkUpdates) {
+        updatePayload.social_links = socialLinks || {};
     }
 
     const { error } = await supabase
         .from('shows')
-        .update({
-            title,
-            slug,
-            description,
-            short_description: shortDescription,
-            summary,
-            cover_image_url: coverImageUrl,
-            category_id: categoryId || null,
-            status,
-            social_links: socialLinks,
-            ad_content: adContent,
-            related_show_ids: relatedShowIds,
-            updated_at: new Date().toISOString(),
-        })
+        .update(updatePayload)
         .eq('id', id);
 
     if (error) {

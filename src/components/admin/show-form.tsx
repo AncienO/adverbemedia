@@ -193,6 +193,7 @@ export function ShowForm({ show, categories, hosts, allShows, allHosts }: ShowFo
                     </div>
                 </section>
                 <input type="hidden" name="coverImageUrl" value={coverImageUrl} />
+                <input type="hidden" name="social_links" value={JSON.stringify(show?.social_links || {})} />
 
                 {/* Host Section */}
                 <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-8">

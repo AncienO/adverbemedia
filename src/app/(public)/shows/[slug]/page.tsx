@@ -183,37 +183,37 @@ export default async function ShowPage({ params }: ShowPageProps) {
                         Object.entries(
                             show.hosts.reduce((acc, member) => {
                                 const roleName = member.role && member.role.trim() !== '' ? member.role : 'Host';
-                                const sectionTitle = roleName.toUpperCase() + (roleName.toLowerCase().endsWith('s') ? '' : 'S');
+                                const sectionTitle = roleName.charAt(0).toUpperCase() + roleName.slice(1).toLowerCase() + (roleName.toLowerCase().endsWith('s') ? '' : 's');
                                 if (!acc[sectionTitle]) acc[sectionTitle] = [];
                                 acc[sectionTitle].push(member);
                                 return acc;
                             }, {} as Record<string, typeof show.hosts>)
                         )
                             .sort(([a], [b]) => {
-                                if (a === 'HOSTS') return -1;
-                                if (b === 'HOSTS') return 1;
+                                if (a === 'Hosts') return -1;
+                                if (b === 'Hosts') return 1;
                                 return a.localeCompare(b);
                             })
                             .map(([roleTitle, members], index, array) => (
                                 <div key={roleTitle} className={`w-full max-w-4xl ${index === array.length - 1 ? 'mb-24' : 'mb-12'}`}>
                                     <div className="flex items-center gap-3 mb-6">
                                         <div className="w-0.5 h-5 bg-[#E4192B]" />
-                                        <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">{roleTitle}</h3>
+                                        <h3 className="text-2xl font-bold tracking-widest text-gray-900">{roleTitle}</h3>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 justify-start">
                                         {members.map(member => (
-                                            <div key={member.id} className="flex flex-col sm:flex-row items-start gap-6 h-full">
+                                            <div key={member.id} className="flex flex-col sm:flex-row items-center gap-6 h-full">
                                                 {member.avatar ? (
-                                                    <div className="relative w-[143px] h-[143px] flex-shrink-0 overflow-hidden shadow-sm border border-gray-100">
-                                                        <Image src={member.avatar} alt={`Avatar of ${member.name}`} fill className="object-cover" style={{ objectPosition: 'top' }} sizes="143px" loading="lazy" />
+                                                    <div className="relative w-[128px] h-[128px] flex-shrink-0 overflow-hidden shadow-sm border border-gray-100">
+                                                        <Image src={member.avatar} alt={`Avatar of ${member.name}`} fill className="object-cover" style={{ objectPosition: 'top' }} sizes="128px" loading="lazy" />
                                                     </div>
                                                 ) : (
-                                                    <div className="w-[143px] h-[143px] flex-shrink-0 bg-gray-100 flex items-center justify-center border border-gray-100">
-                                                        <span className="text-3xl text-gray-400 font-bold">{member.name.charAt(0)}</span>
+                                                    <div className="w-[128px] h-[128px] flex-shrink-0 bg-gray-100 flex items-center justify-center border border-gray-100">
+                                                        <span className="text-xl text-gray-400 font-bold">{member.name.charAt(0)}</span>
                                                     </div>
                                                 )}
                                                 <div className="text-left flex-1 min-w-0">
-                                                    <p className="font-bold text-xl text-gray-900 leading-tight truncate">{member.name}</p>
+                                                    <p className="font-bold text-base text-gray-900 leading-tight truncate">{member.name}</p>
                                                     {member.bio && <p className="text-base text-gray-500 mt-2 leading-relaxed whitespace-pre-wrap line-clamp-4">{member.bio}</p>}
                                                 </div>
                                             </div>
@@ -225,10 +225,10 @@ export default async function ShowPage({ params }: ShowPageProps) {
 
                     {/* Related Shows Section */}
                     {relatedShows.length > 0 && (
-                        <div className="w-full max-w-4xl">
+                        <div className="w-full max-w-4xl mb-12">
                             <div className="flex items-center gap-3 mb-8">
                                 <div className="w-0.5 h-5 bg-[#E4192B]" />
-                                <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Related Shows</h3>
+                                <h3 className="text-2xl font-bold tracking-widest text-gray-900">Related shows</h3>
                             </div>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                                 {relatedShows.map(rs => (
@@ -259,10 +259,16 @@ export default async function ShowPage({ params }: ShowPageProps) {
                         <div className="w-full max-w-4xl text-left">
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="w-0.5 h-5 bg-[#E4192B]" />
-                                <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Advertising</h3>
+                                <h3 className="text-2xl font-bold tracking-widest text-gray-900">For brands and advertisers</h3>
                             </div>
-                            <div className="text-lg text-gray-600 leading-relaxed italic border-l-2 border-[#E4192B] pl-6 py-2 text-left bg-gray-50 rounded-r-lg">
-                                {show.adContent}
+                            <div className="text-lg text-gray-600 leading-relaxed border-l-2 border-[#E4192B] pl-6 py-2 text-left bg-gray-50 rounded-r-lg">
+                                <p className="italic mb-4">{show.adContent}</p>
+                                <Link href="/for-brands-and-advertisers"
+                                    className="inline-block text-[#E4192B] font-bold hover:text-black transition-colors"
+                                    style={{ fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif' }}
+                                >
+                                    Learn More <span className="ml-1">→</span>
+                                </Link>
                             </div>
                         </div>
                     )}

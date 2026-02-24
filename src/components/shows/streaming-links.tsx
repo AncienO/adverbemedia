@@ -175,7 +175,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             <div className="w-full">
                 <div className="flex items-center gap-3 mb-6">
                     <div className="w-0.5 h-5 bg-[#E4192B]" />
-                    <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Watch</h3>
+                    <h3 className="text-2xl font-bold tracking-widest text-gray-900">Watch</h3>
                 </div>
                 <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg mb-6 max-w-3xl bg-black border border-gray-100">
                     <iframe
@@ -200,7 +200,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             <div className="w-full">
                 <div className="flex items-center gap-3 mb-6">
                     <div className="w-0.5 h-5 bg-[#E4192B]" />
-                    <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Listen & Watch</h3>
+                    <h3 className="text-2xl font-bold tracking-widest text-gray-900">Listen & Watch</h3>
                 </div>
                 <div className="flex flex-row flex-wrap gap-3 items-center">
                     {linksToRender.map(renderBadge)}
@@ -218,7 +218,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             <div className="w-full">
                 <div className="flex items-center gap-3 mb-6">
                     <div className="w-0.5 h-5 bg-[#E4192B]" />
-                    <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Listen</h3>
+                    <h3 className="text-2xl font-bold tracking-widest text-gray-900">Listen</h3>
                 </div>
                 <div className="flex flex-row flex-wrap gap-3 items-center">
                     {linksToRender.map(renderBadge)}
@@ -233,7 +233,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             <div className="w-full">
                 <div className="flex items-center gap-3 mb-6">
                     <div className="w-0.5 h-5 bg-[#E4192B]" />
-                    <h3 className="text-xl font-bold uppercase tracking-widest text-gray-900">Connect</h3>
+                    <h3 className="text-2xl font-bold tracking-widest text-gray-900">Connect</h3>
                 </div>
                 <div className="flex flex-row flex-wrap gap-3 items-center">
                     {finalConnect.map(renderBadge)}

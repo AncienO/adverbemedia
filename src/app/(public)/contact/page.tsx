@@ -64,8 +64,8 @@ export default function ContactPage() {
                             </h3>
                             <address className="not-italic text-lg md:text-xl text-gray-600 font-light leading-relaxed">
                                 Adverbe Studios<br />
-                                Oak Villa Estates<br />
-                                B5, Abokobi<br />
+                                Oak Villa Estates, B5<br />
+                                Abokobi<br />
                                 Accra, Ghana
                             </address>
                         </div>
