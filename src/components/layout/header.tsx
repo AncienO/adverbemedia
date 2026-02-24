@@ -19,7 +19,8 @@ export function Header() {
         { name: 'Our Network', href: '/shows' }, // Assuming 'Our Network' links to shows
         { name: 'News', href: '/news' },
         { name: 'Careers', href: '/careers' },
-        { name: 'Contact Us', href: '/contact' }
+        { name: 'Contact Us', href: '/contact' },
+        { name: 'Brands & Advertising', href: '/for-brands-and-advertisers' }
     ];
 
     const menuItems = isHomePage ? baseMenuItems : [{ name: 'Home', href: '/' }, ...baseMenuItems];
