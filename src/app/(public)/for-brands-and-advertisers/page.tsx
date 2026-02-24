@@ -42,6 +42,60 @@ export default function ForBrandsAndAdvertisersPage() {
                 .hero-conveyor {
                     animation: conveyor 30s linear infinite;
                 }
+
+                /* Hero Section — Proportional Scaling for Smaller Screens */
+                .hero-content-wrapper {
+                    transform-origin: left center;
+                    transform: scale(1);
+                    transition: transform 0.2s ease;
+                }
+                @media (max-width: 1440px) {
+                    .hero-content-wrapper {
+                        transform: scale(0.9);
+                    }
+                }
+                @media (max-width: 1280px) {
+                    .hero-content-wrapper {
+                        transform: scale(0.8);
+                    }
+                }
+                @media (max-width: 1024px) {
+                    .hero-content-wrapper {
+                        transform: scale(0.7);
+                    }
+                }
+                /* Do NOT apply below 768px — mobile is excluded */
+                @media (max-width: 767px) {
+                    .hero-content-wrapper {
+                        transform: scale(1);
+                        transform-origin: unset;
+                    }
+                }
+
+                /* Body text scaling — mirrors title scaling behavior */
+                @media (min-width: 768px) {
+                    .hero-body-text {
+                        font-size: 1.2vw !important;
+                        line-height: 1.6 !important;
+                        white-space: normal;
+                        max-width: 100%;
+                    }
+                }
+                @media (min-width: 768px) and (max-width: 1440px) {
+                    .hero-body-text {
+                        font-size: 1.1vw !important;
+                    }
+                }
+                @media (min-width: 768px) and (max-width: 1280px) {
+                    .hero-body-text {
+                        font-size: 1vw !important;
+                    }
+                }
+                @media (min-width: 768px) and (max-width: 1024px) {
+                    .hero-body-text {
+                        font-size: 0.9vw !important;
+                    }
+                }
             `}</style>
 
             <section className="relative w-full min-h-[calc(70vh+128px)] md:min-h-[calc(80vh+128px)] flex items-center pb-16 md:pb-24 overflow-hidden">
@@ -69,7 +123,7 @@ export default function ForBrandsAndAdvertisersPage() {
                     />
                 </div>
                 <div className="w-[94%] md:w-[85%] lg:w-[80%] xl:w-[75%] mx-auto relative z-20 pt-32">
-                    <div className="flex flex-col lg:flex-row flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between gap-8 md:gap-12 w-full p-8 md:p-12">
+                    <div className="hero-content-wrapper flex flex-col lg:flex-row flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between gap-8 md:gap-12 w-full p-8 md:p-12">
 
                         {/* Left: Bold Title */}
                         <div className="flex-1 shrink-0 min-w-min text-left">
@@ -91,11 +145,12 @@ export default function ForBrandsAndAdvertisersPage() {
                         </div>
 
                         {/* Center: Slim Vertical Divider */}
-                        <div className="hidden lg:block w-[5px] self-stretch bg-white min-h-[100px]" />
+                        {/* <div className="hidden lg:block w-[5px] self-stretch bg-white min-h-[100px]" /> */}
+                        <div className="hidden w-[5px] self-stretch bg-white min-h-[100px]" />
 
                         {/* Right: Body Text */}
                         <div className="flex-1 shrink-0 max-w-xl text-left">
-                            <p className="text-xl md:text-3xl text-white leading-relaxed font-bold">
+                            <p className="hero-body-text text-xl md:text-3xl text-white leading-relaxed font-bold">
                                 Adverbe produces original podcast shows across marketing, leadership, faith, design, and sport. Our listeners are professionals, decision-makers, and culturally engaged audiences who choose to spend their time with our content. That&apos;s attention worth investing in.
                             </p>
                         </div>
@@ -226,7 +281,7 @@ export default function ForBrandsAndAdvertisersPage() {
                                         <span className="text-[#E4192B] font-bold tracking-tight" style={{ fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif', fontSize: 'clamp(2.5rem, 8vh, 6rem)', lineHeight: '1' }}>
                                             {stat.number}
                                         </span>
-                                        <span className="text-black font-light leading-relaxed" style={{ color: '#000000', fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif', fontSize: 'clamp(1rem, 2.5vh, 1.75rem)', lineHeight: '1.2' }}>
+                                        <span className="text-black font-light leading-relaxed" style={{ color: '#000000', fontSize: 'clamp(1rem, 2.5vh, 1.75rem)', lineHeight: '1.2' }}>
                                             {stat.desc}
                                         </span>
                                     </motion.div>
@@ -307,12 +362,12 @@ export default function ForBrandsAndAdvertisersPage() {
                             }}
                             className="border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
                         >
-                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white text-center md:text-left">
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-white text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Host-Read Ads<span className="text-white">.</span>
                             </h3>
                             <div
                                 className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
-                                style={{ fontSize: '200%' }}
+                                style={{ fontSize: '180%' }}
                             >
                                 <p>
                                     Our hosts read your message in their own voice and style. Pre-roll, mid-roll, or post-roll placements — delivered with the trust and credibility the audience already gives the host. This is the highest-engagement format in podcast advertising.
@@ -331,12 +386,12 @@ export default function ForBrandsAndAdvertisersPage() {
                             }}
                             className="border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
                         >
-                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white text-center md:text-left">
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-white text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Produced Spots<span className="text-white">.</span>
                             </h3>
                             <div
                                 className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
-                                style={{ fontSize: '200%' }}
+                                style={{ fontSize: '180%' }}
                             >
                                 <p>
                                     Pre-produced audio or video ads placed within episodes. You control the creative; we handle placement and distribution across audio and video platforms.
@@ -355,12 +410,12 @@ export default function ForBrandsAndAdvertisersPage() {
                             }}
                             className="border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
                         >
-                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white text-center md:text-left">
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-white text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Show Sponsorship<span className="text-white">.</span>
                             </h3>
                             <div
                                 className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
-                                style={{ fontSize: '200%' }}
+                                style={{ fontSize: '180%' }}
                             >
                                 <p>
                                     Become the presenting sponsor of an Adverbe show. Your brand is integrated into the opening, mid-point, and close of every episode — plus visibility across video, social, and event touchpoints. This is the deepest association with our content and audience.
@@ -379,12 +434,12 @@ export default function ForBrandsAndAdvertisersPage() {
                             }}
                             className="border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
                         >
-                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white text-center md:text-left">
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-white text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Custom Content<span className="text-white">.</span>
                             </h3>
                             <div
                                 className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
-                                style={{ fontSize: '200%' }}
+                                style={{ fontSize: '180%' }}
                             >
                                 <p>
                                     Commission bespoke episodes, branded segments, or mini-series produced by the Adverbe team. Your message, our editorial quality and production standards. Ideal for product launches, campaigns, or thought leadership positioning.
@@ -403,12 +458,12 @@ export default function ForBrandsAndAdvertisersPage() {
                             }}
                             className="col-span-1 md:col-span-2 border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
                         >
-                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white text-center md:text-left">
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-white text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Network Packages<span className="text-white">.</span>
                             </h3>
                             <div
                                 className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
-                                style={{ fontSize: '200%' }}
+                                style={{ fontSize: '180%' }}
                             >
                                 <p>
                                     Reach multiple audience segments through placements across two or more Adverbe shows. A financial services brand can reach C-suite executives through On Leadership and marketing professionals through MAD Conversations — all within one partnership.
@@ -457,12 +512,12 @@ export default function ForBrandsAndAdvertisersPage() {
                             }}
                             className="border-t border-[#E4192B]/30 pt-8 flex flex-col items-center md:items-start space-y-4"
                         >
-                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-black text-center md:text-left">
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Video-first production
                             </h3>
                             <div
                                 className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left"
-                                style={{ fontSize: '200%' }}
+                                style={{ fontSize: '180%' }}
                             >
                                 <p>
                                     Every show is produced as both video and audio. Your brand appears across YouTube, Spotify, Apple Podcasts, and social — not just one platform.
@@ -481,12 +536,12 @@ export default function ForBrandsAndAdvertisersPage() {
                             }}
                             className="border-t border-[#E4192B]/30 pt-8 flex flex-col items-center md:items-start space-y-4"
                         >
-                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-black text-center md:text-left">
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Audiences that stay
                             </h3>
                             <div
                                 className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left"
-                                style={{ fontSize: '200%' }}
+                                style={{ fontSize: '180%' }}
                             >
                                 <p>
                                     Long-form shows mean listeners spend thirty, sixty, ninety minutes with our content. That&apos;s a fundamentally different level of attention than a scroll-past impression.
@@ -505,12 +560,12 @@ export default function ForBrandsAndAdvertisersPage() {
                             }}
                             className="border-t border-[#E4192B]/30 pt-8 flex flex-col items-center md:items-start space-y-4"
                         >
-                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-black text-center md:text-left">
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Distinct communities, one network
                             </h3>
                             <div
                                 className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left"
-                                style={{ fontSize: '200%' }}
+                                style={{ fontSize: '180%' }}
                             >
                                 <p>
                                     Each show serves a specific audience — marketers, leaders, faith communities, sport enthusiasts. You can target precisely or go broad across the network.
@@ -529,12 +584,12 @@ export default function ForBrandsAndAdvertisersPage() {
                             }}
                             className="border-t border-[#E4192B]/30 pt-8 flex flex-col items-center md:items-start space-y-4"
                         >
-                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-black text-center md:text-left">
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Content with shelf life
                             </h3>
                             <div
                                 className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left"
-                                style={{ fontSize: '200%' }}
+                                style={{ fontSize: '180%' }}
                             >
                                 <p>
                                     Our episodes are archived and searchable. Your brand doesn&apos;t disappear after 24 hours — it lives inside content that people come back to.
@@ -600,7 +655,7 @@ export default function ForBrandsAndAdvertisersPage() {
                         </a>
                     </motion.div>
 
-                    {/* Email Link */}
+                    {/* Email Link
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -616,7 +671,7 @@ export default function ForBrandsAndAdvertisersPage() {
                         >
                             partnerships@adverbemedia.com
                         </a>
-                    </motion.div>
+                    </motion.div> */}
                 </div>
             </section>
         </div>
