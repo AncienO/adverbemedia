@@ -6,6 +6,7 @@ export function ShowsHeader() {
         <PageHeader
             title="Our Network"
             description="The Adverbe Media Podcast Network features conversations with Africa's top creative minds, exploring every angle of where culture meets commerce."
+            className="our-network-page-header"
         />
     );
 }

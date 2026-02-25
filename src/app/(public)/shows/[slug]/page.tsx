@@ -155,7 +155,14 @@ export default async function ShowPage({ params }: ShowPageProps) {
                         </h1>
 
                         {/* Full Description — paragraph-per-line like Vox */}
-                        <div className="space-y-4 text-base md:text-lg text-gray-600 leading-relaxed mb-8 max-w-4xl">
+                        <style>{`
+                            @media (max-width: 767px) {
+                                .show-description {
+                                    text-align: left !important;
+                                }
+                            }
+                        `}</style>
+                        <div className="show-description space-y-4 text-base md:text-lg text-gray-600 leading-relaxed mb-8 max-w-4xl">
                             {descriptionParagraphs.length > 0
                                 ? descriptionParagraphs.map((p, i) => <p key={i}>{p}</p>)
                                 : <p>{show.description}</p>

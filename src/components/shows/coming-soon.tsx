@@ -47,10 +47,10 @@ export function ComingSoon({ shows }: ComingSoonProps) {
                         >
                             <Link
                                 href={`/shows/${show.slug}`}
-                                className="flex flex-col md:flex-row gap-6 group w-full"
+                                className="flex flex-col md:flex-row gap-6 group w-full items-start"
                             >
                                 {/* Cover Image - Using Shared Visual */}
-                                <div className="w-48 h-48 bg-gray-100 overflow-hidden flex-shrink-0 mx-auto md:mx-0 shadow-sm transition-colors duration-300 relative">
+                                <div className="w-48 h-48 bg-gray-100 overflow-hidden flex-shrink-0 ml-0 mr-auto md:mx-0 shadow-sm transition-colors duration-300 relative">
                                     {!show.coverImage || show.coverImage === '/coming-soon.png' ? (
                                         <ComingSoonVisual textSize="md" dotSize="md" />
                                     ) : (

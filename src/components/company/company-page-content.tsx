@@ -26,6 +26,7 @@ export function CompanyPageContent({ documents, sections }: CompanyPageContentPr
             <PageHeader
                 title="About Adverbe"
                 description="Defining the sound of modern Africa through rigorous storytelling and immersive audio experiences."
+                className="company-page-header"
             />
 
             <main className="pb-20 px-[5%] md:px-[10%]">

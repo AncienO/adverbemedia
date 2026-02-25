@@ -30,20 +30,12 @@ export function PartnersSection() {
 
                     <div className="pt-6 flex flex-col items-center gap-4">
                         <Link
-                            href="/contact"
+                            href="/for-brands-and-advertisers"
                             className="inline-flex items-center gap-2 text-xl font-bold text-[#E4192B] hover:text-[#E4192B]/80 transition-colors uppercase tracking-widest"
                         >
                             Get in Touch
                             <ArrowRight className="w-6 h-6" />
                         </Link>
-                        <div>
-                            <a
-                                href="mailto:partnerships@adverbemedia.com"
-                                className="text-lg text-gray-500 hover:text-[#E4192B] transition-colors underline"
-                            >
-                                partnerships@adverbemedia.com
-                            </a>
-                        </div>
                     </div>
                 </motion.div>
             </div>

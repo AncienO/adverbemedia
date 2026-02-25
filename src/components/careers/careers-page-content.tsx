@@ -18,6 +18,7 @@ export function CareersPageContent({ jobs }: CareersPageContentProps) {
             <PageHeader
                 title="Careers at Adverbe"
                 description="We're building a new kind of media company for Africa. If you care about rigorous storytelling and craft, we want to hear from you."
+                className="careers-page-header"
             />
 
             <main className="pb-20 px-[5%] md:px-[10%]">

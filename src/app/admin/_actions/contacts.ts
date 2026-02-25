@@ -16,3 +16,18 @@ export async function deleteContact(id: string) {
     if (error) return { error: error.message };
     revalidatePath('/admin/contacts');
 }
+
+export async function createContact(formData: FormData) {
+    const supabase = await createClient();
+    const { error } = await supabase.from('contacts').insert({
+        first_name: formData.get('firstName'),
+        last_name: formData.get('lastName'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message')
+    });
+
+    if (error) return { error: error.message };
+    revalidatePath('/admin/contacts');
+    return { success: true };
+}

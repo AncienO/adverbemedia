@@ -9,7 +9,7 @@ export function Hero() {
 
     return (
         <section
-            className="relative w-full h-screen flex items-start pt-36 md:pt-[15%] overflow-clip"
+            className="hero-section home-hero-section relative w-full h-screen flex items-start pt-36 md:pt-[15%] overflow-clip"
             style={{
                 backgroundColor: '#ffffff'
             }}

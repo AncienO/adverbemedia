@@ -58,9 +58,9 @@ export function NowStreaming({ show }: NowStreamingProps) {
     const audioPlatforms = prioritizedLinks.filter((l: any) => (l.platform === 'spotify' || l.platform === 'applePodcasts' || l.platform === 'rss'));
 
     return (
-        <article className="flex flex-col gap-6 h-full">
+        <article className="flex flex-col gap-6 h-full items-start">
             {/* Cover Image */}
-            <Link href={`/shows/${show.slug}`} className="w-full aspect-square bg-gray-200 overflow-hidden block group relative">
+            <Link href={`/shows/${show.slug}`} className="featured-show-image-container w-full aspect-square bg-gray-200 overflow-hidden block group relative">
                 {show.status === 'coming-soon' && (!show.coverImage || show.coverImage === '/coming-soon.png') ? (
                     <ComingSoonVisual textSize="lg" dotSize="md" />
                 ) : (

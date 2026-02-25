@@ -34,7 +34,7 @@ export default async function Home() {
   }));
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="home-page flex flex-col min-h-screen">
       <Hero />
       <AboutSection />
       <ShowsPreview shows={shows} />

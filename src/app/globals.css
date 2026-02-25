@@ -310,6 +310,10 @@ h6 {
 
 /* Phone specific tweaks */
 @media (max-width: 767px) {
+  :root {
+    --header-height: 140px;
+  }
+
 
   /* Task: Scale Hero Image based on Viewport Height */
   .hero-background-image {
@@ -321,13 +325,121 @@ h6 {
     will-change: transform;
   }
 
-  h1 {
-    font-size: 2.5rem !important;
+  /* Global Hero Layout (All pages except Home) */
+  .hero-section {
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: var(--header-height) !important;
+    padding-bottom: 60px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .hero-section>div,
+  .hero-content-wrapper {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+
+  .hero-section h1,
+  .hero-section .hero-title,
+  .hero-section p {
+    text-align: left !important;
+  }
+
+  /* Center alignment for specific sub-pages */
+  .company-page-header,
+  .our-network-page-header,
+  .news-page-header,
+  .careers-page-header,
+  .contact-us-page-header {
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .company-page-header>div,
+  .our-network-page-header>div,
+  .news-page-header>div,
+  .careers-page-header>div,
+  .contact-us-page-header>div {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .company-page-header h1,
+  .company-page-header h2,
+  .company-page-header p,
+  .our-network-page-header h1,
+  .our-network-page-header h2,
+  .our-network-page-header p,
+  .news-page-header h1,
+  .news-page-header h2,
+  .news-page-header p,
+  .careers-page-header h1,
+  .careers-page-header h2,
+  .careers-page-header p,
+  .contact-us-page-header h1,
+  .contact-us-page-header h2,
+  .contact-us-page-header p {
+    text-align: center !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Home Page Specific Hero Override (Full Viewport remains) */
+  .home-page .hero-section {
+    min-height: 100vh !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    justify-content: center !important;
+    /* Keep home hero vertically centered if needed, or follow prev request */
+  }
+
+  /* Retain previous Home Hero left-alignment from Turn 413 */
+  .home-page .home-hero-section {
+    padding-left: 10% !important;
+    align-items: flex-start !important;
+  }
+
+  .home-page .home-hero-section>div {
+    align-items: flex-start !important;
+  }
+
+  /* Task 2: Title Hierarchy */
+  h1,
+  .hero-title,
+  .section-title {
+    font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
+    margin-bottom: 1.5rem !important;
     line-height: 1.1 !important;
   }
 
   h2 {
-    font-size: 2rem !important;
+    font-size: clamp(2rem, 8vw, 2.5rem) !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .hero-body-text,
+  .section-subtext,
+  p {
+    font-size: clamp(1rem, 4vw, 1.125rem) !important;
+    line-height: 1.5 !important;
   }
 
   .text-4xl {
@@ -340,5 +452,196 @@ h6 {
 
   .text-6xl {
     font-size: 3rem !important;
+  }
+
+  /* Featured Show Image Reduction (Task 1) */
+  .featured-show-image-container {
+    width: 65% !important;
+    margin-right: auto !important;
+    margin-left: 0 !important;
+  }
+}
+
+/* Tablet Hero Padding Override */
+@media (min-width: 768px) and (max-width: 1024px) {
+  :root {
+    --header-height: 160px;
+  }
+
+  /* Apply to all hero sections by default on tablet */
+  .hero-section {
+    padding-top: var(--header-height) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Exclude Home Page hero which has its own proportional padding */
+  .home-page .hero-section {
+    padding-top: 15% !important;
+  }
+}
+
+/* ================================================
+   ADMIN PAGES — Mobile & Tablet Optimization
+   ================================================ */
+
+/* --- MOBILE --- */
+@media (max-width: 767px) {
+
+  /* Layout */
+  .min-h-screen.bg-\[\#FAFAF9\].flex {
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Sidebar */
+  aside.w-\[260px\] {
+    width: 100% !important;
+    height: auto !important;
+    /* Force display on mobile if hidden */
+  }
+
+  /* Main content */
+  main.flex-1 {
+    width: 100% !important;
+    padding: 16px !important;
+    padding-top: 86px !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+  }
+
+  /* Tables */
+  .bg-white.overflow-hidden {
+    overflow-x: auto !important;
+    width: 100% !important;
+  }
+
+  table {
+    min-width: 600px !important;
+  }
+
+  /* Forms */
+  form .flex.items-center.gap-2,
+  form .grid.grid-cols-2 {
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+  }
+
+  form input,
+  form textarea,
+  form select,
+  form button {
+    width: 100% !important;
+    min-height: 44px !important;
+    font-size: 16px !important;
+    box-sizing: border-box !important;
+    margin-bottom: 16px !important;
+  }
+
+  form label {
+    margin-bottom: 6px !important;
+    font-size: 14px !important;
+  }
+
+  /* Buttons */
+  button {
+    min-height: 44px !important;
+    font-size: 16px !important;
+  }
+
+  /* Typography */
+  h1:not(.hero-title) {
+    font-size: clamp(1.2rem, 5vw, 1.8rem) !important;
+  }
+
+  /* Images */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+}
+
+/* --- TABLET --- */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  /* Layout */
+  .min-h-screen.bg-\[\#FAFAF9\].flex {
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Sidebar */
+  aside.w-\[260px\] {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Main content */
+  main.flex-1 {
+    width: 100% !important;
+    padding: 24px !important;
+    padding-top: 94px !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+  }
+
+  /* Tables */
+  .bg-white.overflow-hidden {
+    overflow-x: auto !important;
+    width: 100% !important;
+  }
+
+  /* Forms */
+  form input,
+  form textarea,
+  form select,
+  form button {
+    width: 100% !important;
+    min-height: 44px !important;
+    font-size: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Buttons */
+  button {
+    min-height: 44px !important;
+    font-size: 16px !important;
+  }
+
+  /* Images */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+}
+
+/* --- ADMIN SIDEBAR TOGGLE --- */
+@media (max-width: 1024px) {
+  .admin-menu-toggle {
+    display: flex !important;
+  }
+
+  .admin-nav-wrapper {
+    display: none !important;
+  }
+
+  .admin-nav-wrapper.open {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .admin-menu-toggle {
+    display: none !important;
+  }
+
+  .admin-nav-wrapper {
+    display: flex !important;
   }
 }

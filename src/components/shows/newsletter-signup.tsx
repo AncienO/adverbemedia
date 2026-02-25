@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { subscribeToNewsletter } from '@/app/admin/_actions/subscribers';
 
 export function NewsletterSignup() {
     const [email, setEmail] = useState('');
-    const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-    const [message, setMessage] = useState('');
+    const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -15,30 +16,37 @@ export function NewsletterSignup() {
         // Basic email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            setStatus('error');
-            setMessage('Please enter a valid email address.');
+            setError('Please enter a valid email address.');
             return;
         }
 
         setStatus('submitting');
+        setError('');
 
-        // TODO: Integrate with actual newsletter service (Mailchimp, ConvertKit, etc.)
-        // For now, simulate submission
-        setTimeout(() => {
+        const result = await subscribeToNewsletter(email);
+
+        if (result.error) {
+            setError('Something went wrong. Please try again.');
+            setStatus('idle');
+        } else {
             setStatus('success');
-            setMessage('Thank you for subscribing! We\'ll keep you updated.');
             setEmail('');
-        }, 1000);
+
+            // Hide notification after 4 seconds
+            setTimeout(() => {
+                setStatus('idle');
+            }, 4000);
+        }
     };
 
     return (
-        <section className="w-full py-16 md:py-24 bg-white border-t-2" style={{ borderColor: '#E4192B' }}>
+        <section className="w-full py-16 md:py-24 bg-white border-t-2 relative flex flex-col items-center" style={{ borderColor: '#E4192B' }}>
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="container mx-auto px-4 md:px-6 max-w-2xl text-center"
+                className="container mx-auto px-4 md:px-6 max-w-2xl text-center relative"
             >
                 {/* Heading */}
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
@@ -75,12 +83,26 @@ export function NewsletterSignup() {
                 </form>
 
                 {/* Status Messages */}
-                {status === 'success' && (
-                    <p className="mt-4 text-sm text-green-700 font-medium">{message}</p>
+                {error && (
+                    <p className="mt-4 text-sm text-red-600 font-medium">{error}</p>
                 )}
-                {status === 'error' && (
-                    <p className="mt-4 text-sm text-red-700 font-medium">{message}</p>
-                )}
+
+                {/* Success Notification Overlay */}
+                <AnimatePresence>
+                    {status === 'success' && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ duration: 0.3 }}
+                            className="absolute -bottom-12 left-0 right-0 mx-auto w-fit bg-[#E4192B] text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-3 z-50 pointer-events-none"
+                        >
+                            <CheckCircle2 className="w-5 h-5 text-white/90" />
+                            <p className="font-medium">You're subscribed!</p>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
             </motion.div>
         </section>
     );

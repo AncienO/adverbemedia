@@ -20,8 +20,7 @@ export function SignOutButton() {
 
     return (
         <button
-            className="w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium text-white/40 rounded-lg
-                hover:bg-white/[0.06] hover:text-[#E4192B] transition-all duration-150"
+            className="w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium text-white/40 rounded-lg hover:bg-white/[0.06] hover:text-[#E4192B] transition-all duration-150"
             onClick={handleSignOut}
             disabled={loading}
         >

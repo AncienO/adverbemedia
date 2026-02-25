@@ -16,6 +16,7 @@ export default async function NewsPage() {
             <PageHeader
                 title="News & Updates"
                 description="The latest stories, announcements, and behind-the-scenes updates from the Adverbe team."
+                className="news-page-header"
             />
 
             <main className="pb-20 px-[5%] md:px-[10%]">

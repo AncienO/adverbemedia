@@ -33,7 +33,7 @@ export default function ForBrandsAndAdvertisersPage() {
     }, []);
 
     return (
-        <div className="w-full min-h-screen bg-white pb-0 overflow-hidden">
+        <div className="for-brands-page w-full min-h-screen bg-white pb-0 overflow-hidden">
             <style jsx global>{`
                 @keyframes conveyor {
                     0% { transform: translateX(0); }
@@ -70,35 +70,107 @@ export default function ForBrandsAndAdvertisersPage() {
                         transform: scale(1);
                         transform-origin: unset;
                     }
+
+                    /* For Brands and Advertisers page hero — fill viewport */
+                    .for-brands-page .hero-section {
+                        min-height: 100vh !important;
+                        height: 100vh !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        box-sizing: border-box !important;
+                    }
+
+                    /* Center all content within the hero */
+                    .for-brands-page .hero-content-wrapper {
+                        display: flex !important;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        text-align: center !important;
+                        width: 100% !important;
+                        padding: 0 24px !important;
+                        box-sizing: border-box !important;
+                    }
+
+                    /* Center title */
+                    .for-brands-page .hero-section .hero-title,
+                    .for-brands-page .hero-section h1,
+                    .for-brands-page .hero-section h2 {
+                        text-align: center !important;
+                        width: 100% !important;
+                    }
+
+                    /* Center body text */
+                    .for-brands-page .hero-section .hero-body-text,
+                    .for-brands-page .hero-section p {
+                        text-align: center !important;
+                        width: 100% !important;
+                        margin-left: 0 !important;
+                        margin-right: 0 !important;
+                    }
                 }
 
-                /* Body text scaling — mirrors title scaling behavior */
+                /* Fluid text scaling and centering for Desktop/Tablet */
                 @media (min-width: 768px) {
+                    /* Fluid text scaling — syncs title and body proportions */
+                    .hero-title {
+                        font-size: clamp(48px, 6vw, 120px) !important;
+                        width: 100% !important;
+                        text-align: center !important;
+                        margin: 0 !important;
+                        padding: 0 !important;
+                    }
                     .hero-body-text {
-                        font-size: 1.2vw !important;
+                        font-size: clamp(12.5px, 1.56vw, 31.2px) !important;
                         line-height: 1.6 !important;
                         white-space: normal;
                         max-width: 100%;
+                        font-weight: 400 !important;
+                        width: 100% !important;
+                        text-align: center !important;
+                        margin-left: 0 !important;
+                        margin-right: 0 !important;
+                        padding: 0 !important;
                     }
-                }
-                @media (min-width: 768px) and (max-width: 1440px) {
-                    .hero-body-text {
-                        font-size: 1.1vw !important;
+
+                    /* Hero section container */
+                    .hero-section {
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        width: 100% !important;
+                        min-height: 100vh !important;
                     }
-                }
-                @media (min-width: 768px) and (max-width: 1280px) {
-                    .hero-body-text {
-                        font-size: 1vw !important;
+
+                    /* Content block wrapper */
+                    .hero-content-wrapper {
+                        display: flex !important;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        text-align: center !important;
+                        width: 70% !important;
+                        max-width: 70% !important;
+                        margin: 0 auto !important;
+                        left: unset !important;
+                        right: unset !important;
+                        top: unset !important;
+                        bottom: unset !important;
+                        position: relative !important;
+                        transform: none !important;
+                        padding: 0 !important;
                     }
-                }
-                @media (min-width: 768px) and (max-width: 1024px) {
-                    .hero-body-text {
-                        font-size: 0.9vw !important;
+                    
+                    /* Spacing between title and body text */
+                    .hero-body-container {
+                        margin-top: 1.5rem !important;
                     }
                 }
             `}</style>
 
-            <section className="relative w-full min-h-[calc(70vh+128px)] md:min-h-[calc(80vh+128px)] flex items-center pb-16 md:pb-24 overflow-hidden">
+            <section className="hero-section relative w-full min-h-[calc(70vh+128px)] md:min-h-[calc(80vh+128px)] flex items-center pb-16 md:pb-24 overflow-hidden">
                 {/* Conveyor Belt Background - Fix: Two identical images to maintain aspect ratio */}
                 <div className="absolute inset-0 flex w-fit h-full hero-conveyor pointer-events-none">
                     <img
@@ -122,13 +194,13 @@ export default function ForBrandsAndAdvertisersPage() {
                         className="h-full w-auto max-w-none"
                     />
                 </div>
-                <div className="w-[94%] md:w-[85%] lg:w-[80%] xl:w-[75%] mx-auto relative z-20 pt-32">
-                    <div className="hero-content-wrapper flex flex-col lg:flex-row flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between gap-8 md:gap-12 w-full p-8 md:p-12">
+                <div className="w-[94%] md:w-[85%] lg:w-[80%] xl:w-[75%] mx-auto relative z-20 pt-10 md:pt-32">
+                    <div className="hero-content-wrapper flex flex-col lg:flex-row flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between gap-8 md:gap-12 w-full p-4 md:p-12">
 
-                        {/* Left: Bold Title */}
-                        <div className="flex-1 shrink-0 min-w-min text-left">
+                        {/* Center: Bold Title */}
+                        <div className="flex-1 shrink-0 min-w-min text-center">
                             <p
-                                className="font-bold leading-tight tracking-tighter"
+                                className="hero-title font-bold leading-tight tracking-tighter"
                                 style={{
                                     fontFamily: "'Adobe Garamond', Garamond, serif",
                                     fontSize: '6vw',
@@ -148,9 +220,9 @@ export default function ForBrandsAndAdvertisersPage() {
                         {/* <div className="hidden lg:block w-[5px] self-stretch bg-white min-h-[100px]" /> */}
                         <div className="hidden w-[5px] self-stretch bg-white min-h-[100px]" />
 
-                        {/* Right: Body Text */}
-                        <div className="flex-1 shrink-0 max-w-xl text-left">
-                            <p className="hero-body-text text-xl md:text-3xl text-white leading-relaxed font-bold">
+                        {/* Center: Body Text */}
+                        <div className="hero-body-container flex-1 shrink-0 text-center">
+                            <p className="hero-body-text text-[26px] md:text-[39px] text-white leading-relaxed font-normal">
                                 Adverbe produces original podcast shows across marketing, leadership, faith, design, and sport. Our listeners are professionals, decision-makers, and culturally engaged audiences who choose to spend their time with our content. That&apos;s attention worth investing in.
                             </p>
                         </div>
@@ -195,7 +267,7 @@ export default function ForBrandsAndAdvertisersPage() {
                     </motion.div>
 
                     {/* Task 1 — Red Vertical Divider */}
-                    <div className="hidden md:block w-[1px] md:w-[2px] bg-[#E4192B] self-stretch" />
+                    <div className="hidden md:block w-[1px] md:w-[2px] bg-[#E4192B] self-stretch" style={{ backgroundColor: '#E4192B !important' }} />
 
                     {/* Section 2 — Our Audience */}
                     <motion.div
@@ -307,10 +379,11 @@ export default function ForBrandsAndAdvertisersPage() {
 
             {/* Section 3 — What We Offer (Full Width Red Background) */}
             {/* Section 3 — What We Offer (Unified Grid Layout) */}
-            <section className="w-full py-20 md:py-32 bg-[#E4192B] text-white relative">
-                <div className="w-[94%] md:w-[80%] mx-auto space-y-16 relative z-10">
+            <div className="w-full border-t-[2px] border-[#E4192B]" />
+            <section className="w-full pt-10 pb-20 md:pt-16 md:pb-32 bg-white text-black relative">
+                <div className="w-[94%] md:w-[80%] mx-auto space-y-8 relative z-10">
                     {/* Section Title & Subtext */}
-                    <div className="flex flex-col items-center md:items-start gap-6">
+                    <div className="flex flex-col items-center md:items-start gap-4">
                         <motion.h2
                             initial="hidden"
                             whileInView="visible"
@@ -319,9 +392,9 @@ export default function ForBrandsAndAdvertisersPage() {
                                 hidden: { opacity: 0, y: 30 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } }
                             }}
-                            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight !text-black text-center md:text-left"
+                            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-black text-center md:text-left"
                         >
-                            What we offer<span className="text-white">.</span>
+                            What we offer<span className="text-[#E4192B]">.</span>
                         </motion.h2>
 
                         {/* Animated Line */}
@@ -330,7 +403,7 @@ export default function ForBrandsAndAdvertisersPage() {
                             whileInView={{ scaleX: 1 }}
                             viewport={{ once: true, amount: 0.2 }}
                             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-                            className="w-32 h-1 bg-black rounded-full mx-auto md:mx-0 origin-center md:origin-left"
+                            className="w-32 h-1 bg-[#E4192B] rounded-full mx-auto md:mx-0 origin-center md:origin-left"
                         />
 
                         <motion.div
@@ -341,7 +414,7 @@ export default function ForBrandsAndAdvertisersPage() {
                                 hidden: { opacity: 0, y: 30 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.2 } }
                             }}
-                            className="text-lg md:text-xl leading-relaxed text-center md:text-left text-white font-medium w-full"
+                            className="text-lg md:text-xl leading-relaxed text-center md:text-left text-black font-medium w-full"
                         >
                             <p>
                                 Every partnership is built around your objectives. Here&apos;s how brands work with Adverbe:
@@ -350,7 +423,7 @@ export default function ForBrandsAndAdvertisersPage() {
                     </div>
 
                     {/* Offerings Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                         {/* Cell 1 — Host-Read Ads */}
                         <motion.div
                             initial="hidden"
@@ -360,15 +433,12 @@ export default function ForBrandsAndAdvertisersPage() {
                                 hidden: { opacity: 0, y: 30 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.2 } }
                             }}
-                            className="border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
+                            className="border-t border-[#E4192B] pt-[17.6px] flex flex-col items-center md:items-start space-y-2"
                         >
-                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-white text-center md:text-left" style={{ fontSize: '200%' }}>
-                                Host-Read Ads<span className="text-white">.</span>
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
+                                Host-Read Ads<span className="text-[#E4192B]">.</span>
                             </h3>
-                            <div
-                                className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
-                                style={{ fontSize: '180%' }}
-                            >
+                            <div className="text-lg md:text-xl leading-relaxed text-black font-light text-center md:text-left">
                                 <p>
                                     Our hosts read your message in their own voice and style. Pre-roll, mid-roll, or post-roll placements — delivered with the trust and credibility the audience already gives the host. This is the highest-engagement format in podcast advertising.
                                 </p>
@@ -384,15 +454,12 @@ export default function ForBrandsAndAdvertisersPage() {
                                 hidden: { opacity: 0, y: 30 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.3 } }
                             }}
-                            className="border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
+                            className="border-t border-[#E4192B] pt-[17.6px] flex flex-col items-center md:items-start space-y-2"
                         >
-                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-white text-center md:text-left" style={{ fontSize: '200%' }}>
-                                Produced Spots<span className="text-white">.</span>
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
+                                Produced Spots<span className="text-[#E4192B]">.</span>
                             </h3>
-                            <div
-                                className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
-                                style={{ fontSize: '180%' }}
-                            >
+                            <div className="text-lg md:text-xl leading-relaxed text-black font-light text-center md:text-left">
                                 <p>
                                     Pre-produced audio or video ads placed within episodes. You control the creative; we handle placement and distribution across audio and video platforms.
                                 </p>
@@ -408,15 +475,12 @@ export default function ForBrandsAndAdvertisersPage() {
                                 hidden: { opacity: 0, y: 30 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.4 } }
                             }}
-                            className="border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
+                            className="border-t border-[#E4192B] pt-[17.6px] flex flex-col items-center md:items-start space-y-2"
                         >
-                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-white text-center md:text-left" style={{ fontSize: '200%' }}>
-                                Show Sponsorship<span className="text-white">.</span>
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
+                                Show Sponsorship<span className="text-[#E4192B]">.</span>
                             </h3>
-                            <div
-                                className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
-                                style={{ fontSize: '180%' }}
-                            >
+                            <div className="text-lg md:text-xl leading-relaxed text-black font-light text-center md:text-left">
                                 <p>
                                     Become the presenting sponsor of an Adverbe show. Your brand is integrated into the opening, mid-point, and close of every episode — plus visibility across video, social, and event touchpoints. This is the deepest association with our content and audience.
                                 </p>
@@ -432,15 +496,12 @@ export default function ForBrandsAndAdvertisersPage() {
                                 hidden: { opacity: 0, y: 30 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.5 } }
                             }}
-                            className="border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
+                            className="border-t border-[#E4192B] pt-[17.6px] flex flex-col items-center md:items-start space-y-2"
                         >
-                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-white text-center md:text-left" style={{ fontSize: '200%' }}>
-                                Custom Content<span className="text-white">.</span>
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
+                                Custom Content<span className="text-[#E4192B]">.</span>
                             </h3>
-                            <div
-                                className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
-                                style={{ fontSize: '180%' }}
-                            >
+                            <div className="text-lg md:text-xl leading-relaxed text-black font-light text-center md:text-left">
                                 <p>
                                     Commission bespoke episodes, branded segments, or mini-series produced by the Adverbe team. Your message, our editorial quality and production standards. Ideal for product launches, campaigns, or thought leadership positioning.
                                 </p>
@@ -456,15 +517,12 @@ export default function ForBrandsAndAdvertisersPage() {
                                 hidden: { opacity: 0, y: 30 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut", delay: 0.6 } }
                             }}
-                            className="col-span-1 md:col-span-2 border-t border-white/30 pt-8 flex flex-col items-center md:items-start space-y-4"
+                            className="col-span-1 md:col-span-2 border-t border-[#E4192B] pt-[17.6px] flex flex-col items-center md:items-start space-y-2"
                         >
-                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-white text-center md:text-left" style={{ fontSize: '200%' }}>
-                                Network Packages<span className="text-white">.</span>
+                            <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
+                                Network Packages<span className="text-[#E4192B]">.</span>
                             </h3>
-                            <div
-                                className="text-lg md:text-xl leading-relaxed text-white font-light text-center md:text-left"
-                                style={{ fontSize: '180%' }}
-                            >
+                            <div className="text-lg md:text-xl leading-relaxed text-black font-light text-center md:text-left">
                                 <p>
                                     Reach multiple audience segments through placements across two or more Adverbe shows. A financial services brand can reach C-suite executives through On Leadership and marketing professionals through MAD Conversations — all within one partnership.
                                 </p>
@@ -515,10 +573,7 @@ export default function ForBrandsAndAdvertisersPage() {
                             <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Video-first production
                             </h3>
-                            <div
-                                className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left"
-                                style={{ fontSize: '180%' }}
-                            >
+                            <div className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left">
                                 <p>
                                     Every show is produced as both video and audio. Your brand appears across YouTube, Spotify, Apple Podcasts, and social — not just one platform.
                                 </p>
@@ -539,10 +594,7 @@ export default function ForBrandsAndAdvertisersPage() {
                             <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Audiences that stay
                             </h3>
-                            <div
-                                className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left"
-                                style={{ fontSize: '180%' }}
-                            >
+                            <div className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left">
                                 <p>
                                     Long-form shows mean listeners spend thirty, sixty, ninety minutes with our content. That&apos;s a fundamentally different level of attention than a scroll-past impression.
                                 </p>
@@ -563,10 +615,7 @@ export default function ForBrandsAndAdvertisersPage() {
                             <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Distinct communities, one network
                             </h3>
-                            <div
-                                className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left"
-                                style={{ fontSize: '180%' }}
-                            >
+                            <div className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left">
                                 <p>
                                     Each show serves a specific audience — marketers, leaders, faith communities, sport enthusiasts. You can target precisely or go broad across the network.
                                 </p>
@@ -587,10 +636,7 @@ export default function ForBrandsAndAdvertisersPage() {
                             <h3 className="text-lg md:text-xl font-bold tracking-tight text-black text-center md:text-left" style={{ fontSize: '200%' }}>
                                 Content with shelf life
                             </h3>
-                            <div
-                                className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left"
-                                style={{ fontSize: '180%' }}
-                            >
+                            <div className="text-lg md:text-xl leading-relaxed text-black/80 font-light text-center md:text-left">
                                 <p>
                                     Our episodes are archived and searchable. Your brand doesn&apos;t disappear after 24 hours — it lives inside content that people come back to.
                                 </p>

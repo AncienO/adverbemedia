@@ -3,28 +3,28 @@ import { redirect } from 'next/navigation';
 import { AdminSidebar } from '@/components/admin/admin-sidebar';
 
 export default async function AdminLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    const supabase = await createClient();
+  const supabase = await createClient();
 
-    const {
-        data: { user },
-    } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-    if (!user) {
-        redirect('/login');
-    }
+  if (!user) {
+    redirect('/login');
+  }
 
-    return (
-        <div className="min-h-screen bg-[#FAFAF9] flex font-inter">
-            <AdminSidebar userEmail={user.email || ''} />
+  return (
+    <div className="min-h-screen bg-[#FAFAF9] flex font-inter">
+      <AdminSidebar userEmail={user.email || ''} />
 
-            {/* Main Content */}
-            <main className="flex-1 md:ml-[260px] p-6 md:p-10 lg:p-12">
-                {children}
-            </main>
-        </div>
-    );
+      {/* Main Content */}
+      <main className="flex-1 md:ml-[260px] p-6 md:p-10 lg:p-12">
+        {children}
+      </main>
+    </div>
+  );
 }

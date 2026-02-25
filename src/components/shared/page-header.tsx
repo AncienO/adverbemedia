@@ -7,11 +7,12 @@ interface PageHeaderProps {
     title: string;
     description: string;
     centered?: boolean;
+    className?: string;
 }
 
-export function PageHeader({ title, description, centered }: PageHeaderProps) {
+export function PageHeader({ title, description, centered, className }: PageHeaderProps) {
     return (
-        <section className="w-full pt-40 pb-6 md:pb-8 bg-white">
+        <section className={`hero-section w-full pt-20 md:pt-40 pb-6 md:pb-8 bg-white ${className || ''}`}>
             <div className={`w-full px-[5%] md:px-[10%] flex flex-col ${centered ? 'items-center text-center' : ''}`}>
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
