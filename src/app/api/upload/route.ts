@@ -1,12 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const config = {
-    api: {
-        bodyParser: false,
-    },
-};
-
 // Allow large file uploads
 export const maxDuration = 60;
 
