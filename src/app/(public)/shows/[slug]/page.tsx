@@ -209,7 +209,9 @@ export default async function ShowPage({ params }: ShowPageProps) {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 justify-start">
                                         {members.map(member => (
-                                            <div key={member.id} className="flex flex-col sm:flex-row items-center gap-6 h-full">
+                                            // <div key={member.id} className="flex flex-col sm:flex-row items-center gap-6 h-full">
+                                            <div key={member.id} className="flex flex-col sm:flex-row items-start sm:items-center gap-6 h-full">
+
                                                 {member.avatar ? (
                                                     <div className="relative w-[128px] h-[128px] flex-shrink-0 overflow-hidden shadow-sm border border-gray-100">
                                                         <Image src={member.avatar} alt={`Avatar of ${member.name}`} fill className="object-cover" style={{ objectPosition: 'top' }} sizes="128px" loading="lazy" />

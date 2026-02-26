@@ -12,6 +12,8 @@ export default function PublicLayout({
         <AudioProvider>
             <Header />
             <main className="flex-1 flex flex-col">
+                {/* <main className="flex-1 flex flex-col w-full overflow-x-hidden"> */}
+
                 {children}
             </main>
             <Footer />

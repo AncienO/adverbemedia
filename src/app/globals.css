@@ -235,16 +235,14 @@ h6 {
   html,
   body {
     overflow-x: hidden;
-    width: 100%;
     position: relative;
     font-size: 16px;
     /* Base font size for better legibility */
   }
 
-  /* Ensure items within these stacked containers take full width if they were flex-nowrap */
+  /* Ensure items within these stacked containers behave correctly without forcing global 100% width on everything */
   .flex-nowrap>* {
-    width: 100% !important;
-    max-width: 100% !important;
+    max-width: 100%;
   }
 
   /* Increase tap targets for buttons globally */
@@ -256,10 +254,12 @@ h6 {
     min-height: 44px;
   }
 
-  /* Ensure padding is consistent on smaller screens */
+  /* Allow containers to stretch fully by removing forced padding on tiny viewports */
   .container {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   /* Reduce large gap/padding values that might be too much on mobile */
@@ -314,6 +314,11 @@ h6 {
     --header-height: 140px;
   }
 
+  .partners-section {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
 
   /* Task: Scale Hero Image based on Viewport Height */
   .hero-background-image {
@@ -329,7 +334,8 @@ h6 {
   .hero-section {
     min-height: auto !important;
     height: auto !important;
-    padding-top: var(--header-height) !important;
+    /* padding-top: var(--header-height) !important; */
+    padding-top: calc(var(--header-height) + 3rem) !important;
     padding-bottom: 60px !important;
     display: flex !important;
     flex-direction: column !important;
@@ -379,7 +385,8 @@ h6 {
   .hero-section:not(.home-hero-section):not(.contact-us-page-header) h2,
   .hero-section:not(.home-hero-section):not(.contact-us-page-header) .hero-title {
     text-align: left !important;
-    font-size: clamp(5rem, 20vw, 7rem) !important;
+    font-size: clamp(2.5rem, 10vw, 4rem) !important;
+    padding-top: 3rem !important;
     margin-bottom: 1.5rem !important;
     line-height: 1.1 !important;
     width: 100% !important;
@@ -401,7 +408,9 @@ h6 {
      CONTACT US PAGE — Title centered, rest left
      ================================================ */
 
-  .contact-us-page-header {
+  /* Added 'section.hero-section' to force this to beat the rogue 400px rule */
+
+  /* section.hero-section.contact-us-page-header {
     padding-top: 80px !important;
     align-items: center !important;
     justify-content: flex-start !important;
@@ -411,28 +420,29 @@ h6 {
   .contact-us-page-header .hero-content-wrapper {
     align-items: center !important;
     width: 100% !important;
+
   }
 
   .contact-us-page-header h1,
   .contact-us-page-header h2,
   .contact-us-page-header .hero-title {
     text-align: center !important;
-    font-size: clamp(5rem, 20vw, 7rem) !important;
+    font-size: clamp(1.5rem, 10vw, 2.5rem) !important;
     margin-bottom: 1.5rem !important;
     line-height: 1.1 !important;
     width: 100% !important;
   }
 
   .contact-us-page-header p {
-    text-align: left !important;
+    text-align: center !important;
     width: 100% !important;
   }
 
   .contact-us-page-header .hero-partition,
   .contact-us-page-header hr {
-    margin-left: 0 !important;
+    margin-left: auto !important;
     margin-right: auto !important;
-  }
+  } */
 
   /* ================================================
      COMPANY PAGE — Targeted Override for Mobile Hero Centering
@@ -449,6 +459,14 @@ h6 {
     margin-right: auto !important;
   }
 
+  /* 20% size reduction for specific page headers on mobile */
+  .company-page-header section.hero-section.page-header h1,
+  .our-network-page-header h1,
+  .news-page-header h1,
+  .careers-page-header h1 {
+    font-size: clamp(1.5rem, 10vw, 2.5rem) !important;
+  }
+
   .company-page-header hr,
   .company-page-header .hero-partition,
   .company-page-header [class*="partition"],
@@ -460,6 +478,8 @@ h6 {
     left: 0 !important;
     transform: none !important;
   }
+
+
 
   /* Home Page Specific Hero Override (Full Viewport remains) */
   .home-page .hero-section {
@@ -487,6 +507,11 @@ h6 {
     line-height: 1.1 !important;
   }
 
+  section.home-hero-section h1 {
+    font-size: clamp(2.5rem, 13vw, 3.5rem) !important;
+    margin-bottom: 2rem !important;
+  }
+
   h2 {
     font-size: clamp(2rem, 8vw, 2.5rem) !important;
     margin-bottom: 1rem !important;
@@ -497,6 +522,10 @@ h6 {
   p {
     font-size: clamp(1rem, 4vw, 1.125rem) !important;
     line-height: 1.5 !important;
+  }
+
+  footer p {
+    font-size: 0.7rem !important;
   }
 
   .text-4xl {
@@ -589,6 +618,14 @@ h6 {
     margin-right: auto !important;
     align-self: flex-start !important;
   }
+
+  .home-hero-section h1 {
+    font-size: clamp(4rem, 13vw, 5rem) !important;
+  }
+
+  /* .hero-section.page-header {
+    padding-top: 400px !important;
+  } */
 }
 
 /* Tablet Hero Padding Override */
@@ -632,7 +669,7 @@ h6 {
   }
 
   /* Main content */
-  main.flex-1 {
+  .admin-layout main.flex-1 {
     width: 100% !important;
     padding: 16px !important;
     padding-top: 86px !important;
@@ -711,7 +748,7 @@ h6 {
   }
 
   /* Main content */
-  main.flex-1 {
+  .admin-layout main.flex-1 {
     width: 100% !important;
     padding: 24px !important;
     padding-top: 94px !important;
@@ -743,7 +780,7 @@ h6 {
   }
 
   /* Images */
-  img {
+  .admin-layout img {
     max-width: 100% !important;
     height: auto !important;
   }
@@ -774,3 +811,21 @@ h6 {
     display: flex !important;
   }
 }
+
+/* ================================================
+     CONTACT US PAGE — Mobile Specific Tweaks Only
+     ================================================ */
+
+/* @media (max-width: 767px) {
+
+  
+  section.contact-us-page-header {
+    padding-top: 80px !important;
+  }
+
+  
+  .contact-us-page-header h1 {
+    font-size: clamp(2.5rem, 10vw, 4rem) !important;
+    line-height: 1 !important;
+  }
+} */

@@ -8,14 +8,15 @@ import { motion } from 'framer-motion';
 
 export function PartnersSection() {
     return (
-        <section className="w-full py-20 md:py-32 bg-white border-t border-[#E4192B]">
+        // <section className="w-full py-20 md:py-32 bg-white border-t border-[#E4192B]">
+        <section className="partners-section w-full py-20 md:py-32 bg-white border-t border-[#E4192B]">
             <div className="container mx-auto px-4 md:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                    className="max-w-3xl mx-auto text-center space-y-8"
+                    className="max-w-3xl mx-auto text-center space-y-8 px-8 md:px-0"
                 >
                     <h2
                         className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-black"

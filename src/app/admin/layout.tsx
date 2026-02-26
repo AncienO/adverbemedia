@@ -18,7 +18,8 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen bg-[#FAFAF9] flex font-inter">
+    // <div className="min-h-screen bg-[#FAFAF9] flex font-inter">
+    <div className="admin-layout min-h-screen bg-[#FAFAF9] flex">
       <AdminSidebar userEmail={user.email || ''} />
 
       {/* Main Content */}

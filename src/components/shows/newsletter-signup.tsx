@@ -40,7 +40,8 @@ export function NewsletterSignup() {
     };
 
     return (
-        <section className="w-full py-16 md:py-24 bg-white border-t-2 relative flex flex-col items-center" style={{ borderColor: '#E4192B' }}>
+        // <section className="w-full py-16 md:py-24 bg-white border-t-2 relative flex flex-col items-center" style={{ borderColor: '#E4192B' }}>
+        <section className="w-full py-24 px-6 md:py-24 md:px-0 bg-white border-t-2 relative flex flex-col items-center" style={{ borderColor: '#E4192B' }}>
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}

@@ -127,6 +127,7 @@ export function NowStreaming({ show }: NowStreamingProps) {
                                                     {/* <img src="/Spotify_listen.png" alt="Listen on Spotify" width={160} height={40} className="h-[36px] md:h-[40px] w-auto object-contain" loading="lazy" decoding="async" /> */}
                                                     <img src="/Spotify_listen.png" alt="Listen on Spotify" width={160} height={40} className="h-[36px] md:h-[40px] object-contain" loading="lazy" decoding="async" />
                                                 </Link>
+
                                             );
                                         }
                                         if (key === 'applePodcasts') {

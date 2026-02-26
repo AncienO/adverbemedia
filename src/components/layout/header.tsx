@@ -26,6 +26,7 @@ export function Header() {
 
     return (
         <header className="fixed top-6 left-0 right-0 z-50 bg-white w-[94%] lg:w-[85%] mx-auto shadow-xl">
+            {/* <header className="fixed top-6 left-0 right-0 z-50 bg-white w-full sm:w-[94%] lg:w-[85%] mx-auto shadow-xl"> */}
             <div className="w-full pl-[5%] lg:pl-[10%] pr-[5%] lg:pr-[10%] py-3 md:py-4 flex justify-between items-center relative">
                 {/* Logo - Top Left */}
                 <Link href="/" className="flex items-center z-50">

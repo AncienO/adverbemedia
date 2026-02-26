@@ -64,6 +64,65 @@ export default function ForBrandsAndAdvertisersPage() {
                         transform: scale(0.7);
                     }
                 }
+
+                // /* Do NOT apply below 768px — mobile is excluded */
+                // @media (max-width: 767px) {
+                //     .hero-content-wrapper {
+                //         transform: scale(1);
+                //         transform-origin: unset;
+                //     }
+
+                //     body .for-brands-page .hero-section {
+                //         min-height: 100vh !important;
+                //         height: 100vh !important;
+                //         display: flex !important;
+                //         flex-direction: column !important;
+                //         align-items: center !important;
+                //         justify-content: center !important;
+                //         padding-top: 0 !important;
+                //         padding-bottom: 0 !important;
+                //         box-sizing: border-box !important;
+                //     }
+
+                //     /* Target ONLY the z-20 content wrapper, not the background conveyor */
+                //     body .for-brands-page .hero-section > .z-20 {
+                //         display: flex !important;
+                //         flex-direction: column !important;
+                //         align-items: center !important;
+                //         justify-content: center !important;
+                //         width: 100% !important;
+                //         margin-top: auto !important; /* Forces perfect Y-axis center */
+                //         margin-bottom: auto !important; /* Forces perfect Y-axis center */
+                //     }
+
+                //     body .for-brands-page .hero-content-wrapper {
+                //         display: flex !important;
+                //         flex-direction: column !important;
+                //         align-items: center !important;
+                //         justify-content: center !important;
+                //         text-align: center !important;
+                //         width: 100% !important;
+                //         padding: 0 24px !important;
+                //     }
+
+                //     body .for-brands-page .hero-section .hero-title,
+                //     body .for-brands-page .hero-section h1,
+                //     body .for-brands-page .hero-section h2 {
+                //         text-align: center !important;
+                //         justify-content: center !important;
+                //         width: 100% !important;
+                //     }
+
+                //     body .for-brands-page .hero-section .hero-body-text,
+                //     body .for-brands-page .hero-section p {
+                //         text-align: center !important;
+                //         justify-content: center !important;
+                //         width: 100% !important;
+                //         margin-left: 0 !important;
+                //         margin-right: 0 !important;
+                //     }
+                // }
+
                 /* Do NOT apply below 768px — mobile is excluded */
                 @media (max-width: 767px) {
                     .hero-content-wrapper {
@@ -71,19 +130,30 @@ export default function ForBrandsAndAdvertisersPage() {
                         transform-origin: unset;
                     }
 
-                    /* For Brands and Advertisers page hero — fill viewport */
-                    .for-brands-page .hero-section {
+                    #brands-hero {
                         min-height: 100vh !important;
                         height: 100vh !important;
                         display: flex !important;
                         flex-direction: column !important;
                         align-items: center !important;
                         justify-content: center !important;
+                        padding-top: 0 !important;
+                        padding-bottom: 0 !important;
                         box-sizing: border-box !important;
                     }
 
-                    /* Center all content within the hero */
-                    .for-brands-page .hero-content-wrapper {
+                    /* Target ONLY the z-20 content wrapper, not the background conveyor */
+                    #brands-hero > .z-20 {
+                        display: flex !important;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        width: 100% !important;
+                        margin-top: auto !important; 
+                        margin-bottom: auto !important; 
+                    }
+
+                    #brands-hero .hero-content-wrapper {
                         display: flex !important;
                         flex-direction: column !important;
                         align-items: center !important;
@@ -91,21 +161,20 @@ export default function ForBrandsAndAdvertisersPage() {
                         text-align: center !important;
                         width: 100% !important;
                         padding: 0 24px !important;
-                        box-sizing: border-box !important;
                     }
 
-                    /* Center title */
-                    .for-brands-page .hero-section .hero-title,
-                    .for-brands-page .hero-section h1,
-                    .for-brands-page .hero-section h2 {
+                    #brands-hero .hero-title,
+                    #brands-hero h1,
+                    #brands-hero h2 {
                         text-align: center !important;
+                        justify-content: center !important;
                         width: 100% !important;
                     }
 
-                    /* Center body text */
-                    .for-brands-page .hero-section .hero-body-text,
-                    .for-brands-page .hero-section p {
+                    #brands-hero .hero-body-text,
+                    #brands-hero p {
                         text-align: center !important;
+                        justify-content: center !important;
                         width: 100% !important;
                         margin-left: 0 !important;
                         margin-right: 0 !important;
@@ -170,31 +239,25 @@ export default function ForBrandsAndAdvertisersPage() {
                 }
             `}</style>
 
-            <section className="hero-section relative w-full min-h-[calc(70vh+128px)] md:min-h-[calc(80vh+128px)] flex items-center pb-16 md:pb-24 overflow-hidden">
-                {/* Conveyor Belt Background - Fix: Two identical images to maintain aspect ratio */}
-                <div className="absolute inset-0 flex w-fit h-full hero-conveyor pointer-events-none">
-                    <img
-                        src="/dark_version.png" /* INSERT IMAGE PATH HERE */
-                        alt=""
-                        className="h-full w-auto max-w-none"
-                    />
-                    <img
-                        src="/dark_version.png" /* INSERT IMAGE PATH HERE */
-                        alt=""
-                        className="h-full w-auto max-w-none"
-                    />
-                    <img
-                        src="/dark_version.png" /* INSERT IMAGE PATH HERE */
-                        alt=""
-                        className="h-full w-auto max-w-none"
-                    />
-                    <img
-                        src="/dark_version.png" /* INSERT IMAGE PATH HERE */
-                        alt=""
-                        className="h-full w-auto max-w-none"
-                    />
+            <section id="brands-hero" className="hero-section relative w-full min-h-[calc(70vh+128px)] md:min-h-[calc(80vh+128px)] flex items-center pb-16 md:pb-24 overflow-hidden">
+                {/* Conveyor Belt Background */}
+                <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none">
+                    <div className="flex w-fit hero-conveyor">
+                        <img
+                            src="/dark_version.png"
+                            alt=""
+                            className="h-[80vh] md:h-full !w-auto !max-w-none"
+                        />
+                        <img
+                            src="/dark_version.png"
+                            alt=""
+                            className="h-[80vh] md:h-full !w-auto !max-w-none"
+                        />
+
+                    </div>
                 </div>
-                <div className="w-[94%] md:w-[85%] lg:w-[80%] xl:w-[75%] mx-auto relative z-20 pt-10 md:pt-32">
+                {/* <div className="w-[94%] md:w-[85%] lg:w-[80%] xl:w-[75%] mx-auto relative z-20 pt-10 md:pt-32"> */}
+                <div className="w-[94%] md:w-[85%] lg:w-[80%] xl:w-[75%] mx-auto relative z-20 pt-0 md:pt-32">
                     <div className="hero-content-wrapper flex flex-col lg:flex-row flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between gap-8 md:gap-12 w-full p-4 md:p-12">
 
                         {/* Center: Bold Title */}
