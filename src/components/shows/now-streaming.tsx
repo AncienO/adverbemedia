@@ -111,9 +111,10 @@ export function NowStreaming({ show }: NowStreamingProps) {
                                     href={youtubeLink.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="block transition-transform hover:scale-105 duration-200 min-h-[44px] flex items-center"
+                                    className="block transition-transform hover:scale-105 duration-200 min-h-[44px] flex items-center md:-ml-6"
                                 >
-                                    <img src="/Youtube_watch.png" alt="Watch on YouTube" width={160} height={40} className="h-[36px] md:h-[40px] w-auto object-contain" loading="lazy" decoding="async" />
+                                    {/* <img src="/Youtube_watch.png" alt="Watch on YouTube" width={160} height={40} className="h-[36px] md:h-[40px] w-auto object-contain" loading="lazy" decoding="async" /> */}
+                                    <img src="/Youtube_watch.png" alt="Watch on YouTube" width={160} height={40} className="h-[36px] md:h-[40px] object-contain" loading="lazy" decoding="async" />
                                 </Link>
                             )}
                             {audioPlatforms.length > 0 && (
@@ -123,21 +124,24 @@ export function NowStreaming({ show }: NowStreamingProps) {
                                         if (key === 'spotify') {
                                             return (
                                                 <Link key={`spotify-${idx}`} href={link.url} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200 min-h-[44px] flex items-center">
-                                                    <img src="/Spotify_listen.png" alt="Listen on Spotify" width={160} height={40} className="h-[36px] md:h-[40px] w-auto object-contain" loading="lazy" decoding="async" />
+                                                    {/* <img src="/Spotify_listen.png" alt="Listen on Spotify" width={160} height={40} className="h-[36px] md:h-[40px] w-auto object-contain" loading="lazy" decoding="async" /> */}
+                                                    <img src="/Spotify_listen.png" alt="Listen on Spotify" width={160} height={40} className="h-[36px] md:h-[40px] object-contain" loading="lazy" decoding="async" />
                                                 </Link>
                                             );
                                         }
                                         if (key === 'applePodcasts') {
                                             return (
-                                                <Link key={`apple-${idx}`} href={link.url} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200 min-h-[44px] flex items-center">
-                                                    <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" width={160} height={40} className="h-[36px] md:h-[40px] w-auto object-contain" loading="lazy" decoding="async" />
+                                                <Link key={`apple-${idx}`} href={link.url} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200 min-h-[44px] flex items-center md:-ml-6">
+                                                    {/* <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" width={160} height={40} className="h-[36px] md:h-[40px] w-auto object-contain" loading="lazy" decoding="async" /> */}
+                                                    <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" width={160} height={40} className="h-[36px] md:h-[40px] object-contain" loading="lazy" decoding="async" />
                                                 </Link>
                                             );
                                         }
                                         if (key === 'rss') {
                                             return (
                                                 <Link key={`rss-${idx}`} href={link.url} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200 min-h-[44px] flex items-center">
-                                                    <img src="/rssfeed.png" alt="RSS Feed" width={46} height={46} className="h-[42px] md:h-[46px] w-auto object-contain rounded-[4px]" loading="lazy" decoding="async" />
+                                                    {/* <img src="/rssfeed.png" alt="RSS Feed" width={46} height={46} className="h-[42px] md:h-[46px] w-auto object-contain rounded-[4px]" loading="lazy" decoding="async" /> */}
+                                                    <img src="/rssfeed.png" alt="RSS Feed" width={46} height={46} className="h-[42px] md:h-[46px] object-contain rounded-[4px]" loading="lazy" decoding="async" />
                                                 </Link>
                                             );
                                         }

@@ -27,7 +27,7 @@ export function PageHeader({ title, description, centered, className }: PageHead
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-                    className={`w-32 h-1 bg-[#E4192B] rounded-full mb-6 ${centered ? 'mx-auto origin-center' : 'origin-left'}`}
+                    className={`hero-partition w-32 h-1 bg-[#E4192B] rounded-full mb-6 ${centered ? 'mx-auto origin-center' : 'origin-left'}`}
                 />
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}

@@ -4,7 +4,9 @@ import { ContactActions } from '@/components/admin/contact-actions';
 
 export default async function AdminContactsPage() {
     const supabase = await createAdminClient();
-    const { data: contactsData } = await supabase.from('contacts').select('*');
+    const { data: contactsData, error: contactsError } = await supabase.from('contacts').select('*');
+    if (contactsError) console.error('Supabase contacts fetch error:', contactsError);
+    console.log('Fetched contacts:', contactsData);
 
     // Fetch subscribers, defaulting to empty array if the table doesn't exist yet
     let subscribersData: any[] | null = [];

@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   title: "The Adverbe",
   description: "Original podcast shows documenting the ideas, industries, and people shaping Africa. Music, marketing, leadership, faith, sport, and culture. A Vermé Studios company.",
   icons: {
-    icon: '/adverbe-icon.png',
+    icon: '/Adverbe logo 2.png',
   },
 };
 

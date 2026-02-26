@@ -358,48 +358,107 @@ h6 {
     text-align: left !important;
   }
 
-  /* Center alignment for specific sub-pages */
-  .company-page-header,
-  .our-network-page-header,
-  .news-page-header,
-  .careers-page-header,
-  .contact-us-page-header {
-    align-items: center !important;
-    justify-content: center !important;
+  /* ================================================
+     ALL MENU PAGES EXCEPT HOME AND CONTACT US
+     ================================================ */
+
+  .hero-section:not(.home-hero-section):not(.contact-us-page-header) {
+    padding-top: 80px !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
   }
 
-  .company-page-header>div,
-  .our-network-page-header>div,
-  .news-page-header>div,
-  .careers-page-header>div,
-  .contact-us-page-header>div {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
+  .hero-section:not(.home-hero-section):not(.contact-us-page-header)>div,
+  .hero-section:not(.home-hero-section):not(.contact-us-page-header) .hero-content-wrapper {
+    align-items: flex-start !important;
+    text-align: left !important;
     width: 100% !important;
   }
 
-  .company-page-header h1,
-  .company-page-header h2,
-  .company-page-header p,
-  .our-network-page-header h1,
-  .our-network-page-header h2,
-  .our-network-page-header p,
-  .news-page-header h1,
-  .news-page-header h2,
-  .news-page-header p,
-  .careers-page-header h1,
-  .careers-page-header h2,
-  .careers-page-header p,
+  .hero-section:not(.home-hero-section):not(.contact-us-page-header) h1,
+  .hero-section:not(.home-hero-section):not(.contact-us-page-header) h2,
+  .hero-section:not(.home-hero-section):not(.contact-us-page-header) .hero-title {
+    text-align: left !important;
+    font-size: clamp(5rem, 20vw, 7rem) !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.1 !important;
+    width: 100% !important;
+  }
+
+  .hero-section:not(.home-hero-section):not(.contact-us-page-header) p {
+    text-align: left !important;
+    width: 100% !important;
+  }
+
+  /* Red partition line — left align */
+  .hero-section:not(.home-hero-section):not(.contact-us-page-header) .hero-partition,
+  .hero-section:not(.home-hero-section):not(.contact-us-page-header) hr {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  /* ================================================
+     CONTACT US PAGE — Title centered, rest left
+     ================================================ */
+
+  .contact-us-page-header {
+    padding-top: 80px !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
+  .contact-us-page-header>div,
+  .contact-us-page-header .hero-content-wrapper {
+    align-items: center !important;
+    width: 100% !important;
+  }
+
   .contact-us-page-header h1,
   .contact-us-page-header h2,
-  .contact-us-page-header p {
+  .contact-us-page-header .hero-title {
     text-align: center !important;
+    font-size: clamp(5rem, 20vw, 7rem) !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.1 !important;
     width: 100% !important;
+  }
+
+  .contact-us-page-header p {
+    text-align: left !important;
+    width: 100% !important;
+  }
+
+  .contact-us-page-header .hero-partition,
+  .contact-us-page-header hr {
     margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin-right: auto !important;
+  }
+
+  /* ================================================
+     COMPANY PAGE — Targeted Override for Mobile Hero Centering
+     ================================================ */
+
+  .company-page-header,
+  .company-page-header *,
+  .company-page-header .hero-content-wrapper,
+  .company-page-header .hero-content-wrapper * {
+    text-align: left !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  .company-page-header hr,
+  .company-page-header .hero-partition,
+  .company-page-header [class*="partition"],
+  .company-page-header [class*="divider"],
+  .company-page-header [class*="line"] {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    align-self: flex-start !important;
+    left: 0 !important;
+    transform: none !important;
   }
 
   /* Home Page Specific Hero Override (Full Viewport remains) */
@@ -408,10 +467,8 @@ h6 {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     justify-content: center !important;
-    /* Keep home hero vertically centered if needed, or follow prev request */
   }
 
-  /* Retain previous Home Hero left-alignment from Turn 413 */
   .home-page .home-hero-section {
     padding-left: 10% !important;
     align-items: flex-start !important;
@@ -421,7 +478,7 @@ h6 {
     align-items: flex-start !important;
   }
 
-  /* Task 2: Title Hierarchy */
+  /* Default Title Hierarchy for Home/Others */
   h1,
   .hero-title,
   .section-title {
@@ -459,6 +516,78 @@ h6 {
     width: 65% !important;
     margin-right: auto !important;
     margin-left: 0 !important;
+  }
+
+  /* Platform link badges container */
+  .streaming-platform-links {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  /* Social links in Connect section — Horizontal/Row on mobile */
+  .streaming-social-links {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+    width: 100% !important;
+    align-items: center !important;
+  }
+
+  /* Apple Podcasts badge is the reference — approximately 135px rendered width */
+
+  /* YouTube badge */
+  .streaming-platform-links a[href*="youtube"] img,
+  .streaming-platform-links img[alt*="YouTube"],
+  .streaming-platform-links img[src*="Youtube"] {
+    width: auto !important;
+    max-width: 135px !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  /* Spotify badge */
+  .streaming-platform-links a[href*="spotify"] img,
+  .streaming-platform-links img[alt*="Spotify"],
+  .streaming-platform-links img[src*="Spotify"] {
+    width: auto !important;
+    max-width: 135px !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  /* Containing anchor tags */
+  .streaming-platform-links a[href*="youtube"],
+  .streaming-platform-links a[href*="spotify"] {
+    width: auto !important;
+    max-width: 135px !important;
+    display: block !important;
+  }
+
+  /* Apple Podcasts badge remains default to act as reference */
+  .streaming-platform-links a[href*="apple"] img,
+  .streaming-platform-links img[alt*="Apple"],
+  .streaming-platform-links img[src*="Apple"] {
+    width: auto !important;
+    max-width: 160px !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  .streaming-platform-links a[href*="apple"] {
+    width: auto !important;
+    max-width: 160px !important;
+    display: block !important;
+  }
+
+  /* Left-align red partition line on all hero sections except home page */
+  .hero-section:not(.home-hero-section) .hero-partition {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    align-self: flex-start !important;
   }
 }
 
