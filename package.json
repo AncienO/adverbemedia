@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "convert:webp": "node convert-to-webp.js",
-    "upload:images": "node upload-to-supabase.js"
+    "upload:images": "node upload-to-supabase.js",
+    "list:images": "node list-supabase-images.js"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",

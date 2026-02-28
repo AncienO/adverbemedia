@@ -1,0 +1,80 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Supabase Storage — uploads/images/ — Full URL Index with Codebase Usage Notes
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Not currently used in codebase
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/abstract_BAP.webp
+
+# Not currently used in codebase
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/abstract_black_white.webp
+
+# Not currently used in codebase
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/abstract_graphic.webp
+
+# Not currently used in codebase
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Adverbe Logo - 250px.webp
+
+# Favicon / browser tab icon — used in src/app/layout.tsx (metadata.icons)
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Adverbe%20logo%202.webp
+
+# Not currently used in codebase
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Adverbe Logomark - Black - 63px.webp
+
+# Not currently used in codebase
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/adverbe-icon.webp
+
+# Not currently used in codebase
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/adverbe-logo-125.webp
+
+# Adverbe Media logo (white background) — used in:
+#   src/app/(public)/about/page.tsx (About page logo)
+#   src/lib/data.ts (fallback coverImage for Calvary Central show)
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/adverbe-logo-white-bg.webp
+
+# Not currently used in codebase
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/adverbe_brand_advertisers.webp
+
+# Not currently used in codebase
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/calvary_central.webp
+
+# Coming soon placeholder — fallback cover image for shows/episodes without a cover image — used in:
+#   src/lib/data.ts (coverImage for :On Leadership, The Brief, Convos in the Light, Home Court shows)
+#   src/components/shows/show-grid.tsx (active + coming-soon show cards)
+#   src/components/shows/coming-soon.tsx (coming soon show list)
+#   src/components/shows/now-streaming.tsx (featured show card)
+#   src/components/home/featured-shows.tsx (home page featured shows section)
+#   src/components/home/latest-episodes.tsx (home page latest episodes section)
+#   src/components/home/shows-preview.tsx (home page show grid preview)
+#   src/app/(public)/shows/[slug]/page.tsx (individual show detail page + related shows sidebar)
+#   src/app/(public)/news/page.tsx (news article card fallback)
+#   src/app/(public)/news/[slug]/page.tsx (article detail page — used as exclusion guard)
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp
+
+# Conveyor belt scrolling background image on hero section — used in:
+#   src/app/(public)/for-brands-and-advertisers/page.tsx (×2 — side-by-side for infinite scroll animation)
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/dark_version.webp
+
+# Homepage hero background image — used in:
+#   src/components/home/hero.tsx (full-width background with priority loading)
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/hero-bg.webp
+
+# Not currently used in codebase
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Key-Visual-.webp
+
+# RSS feed badge — used in:
+#   src/components/shows/streaming-links.tsx (show page streaming links bar)
+#   src/components/shows/now-streaming.tsx (featured now-streaming show card)
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/rssfeed.webp
+
+# Spotify "Listen on Spotify" badge — used in:
+#   src/components/shows/streaming-links.tsx (show page streaming links bar)
+#   src/components/shows/now-streaming.tsx (featured now-streaming show card)
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Spotify_listen.webp
+
+# Not currently used in codebase (YouTube Listen variant — different from Youtube_watch)
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Youtube_Listen.webp
+
+# YouTube "Watch on YouTube" badge — used in:
+#   src/components/shows/streaming-links.tsx (show page streaming links bar)
+#   src/components/shows/now-streaming.tsx (featured now-streaming show card)
+https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Youtube_watch.webp
