@@ -61,11 +61,11 @@ export function NowStreaming({ show }: NowStreamingProps) {
         <article className="flex flex-col gap-6 h-full items-start">
             {/* Cover Image */}
             <Link href={`/shows/${show.slug}`} className="featured-show-image-container w-full aspect-square bg-gray-200 overflow-hidden block group relative">
-                {show.status === 'coming-soon' && (!show.coverImage || show.coverImage === '/coming-soon.png') ? (
+                {show.status === 'coming-soon' && (!show.coverImage || show.coverImage === 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp') ? (
                     <ComingSoonVisual textSize="lg" dotSize="md" />
                 ) : (
                     <Image
-                        src={show.coverImage || '/coming-soon.png'}
+                        src={show.coverImage || 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp'}
                         alt={`Cover image for ${show.title}`}
                         width={600}
                         height={600}
@@ -114,7 +114,7 @@ export function NowStreaming({ show }: NowStreamingProps) {
                                     className="block transition-transform hover:scale-105 duration-200 min-h-[44px] flex items-center md:-ml-6"
                                 >
                                     {/* <img src="/Youtube_watch.png" alt="Watch on YouTube" width={160} height={40} className="h-[36px] md:h-[40px] w-auto object-contain" loading="lazy" decoding="async" /> */}
-                                    <img src="/Youtube_watch.png" alt="Watch on YouTube" width={160} height={40} className="h-[36px] md:h-[40px] object-contain" loading="lazy" decoding="async" />
+                                    <Image src="https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Youtube_watch.webp" alt="Watch on YouTube" width={160} height={40} className="h-[36px] md:h-[40px] object-contain" loading="lazy" decoding="async" />
                                 </Link>
                             )}
                             {audioPlatforms.length > 0 && (
@@ -125,7 +125,7 @@ export function NowStreaming({ show }: NowStreamingProps) {
                                             return (
                                                 <Link key={`spotify-${idx}`} href={link.url} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200 min-h-[44px] flex items-center">
                                                     {/* <img src="/Spotify_listen.png" alt="Listen on Spotify" width={160} height={40} className="h-[36px] md:h-[40px] w-auto object-contain" loading="lazy" decoding="async" /> */}
-                                                    <img src="/Spotify_listen.png" alt="Listen on Spotify" width={160} height={40} className="h-[36px] md:h-[40px] object-contain" loading="lazy" decoding="async" />
+                                                    <Image src="https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Spotify_listen.webp" alt="Listen on Spotify" width={160} height={40} className="h-[36px] md:h-[40px] object-contain" loading="lazy" decoding="async" />
                                                 </Link>
 
                                             );
@@ -134,7 +134,7 @@ export function NowStreaming({ show }: NowStreamingProps) {
                                             return (
                                                 <Link key={`apple-${idx}`} href={link.url} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200 min-h-[44px] flex items-center md:-ml-6">
                                                     {/* <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" width={160} height={40} className="h-[36px] md:h-[40px] w-auto object-contain" loading="lazy" decoding="async" /> */}
-                                                    <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" width={160} height={40} className="h-[36px] md:h-[40px] object-contain" loading="lazy" decoding="async" />
+                                                    <Image src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" width={160} height={40} className="h-[36px] md:h-[40px] object-contain" loading="lazy" decoding="async" />
                                                 </Link>
                                             );
                                         }
@@ -142,7 +142,7 @@ export function NowStreaming({ show }: NowStreamingProps) {
                                             return (
                                                 <Link key={`rss-${idx}`} href={link.url} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200 min-h-[44px] flex items-center">
                                                     {/* <img src="/rssfeed.png" alt="RSS Feed" width={46} height={46} className="h-[42px] md:h-[46px] w-auto object-contain rounded-[4px]" loading="lazy" decoding="async" /> */}
-                                                    <img src="/rssfeed.png" alt="RSS Feed" width={46} height={46} className="h-[42px] md:h-[46px] object-contain rounded-[4px]" loading="lazy" decoding="async" />
+                                                    <Image src="https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/rssfeed.webp" alt="RSS Feed" width={46} height={46} className="h-[42px] md:h-[46px] object-contain rounded-[4px]" loading="lazy" decoding="async" />
                                                 </Link>
                                             );
                                         }

@@ -17,26 +17,28 @@ export function Hero() {
         >
             {/* Background Image with Gradient Mask */}
             <div className="absolute inset-0 z-0">
-                <div
-                    className="absolute inset-0 bg-cover bg-no-repeat hero-background-image"
-                    style={{
-                        backgroundImage: "url('/hero-bg.png')",
-                        backgroundPosition: "right center",
-                        backgroundAttachment: "fixed"
-                    }}
-                />
-                {/* Preload safeguard for hero image */}
-                <div className="sr-only">
+                <div >
                     <Image
-                        src="/hero-bg.png"
+                        src="https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/hero-bg.webp"
                         alt=""
                         width={1920}
                         height={1080}
                         priority
                         loading="eager"
                         fetchPriority="high"
+                        // className="absolute inset-0 object-cover object-center overflow-hidden bg-cover bg-no-repeat hero-background-image"
+                        className="absolute inset-0 w-full h-full object-cover object-center object-top md:object-center bg-cover bg-no-repeat hero-background-image"
                     />
                 </div>
+                {/* Preload safeguard for hero image */}
+                {/* <div
+                    className="absolute inset-0 bg-cover bg-no-repeat hero-background-image"
+                    style={{
+                        //backgroundImage: "url('/hero-bg.png')",
+                        backgroundPosition: "right center",
+                        backgroundAttachment: "fixed"
+                    }}
+                /> */}
 
                 {/* Gradient Overlay: 15% Dark to 85% Image */}
                 <div

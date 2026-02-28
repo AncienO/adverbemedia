@@ -50,7 +50,7 @@ export function ShowGrid({ shows, categories }: ShowGridProps) {
                     <Link key={show.id} href={`/shows/${show.slug}`} className="group block space-y-3">
                         <div className="aspect-square overflow-hidden rounded-xl bg-muted relative">
                             <Image
-                                src={show.coverImage || '/coming-soon.png'}
+                                src={show.coverImage || 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp'}
                                 alt={show.title}
                                 fill
                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -80,7 +80,7 @@ export function ShowGrid({ shows, categories }: ShowGridProps) {
                             <div key={show.id} className="block space-y-3 pointer-events-none">
                                 <div className="aspect-square overflow-hidden rounded-xl bg-muted relative grayscale">
                                     <Image
-                                        src={show.coverImage || '/coming-soon.png'}
+                                        src={show.coverImage || 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp'}
                                         alt={show.title}
                                         fill
                                         className="object-cover"

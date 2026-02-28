@@ -60,11 +60,11 @@ export function ShowsPreview({ shows }: ShowsPreviewProps) {
                                 <div className={`flex flex-col overflow-hidden w-full h-full shadow-sm hover:shadow-lg transition-shadow duration-300 ${isComingSoon ? 'bg-gray-50 border border-gray-100' : 'bg-white border border-gray-100'}`}>
                                     {/* Image */}
                                     <div className="relative w-full aspect-square overflow-hidden bg-gray-100 transition-colors duration-300">
-                                        {isComingSoon && (!show.coverImage || show.coverImage === '/coming-soon.png') ? (
+                                        {isComingSoon && (!show.coverImage || show.coverImage === 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp') ? (
                                             <ComingSoonVisual textSize="lg" dotSize="md" />
                                         ) : (
                                             <Image
-                                                src={show.coverImage || '/coming-soon.png'}
+                                                src={show.coverImage || 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp'}
                                                 alt={`Cover image for ${show.title}`}
                                                 fill
                                                 className="object-cover transition-transform duration-500 group-hover:scale-105"

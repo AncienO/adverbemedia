@@ -51,11 +51,11 @@ export function ComingSoon({ shows }: ComingSoonProps) {
                             >
                                 {/* Cover Image - Using Shared Visual */}
                                 <div className="w-48 h-48 bg-gray-100 overflow-hidden flex-shrink-0 ml-0 mr-auto md:mx-0 shadow-sm transition-colors duration-300 relative">
-                                    {!show.coverImage || show.coverImage === '/coming-soon.png' ? (
+                                    {!show.coverImage || show.coverImage === 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp' ? (
                                         <ComingSoonVisual textSize="md" dotSize="md" />
                                     ) : (
                                         <Image
-                                            src={show.coverImage || '/coming-soon.png'}
+                                            src={show.coverImage || 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp'}
                                             alt={`Coming soon: ${show.title}`}
                                             fill
                                             className="object-cover transition-transform duration-500 group-hover:scale-105"

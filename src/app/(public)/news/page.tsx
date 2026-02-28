@@ -32,7 +32,7 @@ export default async function NewsPage() {
                                 {/* Image Container */}
                                 <div className="relative w-full aspect-[16/9] mb-6 overflow-hidden bg-gray-100 round-none">
                                     <Image
-                                        src={item.cover_image_url || '/coming-soon.png'}
+                                        src={item.cover_image_url || 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp'}
                                         alt={item.title}
                                         fill
                                         className="object-cover transition-transform duration-500 group-hover:scale-105"

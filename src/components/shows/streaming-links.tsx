@@ -83,7 +83,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
                     {/* <img src="/Spotify_listen.png" alt="Listen on Spotify" width={135} height={40} className="h-[40px] w-auto max-w-[135px] object-contain sm:max-w-none" loading="lazy" decoding="async" /> */}
-                    <img src="/Spotify_listen.png" alt="Listen on Spotify" width={160} height={40} className="h-[36px] md:h-[40px]  object-contain" loading="lazy" decoding="async" />
+                    <Image src="https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Spotify_listen.webp" alt="Listen on Spotify" width={160} height={40} className="h-[36px] md:h-[40px]  object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
@@ -91,7 +91,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
                     {/* <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" width={135} height={40} className="h-[40px] w-auto max-w-[135px] object-contain sm:max-w-none" loading="lazy" decoding="async" /> */}
-                    <img src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" width={135} height={40} className="h-[40px] object-contain sm:max-w-none" loading="lazy" decoding="async" />
+                    <Image src="/Apple_Podcast.svg" alt="Listen on Apple Podcasts" width={135} height={40} className="h-[40px] object-contain sm:max-w-none" loading="lazy" decoding="async" />
                 </Link>
             );
         }
@@ -99,7 +99,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
                     {/* <img src="/Youtube_watch.png" alt="Watch on YouTube" width={135} height={40} className="h-[40px] w-auto max-w-[135px] object-contain sm:max-w-none" loading="lazy" decoding="async" />  */}
-                    <img src="/Youtube_watch.png" alt="Watch on YouTube" width={160} height={40} className="h-[36px] md:h-[40px] object-contain" loading="lazy" decoding="async" />
+                    <Image src="https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Youtube_watch.webp" alt="Watch on YouTube" width={160} height={40} className="h-[36px] md:h-[40px] object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
@@ -107,7 +107,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
                     {/* <img src="/rssfeed.png" alt="RSS Feed" width={129} height={41} className="h-[41px] w-[129px] md:h-[46px] md:w-auto object-contain rounded-[4px]" loading="lazy" decoding="async" /> */}
-                    <img src="/rssfeed.png" alt="RSS Feed" width={129} height={41} className="h-[41px] w-[129px] md:h-[46px] object-contain rounded-[4px]" loading="lazy" decoding="async" />
+                    <Image src="https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/rssfeed.webp" alt="RSS Feed" width={129} height={41} className="h-[41px] w-[129px] md:h-[46px] object-contain rounded-[4px]" loading="lazy" decoding="async" />
                 </Link>
             );
         }
@@ -117,7 +117,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
                     {/* <img src="/instagram-logo-8869.svg" alt="Follow on Instagram" width={30} height={30} className="h-[30px] w-auto object-contain" loading="lazy" decoding="async" /> */}
-                    <img src="/instagram-logo-8869.svg" alt="Follow on Instagram" width={30} height={30} className="h-[30px] object-contain" loading="lazy" decoding="async" />
+                    <Image src="/instagram-logo-8869.svg" alt="Follow on Instagram" width={30} height={30} className="h-[30px] object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
@@ -125,7 +125,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
                     {/* <img src="/facebook-2870.svg" alt="Follow on Facebook" width={30} height={30} className="h-[30px] w-auto object-contain" loading="lazy" decoding="async" /> */}
-                    <img src="/facebook-2870.svg" alt="Follow on Facebook" width={30} height={30} className="h-[30px] object-contain" loading="lazy" decoding="async" />
+                    <Image src="/facebook-2870.svg" alt="Follow on Facebook" width={30} height={30} className="h-[30px] object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
@@ -133,7 +133,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
                     {/* <img src="/tiktok-logo-10296.svg" alt="Follow on TikTok" width={30} height={30} className="h-[30px] w-auto object-contain" loading="lazy" decoding="async" /> */}
-                    <img src="/tiktok-logo-10296.svg" alt="Follow on TikTok" width={30} height={30} className="h-[30px] object-contain" loading="lazy" decoding="async" />
+                    <Image src="/tiktok-logo-10296.svg" alt="Follow on TikTok" width={30} height={30} className="h-[30px] object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
@@ -141,7 +141,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
                     {/* <img src="/twitter-x-logo-black-round-20851.svg" alt="Follow on X" width={30} height={30} className="h-[30px] w-auto object-contain" loading="lazy" decoding="async" /> */}
-                    <img src="/twitter-x-logo-black-round-20851.svg" alt="Follow on X" width={30} height={30} className="h-[30px] object-contain" loading="lazy" decoding="async" />
+                    <Image src="/twitter-x-logo-black-round-20851.svg" alt="Follow on X" width={30} height={30} className="h-[30px] object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }
@@ -149,7 +149,7 @@ export function StreamingLinks({ socialLinks, variant = 'links' }: StreamingLink
             return (
                 <Link key={`${key}-${index}`} href={href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105 duration-200">
                     {/* <img src="/linkedin-logo-15916.svg" alt="Follow on LinkedIn" width={30} height={30} className="h-[30px] w-auto object-contain" loading="lazy" decoding="async" /> */}
-                    <img src="/linkedin-logo-15916.svg" alt="Follow on LinkedIn" width={30} height={30} className="h-[30px] object-contain" loading="lazy" decoding="async" />
+                    <Image src="/linkedin-logo-15916.svg" alt="Follow on LinkedIn" width={30} height={30} className="h-[30px] object-contain" loading="lazy" decoding="async" />
                 </Link>
             );
         }

@@ -109,11 +109,11 @@ export default async function ShowPage({ params }: ShowPageProps) {
                     {/* Left: Cover Image */}
                     <div className="w-full md:w-[576px] flex-shrink-0">
                         <div className="relative w-full aspect-square overflow-hidden shadow-2xl">
-                            {show.status === 'coming-soon' && (!show.coverImage || show.coverImage === '/coming-soon.png') ? (
+                            {show.status === 'coming-soon' && (!show.coverImage || show.coverImage === 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp') ? (
                                 <ComingSoonVisual textSize="xl" dotSize="lg" />
                             ) : (
                                 <Image
-                                    src={show.coverImage || '/coming-soon.png'}
+                                    src={show.coverImage || 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp'}
                                     alt={`Hero cover for ${show.title}`}
                                     fill
                                     className="object-cover"
@@ -243,7 +243,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
                                 {relatedShows.map(rs => (
                                     <Link key={rs.id} href={`/shows/${rs.slug}`} className="group block mb-3">
                                         <div className="relative aspect-square overflow-hidden rounded-lg shadow-md mb-3 transform transition-transform duration-300 group-hover:scale-105">
-                                            {!rs.cover_image_url || rs.cover_image_url === '/coming-soon.png' ? (
+                                            {!rs.cover_image_url || rs.cover_image_url === 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp' ? (
                                                 <ComingSoonVisual textSize="sm" dotSize="sm" />
                                             ) : (
                                                 <Image

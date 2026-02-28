@@ -20,7 +20,7 @@ export function LatestEpisodes({ episodes }: LatestEpisodesProps) {
                         <div key={episode.id} className="group relative flex flex-col md:flex-row gap-4 p-4 rounded-xl hover:bg-background transition-colors border border-transparent hover:border-border">
                             <div className="flex-shrink-0 w-full md:w-32 aspect-square rounded-md overflow-hidden bg-muted">
                                 <Image
-                                    src={episode.show?.coverImage || episode.coverImage || '/coming-soon.png'}
+                                    src={episode.show?.coverImage || episode.coverImage || 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp'}
                                     alt={episode.title}
                                     fill
                                     className="object-cover"

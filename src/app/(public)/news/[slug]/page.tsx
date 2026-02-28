@@ -50,7 +50,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </div>
 
             {/* Cover Image */}
-            {article.cover_image_url && article.cover_image_url !== '/coming-soon.png' && (
+            {article.cover_image_url && article.cover_image_url !== 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp' && (
                 <div className="relative w-full aspect-[21/9] mb-16 bg-gray-100">
                     <Image
                         src={article.cover_image_url}

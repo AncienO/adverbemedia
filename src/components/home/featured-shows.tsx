@@ -27,7 +27,7 @@ export function FeaturedShows({ shows }: FeaturedShowsProps) {
                         <Link key={show.id} href={`/shows/${show.slug}`} className="group block">
                             <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-muted mb-3">
                                 <Image
-                                    src={show.coverImage || '/coming-soon.png'}
+                                    src={show.coverImage || 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/coming-soon.webp'}
                                     alt={`Featured show: ${show.title}`}
                                     fill
                                     className="object-cover transition-transform duration-300 group-hover:scale-105"

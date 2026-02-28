@@ -33,16 +33,29 @@ export default function ForBrandsAndAdvertisersPage() {
     }, []);
 
     return (
-        <div className="for-brands-page w-full min-h-screen bg-white pb-0 overflow-hidden">
+        <div className="for-brands-page w-full min-h-screen bg-white pb-0"> { /* overflow-hidden */}
             <style jsx global>{`
+            
                 @keyframes conveyor {
                     0% { transform: translateX(0); }
                     100% { transform: translateX(-50%); }
                 }
                 .hero-conveyor {
-                    animation: conveyor 30s linear infinite;
+                    animation: conveyor 60s linear infinite;
                 }
+                
+                
 
+                #brands-hero {
+                    width: 100vw !important;
+                    max-width: 100vw !important;
+                    margin-left: 0 !important;
+                    margin-right: 0 !important;
+                    position: relative !important;
+                    left: 50% !important;
+                    transform: translateX(-50%) !important;
+                }
+                
                 /* Hero Section — Proportional Scaling for Smaller Screens */
                 .hero-content-wrapper {
                     transform-origin: left center;
@@ -239,18 +252,24 @@ export default function ForBrandsAndAdvertisersPage() {
                 }
             `}</style>
 
-            <section id="brands-hero" className="hero-section relative w-full min-h-[calc(70vh+128px)] md:min-h-[calc(80vh+128px)] flex items-center pb-16 md:pb-24 overflow-hidden">
+            <section id="brands-hero" className="hero-section relative w-full w-screen min-h-[calc(70vh+128px)] md:min-h-[calc(80vh+128px)] flex items-center pb-16 md:pb-24 overflow-hidden bg-black">
                 {/* Conveyor Belt Background */}
                 <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none">
                     <div className="flex w-fit hero-conveyor">
-                        <img
-                            src="/dark_version.png"
+                        <Image
+                            src="https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/dark_version.webp"
                             alt=""
+                            width={2560}
+                            height={1440}
+
                             className="h-[80vh] md:h-full !w-auto !max-w-none"
                         />
-                        <img
-                            src="/dark_version.png"
+                        <Image
+                            src="https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/dark_version.webp"
                             alt=""
+                            width={2560}
+                            height={1440}
+
                             className="h-[80vh] md:h-full !w-auto !max-w-none"
                         />
 

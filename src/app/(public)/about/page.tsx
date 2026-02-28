@@ -10,7 +10,7 @@ export default function AboutPage() {
                     {/* Logo Section */}
                     <div className="flex justify-center mb-8">
                         <Image
-                            src="/adverbe-logo-white-bg.jpg"
+                            src="https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/adverbe-logo-white-bg.webp"
                             alt="Adverbe Media Logo"
                             width={300}
                             height={150}
