@@ -284,7 +284,8 @@ export default function ForBrandsAndAdvertisersPage() {
                             <p
                                 className="hero-title font-bold leading-tight tracking-tighter"
                                 style={{
-                                    fontFamily: "'Adobe Garamond', Garamond, serif",
+                                    // fontFamily: "'Adobe Garamond', Garamond, serif",
+                                    fontFamily: "var(--font-eb-garamond), serif",
                                     fontSize: '6vw',
                                     fontWeight: 'bold',
                                     color: 'white'
@@ -293,7 +294,7 @@ export default function ForBrandsAndAdvertisersPage() {
                                 Put your brand
                                 <br />
                                 <span style={{ whiteSpace: 'nowrap' }}>
-                                    where it&apos;s heard<span style={{ color: '#E31837', fontFamily: "'Adobe Garamond', Garamond, serif" }}>.</span>
+                                    where it&apos;s heard<span style={{ color: '#E4192B', fontFamily: "var(--font-eb-garamond), serif" }}>.</span>
                                 </span>
                             </p>
                         </div>

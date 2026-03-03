@@ -17,19 +17,20 @@ export function Hero() {
         >
             {/* Background Image with Gradient Mask */}
             <div className="absolute inset-0 z-0">
-                <div >
-                    <Image
-                        src="https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/hero-bg.webp"
-                        alt=""
-                        width={1920}
-                        height={1080}
-                        priority
-                        loading="eager"
-                        fetchPriority="high"
-                        // className="absolute inset-0 object-cover object-center overflow-hidden bg-cover bg-no-repeat hero-background-image"
-                        className="absolute inset-0 w-full h-full object-cover object-center object-top md:object-center bg-cover bg-no-repeat hero-background-image"
-                    />
-                </div>
+
+                <Image
+                    src="https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/hero-bg.webp"
+                    alt=""
+                    width={1920}
+                    height={1080}
+                    priority
+                    loading="eager"
+                    fetchPriority="high"
+                    sizes="100vw"
+                    // className="absolute inset-0 object-cover object-center overflow-hidden bg-cover bg-no-repeat hero-background-image"
+                    className="absolute inset-0 w-full h-full object-cover object-center object-top md:object-center bg-cover bg-no-repeat hero-background-image"
+                />
+
                 {/* Preload safeguard for hero image */}
                 {/* <div
                     className="absolute inset-0 bg-cover bg-no-repeat hero-background-image"
@@ -91,7 +92,7 @@ export function Hero() {
             {/* Container - shifted left by reducing right justification or adding margin margin-right */}
             <div className="container relative z-20 px-4 md:px-6 flex justify-start pl-[5%] md:pl-[10%]">
                 <div className="w-full md:w-[90%] lg:w-[80%] xl:w-[70%] space-y-8">
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter leading-none text-white font-['Helvetica']">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter leading-none text-white">
                         <motion.span
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}

@@ -7,12 +7,98 @@ import { StreamingLinks } from '@/components/shows/streaming-links';
 import { ComingSoonVisual } from '@/components/shared/coming-soon-visual';
 import Image from 'next/image';
 import { Show, Episode } from '@/types';
+import { Metadata } from 'next';
 
 interface ShowPageProps {
     params: Promise<{ slug: string }>;
 }
 
-export const revalidate = 0;
+export const revalidate = 60;
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const supabase = await createClient();
+
+    const { data: show } = await supabase
+        .from('shows')
+        .select('title, description, short_description, summary,cover_image_url, slug, keywords')
+        .eq('slug', slug)
+        .single();
+
+    if (!show) {
+        return {
+            title: 'Show Not Found | Adverbe Media',
+        };
+    }
+
+    return {
+        title: `${show.title} | Adverbe Media`,
+        description: show.summary || show.short_description || show.description,
+        keywords: show.keywords || 'Ghana podcast network, Podcast network in Ghana, Ghanaian podcasts, Best podcasts in Ghana, Adverbe Media',
+        alternates: {
+            canonical: `https://adverbemedia.com/shows/${show.slug}`,
+        },
+        robots: {
+            index: true,
+            follow: true,
+        },
+        icons: {
+            icon: 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Adverbe%20logo%202.webp',
+        },
+        appleWebApp: {
+            title: `${show.title} | Adverbe Media`,
+            capable: true,
+        },
+        openGraph: {
+            type: 'website',
+            locale: 'en_US',
+            url: `https://adverbemedia.com/shows/${show.slug}`,
+            siteName: 'Adverbe Media',
+            title: `${show.title} | Adverbe Media`,
+            description: show.summary || show.short_description || show.description,
+            images: [
+                {
+                    url: show.cover_image_url,
+                    secureUrl: show.cover_image_url,
+                    width: 2000,
+                    height: 2000,
+                    type: 'image/webp',
+                    alt: `${show.title} Podcast Cover`,
+                }
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            site: '@theadverbemedia',
+            creator: '@theadverbemedia',
+            title: `${show.title} | Adverbe Media`,
+            description: show.summary || show.short_description || show.description,
+            images: [show.cover_image_url],
+        },
+        other: {
+            'mobile-web-app-capable': 'yes',
+            'script:ld+json': JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'PodcastSeries',
+                name: show.title,
+                url: `https://adverbemedia.com/shows/${show.slug}`,
+                description: show.summary || show.short_description || show.description,
+                inLanguage: 'en',
+                image: show.cover_image_url,
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'Adverbe Media',
+                    url: 'https://adverbemedia.com',
+                    logo: {
+                        '@type': 'ImageObject',
+                        url: 'https://sdimiytucxidzdrlhwcz.supabase.co/storage/v1/object/public/uploads/images/Adverbe%20logo%202.webp',
+                    },
+                },
+            }),
+        },
+    };
+}
+
 
 export default async function ShowPage({ params }: ShowPageProps) {
     const { slug } = await params;
