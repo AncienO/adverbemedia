@@ -97,6 +97,7 @@ export default async function CareersPage() {
         location: j.location,
         type: j.type,
         description: j.description,
+        excerpt: j.excerpt,
         requirements: j.requirements,
         isActive: j.is_active
     }));

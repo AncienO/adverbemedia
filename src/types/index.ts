@@ -60,6 +60,7 @@ export interface Job {
     location: string;
     type: string;
     description: string;
+    excerpt?: string | null;
     requirements?: string;
     isActive: boolean;
 }

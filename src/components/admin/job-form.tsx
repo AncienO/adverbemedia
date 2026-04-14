@@ -6,6 +6,8 @@ import { Loader2, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { createJob, updateJob } from '@/app/admin/_actions/careers';
 import { AdminSelect } from '@/components/admin/admin-select';
+import { JobSectionEditor } from '@/components/admin/job-section-editor';
+import { parseJobSections } from '@/lib/job-sections';
 
 export function JobForm({ job }: { job?: any }) {
     const [loading, setLoading] = useState(false);
@@ -75,20 +77,33 @@ export function JobForm({ job }: { job?: any }) {
                 </section>
 
                 <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-8">
-                    <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-4">Description & Requirements</h2>
+                    <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-4">Description &amp; Requirements</h2>
 
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">Job Description</label>
-                        <textarea name="description" defaultValue={job?.description} rows={6}
-                            placeholder="Describe the role, responsibilities, and what the ideal candidate looks like..."
+                        <label className="text-sm font-medium text-gray-700">Excerpt</label>
+                        <textarea name="excerpt" defaultValue={job?.excerpt} rows={3} maxLength={160}
+                            placeholder="A short summary displayed on the job card (max 160 characters)"
                             className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors resize-y" />
                     </div>
 
                     <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">Job Description</label>
+                        <p className="text-xs text-gray-400 -mt-1 mb-2">Build the job description as structured sections — each with its own title and content block.</p>
+                        <JobSectionEditor
+                            name="description"
+                            initialSections={parseJobSections(job?.description)}
+                            placeholder="Describe the role, responsibilities, and what the ideal candidate looks like…"
+                        />
+                    </div>
+
+                    <div className="space-y-2">
                         <label className="text-sm font-medium text-gray-700">Requirements</label>
-                        <textarea name="requirements" defaultValue={job?.requirements} rows={5}
-                            placeholder="List the qualifications, skills, and experience required..."
-                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E4192B]/20 focus:border-[#E4192B] text-sm transition-colors resize-y" />
+                        <p className="text-xs text-gray-400 -mt-1 mb-2">Build requirements as structured sections — each with its own title and content block.</p>
+                        <JobSectionEditor
+                            name="requirements"
+                            initialSections={parseJobSections(job?.requirements)}
+                            placeholder="List the qualifications, skills, and experience required…"
+                        />
                     </div>
                 </section>
 

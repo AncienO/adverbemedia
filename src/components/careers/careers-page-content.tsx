@@ -58,7 +58,7 @@ export function CareersPageContent({ jobs }: CareersPageContentProps) {
                                         </div>
 
                                         <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
-                                            {job.description}
+                                            {job.excerpt}
                                         </p>
                                     </div>
 

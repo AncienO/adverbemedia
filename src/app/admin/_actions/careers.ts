@@ -12,12 +12,13 @@ export async function createJob(formData: FormData) {
     const location = formData.get('location') as string;
     const type = formData.get('type') as string;
     const description = formData.get('description') as string;
+    const excerpt = formData.get('excerpt') as string;
     const requirements = formData.get('requirements') as string;
     const isActive = formData.get('isActive') === 'true';
 
     const { error } = await supabase
         .from('jobs')
-        .insert({ title, slug, location, type, description, requirements, is_active: isActive });
+        .insert({ title, slug, location, type, description, excerpt, requirements, is_active: isActive });
 
     if (error) {
         return { error: error.message };
@@ -36,12 +37,13 @@ export async function updateJob(id: string, formData: FormData) {
     const location = formData.get('location') as string;
     const type = formData.get('type') as string;
     const description = formData.get('description') as string;
+    const excerpt = formData.get('excerpt') as string;
     const requirements = formData.get('requirements') as string;
     const isActive = formData.get('isActive') === 'true';
 
     const { error } = await supabase
         .from('jobs')
-        .update({ title, slug, location, type, description, requirements, is_active: isActive })
+        .update({ title, slug, location, type, description, excerpt, requirements, is_active: isActive })
         .eq('id', id);
 
     if (error) {
