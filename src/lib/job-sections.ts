@@ -23,7 +23,13 @@ export interface BulletsBlock {
     items: string[];
 }
 
-export type ContentBlock = TextBlock | SubsectionBlock | BulletsBlock;
+export interface TitleBlock {
+    type: 'title';
+    id: string;
+    text: string;
+}
+
+export type ContentBlock = TextBlock | SubsectionBlock | BulletsBlock | TitleBlock;
 
 // ── Section ───────────────────────────────────────────────────────────────────
 
@@ -108,6 +114,9 @@ function normaliseBlock(b: any, fallbackId: string): ContentBlock {
     }
     if (b.type === 'bullets') {
         return { type: 'bullets', id, title: b.title ?? undefined, items: Array.isArray(b.items) ? b.items : [] };
+    }
+    if (b.type === 'title') {
+        return { type: 'title', id, text: b.text ?? '' };
     }
     // default → text
     return { type: 'text', id, content: b.content ?? '' };

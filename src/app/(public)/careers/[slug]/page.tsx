@@ -86,12 +86,12 @@ export default async function CareerDetailPage({ params }: { params: Promise<{ s
                                     if (block.type === 'subsection') return (
                                         <div key={j} className="space-y-3">
                                             {block.title && (
-                                                <h3
-                                                    className="text-xl md:text-2xl font-semibold text-black"
+                                                <h2
+                                                    className="text-2xl md:text-3xl font-bold text-black pb-4 border-b border-gray-100"
                                                     style={{ fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif' }}
                                                 >
                                                     {block.title}
-                                                </h3>
+                                                </h2>
                                             )}
                                             {block.content && block.content.split('\n').map((para, k) =>
                                                 para.trim()
@@ -108,6 +108,16 @@ export default async function CareerDetailPage({ params }: { params: Promise<{ s
                                                     ))}
                                                 </ul>
                                             )}
+                                        </div>
+                                    );
+                                    if (block.type === 'title') return (
+                                        <div key={j} className="space-y-3">
+                                            <h2
+                                                className="text-2xl md:text-3xl font-bold text-black pb-4 border-b border-gray-100"
+                                                style={{ fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif' }}
+                                            >
+                                                {block.text}
+                                            </h2>
                                         </div>
                                     );
                                     if (block.type === 'bullets') return (
@@ -164,12 +174,12 @@ export default async function CareerDetailPage({ params }: { params: Promise<{ s
                                     if (block.type === 'subsection') return (
                                         <div key={j} className="space-y-3">
                                             {block.title && (
-                                                <h3
-                                                    className="text-xl md:text-2xl font-semibold text-black"
+                                                <h2
+                                                    className="text-2xl md:text-3xl font-bold text-black pb-4 border-b border-gray-100"
                                                     style={{ fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif' }}
                                                 >
                                                     {block.title}
-                                                </h3>
+                                                </h2>
                                             )}
                                             {block.content && block.content.split('\n').map((para, k) =>
                                                 para.trim()
@@ -186,6 +196,16 @@ export default async function CareerDetailPage({ params }: { params: Promise<{ s
                                                     ))}
                                                 </ul>
                                             )}
+                                        </div>
+                                    );
+                                    if (block.type === 'title') return (
+                                        <div key={j} className="space-y-3">
+                                            <h2
+                                                className="text-2xl md:text-3xl font-bold text-black pb-4 border-b border-gray-100"
+                                                style={{ fontFamily: '"Adobe Garamond Pro", "EB Garamond", serif' }}
+                                            >
+                                                {block.text}
+                                            </h2>
                                         </div>
                                     );
                                     if (block.type === 'bullets') return (
@@ -228,7 +248,7 @@ export default async function CareerDetailPage({ params }: { params: Promise<{ s
                         Send us your CV and a short note about why you&apos;d be a great fit.
                     </p>
                     <a
-                        href="mailto:theadverbe@gmailc.om"
+                        href="mailto:theadverbe@gmail.com"
                         className="inline-flex items-center gap-2 bg-[#E4192B] hover:bg-[#c41525] text-white font-semibold px-8 py-4 rounded-full text-lg transition-colors"
                     >
                         <Mail className="w-5 h-5" />

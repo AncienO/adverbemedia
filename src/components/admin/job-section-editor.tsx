@@ -7,7 +7,7 @@ import {
     AlignLeft, List, Type,
 } from 'lucide-react';
 import {
-    JobSection, ContentBlock, TextBlock, SubsectionBlock, BulletsBlock,
+    JobSection, ContentBlock, TextBlock, SubsectionBlock, BulletsBlock, TitleBlock,
     serializeSections,
 } from '@/lib/job-sections';
 
@@ -56,6 +56,32 @@ function BlockControls({ onDelete, onMove, isFirst, isLast }: {
 }
 
 // ── Individual block editors ──────────────────────────────────────────────────
+
+function TitleBlockEditor({ block, onChange, ...controls }: {
+    block: TitleBlock;
+    onChange: (b: TitleBlock) => void;
+    onDelete: () => void;
+    onMove: (dir: 'up' | 'down') => void;
+    isFirst: boolean;
+    isLast: boolean;
+}) {
+    return (
+        <div className="flex gap-2 bg-purple-50/40 border border-purple-100 rounded-md p-3">
+            <div className="flex-1 space-y-2">
+                <p className="flex items-center gap-1.5 text-[11px] font-semibold text-purple-600 uppercase tracking-wide">
+                    <Type className="w-3 h-3" /> Title
+                </p>
+                <input
+                    value={block.text}
+                    onChange={e => onChange({ ...block, text: e.target.value })}
+                    placeholder="Standalone heading text…"
+                    className="w-full px-2 py-1 text-sm font-semibold border border-transparent hover:border-purple-200 focus:border-[#E4192B] focus:ring-1 focus:ring-[#E4192B]/30 rounded focus:outline-none bg-white text-gray-900 placeholder:text-gray-300 transition-all"
+                />
+            </div>
+            <BlockControls {...controls} />
+        </div>
+    );
+}
 
 function TextBlockEditor({ block, onChange, ...controls }: {
     block: TextBlock;
@@ -297,6 +323,14 @@ function SectionBlocksList({ section, onChange }: {
                         {...sharedProps(block, index)}
                     />
                 );
+                if (block.type === 'title') return (
+                    <TitleBlockEditor
+                        key={block.id}
+                        block={block}
+                        onChange={b => updateBlock(block.id, b)}
+                        {...sharedProps(block, index)}
+                    />
+                );
                 if (block.type === 'subsection') return (
                     <SubsectionBlockEditor
                         key={block.id}
@@ -320,6 +354,7 @@ function SectionBlocksList({ section, onChange }: {
             <div className="flex items-center gap-2 pt-1">
                 <span className="text-xs text-gray-400 mr-1">Add block:</span>
                 {([ ['text', 'Text', 'bg-gray-100 text-gray-600 hover:bg-gray-200'],
+                    ['title', 'Title', 'bg-purple-50 text-purple-600 hover:bg-purple-100'],
                     ['subsection', 'Subsection', 'bg-blue-50 text-blue-600 hover:bg-blue-100'],
                     ['bullets', 'Bullets', 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100'],
                 ] as const).map(([type, label, cls]) => (
